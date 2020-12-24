@@ -52,7 +52,6 @@ namespace PCClubApp.View
                 PCClubApp.ShopUnit ss = i as PCClubApp.ShopUnit;
                 _shopCollection.Add(ss);
                 Products.Items.Add(ss);
-                Trace.WriteLine(ss.Name + "gg");
             });
         }
 
