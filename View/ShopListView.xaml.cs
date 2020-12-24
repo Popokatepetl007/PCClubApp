@@ -17,7 +17,7 @@ using System.Linq;
 using System.Reflection;
 using System.Collections.ObjectModel;
 using PCClubApp;
-
+using Windows.UI.Xaml.Automation;
 
 namespace PCClubApp.View
 {
@@ -58,6 +58,12 @@ namespace PCClubApp.View
         public void LoginResult(bool success)
         {
             
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.UI.Xaml.Controls.Button b = (sender as Windows.UI.Xaml.Controls.Button);
+            Trace.WriteLine(b.GetValue(AutomationProperties.NameProperty));
         }
     }
 }

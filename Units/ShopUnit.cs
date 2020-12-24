@@ -61,6 +61,9 @@ namespace PCClubApp
         public int Id
         { get => id; }
 
+        public string IdName
+        { get => id.ToString(); }
+
         public string Description
         { get => description; }
 

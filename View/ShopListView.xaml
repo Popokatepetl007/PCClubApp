@@ -23,9 +23,10 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
                     <Image Source="/Assets/LockScreenLogo.scale-200.png" Width="250" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding Name}" Margin="16,225,0,0" />
-                    <TextBlock Text="{Binding CostValue}" Margin="0,225,16,0" HorizontalAlignment="Right"/>
-                    <TextBlock Text="{Binding Description}" Margin="16,260,16,72" TextWrapping="Wrap"  />
+                    <TextBlock Text="{Binding Name}" Margin="16,230,0,0" Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="#FFDAF0F5" FontSize="13" />
+                    <TextBlock Text="{Binding CostValue}" Margin="0,225,16,0" HorizontalAlignment="Right" FocusVisualPrimaryBrush="#FFDAF0F5" Foreground="#FFDAF0F5" FontSize="20"/>
+                    <TextBlock Text="{Binding Description}" Margin="16,260,16,72" TextWrapping="Wrap" FontSize="9" FocusVisualPrimaryBrush="#FFDAF0F5" Foreground="#FFDAF0F5"  />
+                    <Button VerticalAlignment="Bottom" AutomationProperties.Name="{Binding Id}"  HorizontalAlignment="Center" Width="240" Height="40" BorderBrush="#FF2F74B0" Padding="0,0,0,4" Background="#FF2F74B0" Content="Купить" FontSize="12" Margin="0,0,0,0" Click="Button_Click" />
                 </Grid>
             </DataTemplate>
         </GridView.ItemTemplate>
