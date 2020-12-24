@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="PCClubApp.View.PanelControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+             xmlns:local="using:PCClubApp" xmlns:local1="using:PCClubApp.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/geraldFull.png"/>
+        </Grid.Background>
+        <Rectangle HorizontalAlignment="Left" Height="67" Stroke="#FF3F465F" VerticalAlignment="Top" Width="1980"/>
+        <Rectangle HorizontalAlignment="Left" Height="67" Margin="1839,0,0,0" VerticalAlignment="Top" Width="81" Stroke="#FF3F465F">
+        </Rectangle>
+        <Button Content="" Margin="51,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_Game">
+            <Button.Background>
+                <ImageBrush ImageSource="/Assets/GamesOff.png"/>
+            </Button.Background>
+        </Button>
+        <Button Content="" Margin="156,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_Service">
+            <Button.Background>
+                <ImageBrush ImageSource="/Assets/ServicesOff.png"/>
+            </Button.Background>
+        </Button>
+        <Button Content="" Margin="271,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_Browser">
+            <Button.Background>
+                <ImageBrush ImageSource="/Assets/BrowsersOff.png"/>
+            </Button.Background>
+        </Button>
+        <Button Content="" Margin="392,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_Shop">
+            <Button.Background>
+                <ImageBrush ImageSource="/Assets/ShopOff.png"/>
+            </Button.Background>
+        </Button>
+        <Button Content="" Margin="509,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_Favorits">
+            <Button.Background>
+                <ImageBrush ImageSource="/Assets/FaviritesOff.png"/>
+            </Button.Background>
+        </Button>
+        <Button Content="" Margin="622,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_News">
+            <Button.Background>
+                <ImageBrush ImageSource="/Assets/NewsOff.png"/>
+            </Button.Background>
+        </Button>
+
+        <local1:ShopListView x:Name="ShopPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,32 @@
+﻿[
+  {
+    "category": "Food",
+    "club": {
+      "address": "string",
+      "id": 0,
+      "name": "string",
+      "phone": "string",
+      "workTime": "string"
+    },
+    "cost": 50,
+    "count": 30,
+    "description": "string",
+    "id": 0,
+    "name": "Burger"
+  },
+  {
+    "category": "Porno",
+    "club": {
+      "address": "string",
+      "id": 0,
+      "name": "string",
+      "phone": "string",
+      "workTime": "string"
+    },
+    "cost": 100,
+    "count": 10,
+    "description": "string",
+    "id": 1,
+    "name": "Book"
+  }
+]
