@@ -14,32 +14,32 @@
         <Rectangle HorizontalAlignment="Left" Height="67" Stroke="#FF3F465F" VerticalAlignment="Top" Width="1980"/>
         <Rectangle HorizontalAlignment="Left" Height="67" Margin="1839,0,0,0" VerticalAlignment="Top" Width="81" Stroke="#FF3F465F">
         </Rectangle>
-        <Button Content="" Margin="51,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_Game">
+        <Button Content="" x:Name="BGame" Margin="51,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/GamesOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" Margin="156,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_Service">
+        <Button Content="" x:Name="BService" Margin="156,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/ServicesOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" Margin="271,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_Browser">
+        <Button Content="" x:Name="BBrowser" Margin="271,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/BrowsersOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" Margin="392,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_Shop">
+        <Button Content="" x:Name="BShop" Margin="392,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/ShopOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" Margin="509,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_Favorits">
+        <Button Content="" x:Name="BFavorites" Margin="509,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/FaviritesOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" Margin="622,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_News">
+        <Button Content="" x:Name="BNews" Margin="622,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/NewsOff.png"/>
             </Button.Background>

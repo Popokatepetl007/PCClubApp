@@ -29,6 +29,48 @@ namespace PCClubApp.View
             
         }
 
+        private void DisActive()
+        {
+            ShopPanel.Visibility = Visibility.Collapsed;
+        }
+
+
+        private void Button_Click_SelectPanel(object sender, RoutedEventArgs e)
+        {
+            Windows.UI.Xaml.Controls.Button b = (sender as Windows.UI.Xaml.Controls.Button);
+            DisActive();
+
+            Trace.WriteLine(b.Name);
+            Trace.WriteLine(BGame.Name);
+            if (b.Name == BGame.Name)
+            {
+                Trace.WriteLine("EA SPOrt");
+            }
+            if (b.Name == BService.Name)
+            {
+                Trace.WriteLine("EA SPOrt");
+            }
+            if (b.Name == BShop.Name)
+            {
+                ShopPanel.Visibility = Visibility.Visible;
+                ShopPanel.OnActive();
+            }
+            if (b.Name == BNews.Name)
+            {
+                Trace.WriteLine("EA SPOrt");
+            }
+            if (b.Name == BFavorites.Name)
+            {
+                Trace.WriteLine("EA SPOrt");
+            }
+            if (b.Name == BBrowser.Name)
+            {
+                Trace.WriteLine("EA SPOrt");
+            }
+
+
+        }
+
 
         private void Button_Click_Game(object sender, RoutedEventArgs e)
         {
