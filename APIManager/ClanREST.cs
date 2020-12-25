@@ -26,13 +26,18 @@ namespace PCClubApp
         private string urlParameters = "?api_key=123";
         private const string DATA = @"{""login"":""master"", ""password"": ""master""}";
         private static string user_token;
-        public IRequestDelegate req_delegate;
+        public IRequestDelegateLogin req_delegate_login;
+        public IRequestDelegateShop req_delegate_shop;
 
 
-        public ClanREST(IRequestDelegate iDelegate)
+        public ClanREST(IRequestDelegateLogin iDelegate)
         {
-            Trace.WriteLine(user_token);
-            this.req_delegate = iDelegate;
+            this.req_delegate_login = iDelegate;
+        }
+
+        public ClanREST(IRequestDelegateShop iDelegate)
+        {
+            this.req_delegate_shop = iDelegate;
         }
 
 
@@ -92,7 +97,7 @@ namespace PCClubApp
                         dynamic result = JObject.Parse(data);
                         string token = result.token;
                         user_token = result.token;
-                        req_delegate.LoginResult(true);
+                        req_delegate_login.LoginResult(true);
                     },
                 method: "POST",
                 post_data: post_data
@@ -116,7 +121,7 @@ namespace PCClubApp
                     {
                         shopList.Add(new ShopUnit(i));
                     }
-                    req_delegate.ShopListResult(shopList);
+                    req_delegate_shop.ShopListResult(shopList);
                     Trace.WriteLine(shopList);
                 }
             );

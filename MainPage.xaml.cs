@@ -21,7 +21,7 @@ namespace PCClubApp
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class MainPage : Page, IRequestDelegate
+    public sealed partial class MainPage : Page, IRequestDelegateLogin
     {
         private ClanREST req;
         public MainPage()
@@ -39,11 +39,6 @@ namespace PCClubApp
                 LoginView.Visibility = Visibility.Collapsed;
                 MainPanel.Visibility = Visibility.Visible;
             }
-        }
-
-        public void ShopListResult<ShopUnit>(List<ShopUnit> shopList)
-        {
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
