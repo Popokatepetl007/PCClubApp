@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemManager\SystemController.cs" />
+    <Compile Include="SystemManager\UIManager.cs" />
     <Compile Include="Units\Class1.cs" />
     <Compile Include="Units\ClubUnit.cs" />
     <Compile Include="Units\GameUnits.cs" />
@@ -155,6 +156,7 @@
     <Content Include="Assets\clock.png" />
     <Content Include="Assets\exit.png" />
     <Content Include="Assets\FaviritesOff.png" />
+    <Content Include="Assets\GameOn.png" />
     <Content Include="Assets\GamesOff.png" />
     <Content Include="Assets\geraldFull.png" />
     <Content Include="Assets\mail.png" />
@@ -165,6 +167,7 @@
     <Content Include="Assets\romb.png" />
     <Content Include="Assets\ServicesOff.png" />
     <Content Include="Assets\ShopOff.png" />
+    <Content Include="Assets\ShopOn.png" />
     <Content Include="Assets\UpLogo.png" />
     <Content Include="Assets\welcome.png" />
     <Content Include="Properties\Default.rd.xml" />

@@ -13,7 +13,10 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
 using PCClubApp;
-
+using Windows.UI.Xaml.Media.Imaging;
+using System.Threading;
+using System.Timers;
+using Windows.UI.Core;
 
 namespace PCClubApp.View
 {
@@ -22,16 +25,38 @@ namespace PCClubApp.View
     /// </summary>
     public partial class PanelControl : UserControl
     {
+
         
         public PanelControl()
         {
             InitializeComponent();
-            
+            /*AutoResetEvent autoEvent = new AutoResetEvent(false);
+            Timer timer = new Timer(TimeUpdate, autoEvent, 1000, 250);
+            autoEvent.WaitOne();
+            timer.Change(0, 500);*/
+
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(TimeUpdate);
+            timer.Interval = 1000;
+            timer.Enabled = true;
+
         }
 
         private void DisActive()
         {
             ShopPanel.Visibility = Visibility.Collapsed;
+            BShop.Background = UIManager.GetImageFromAsset("ShopOff");
+        }
+
+
+        private void TimeUpdate(object source, ElapsedEventArgs e)
+        {
+            IAsyncAction asyncAction = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                CurrentTimeBox.Text = DateTime.Now.ToString("hh:mm:ss");
+                DateNowBox.Text = DateTime.Now.ToString("dd/MM/yy");
+            });
+;
         }
 
 
@@ -52,6 +77,7 @@ namespace PCClubApp.View
             }
             if (b.Name == BShop.Name)
             {
+                BShop.Background = UIManager.GetImageFromAsset("ShopOn");
                 ShopPanel.Visibility = Visibility.Visible;
                 ShopPanel.OnActive();
             }
