@@ -5,18 +5,18 @@ using System.Diagnostics;
 
 namespace PCClubApp
 {
-    class SystemController
+    public class SystemController
     {
-
-
-        public void appRun(GameUnits app)
+        public static void appRun(GameUnits app)
         {
+
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.CreateNoWindow = false;
             startInfo.UseShellExecute = false;
-            startInfo.FileName = "dcm2jpg.exe";
-            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.Arguments = "-f j -o  + ex1 +  -z 1.0 -s y  + ex2";
+            startInfo.FileName = GameEnumConversion.App_path(app);
+            // startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            //startInfo.Arguments = "-f j -o  + ex1 +  -z 1.0 -s y  + ex2";
+            startInfo.Arguments = "-applaunch 730";
             Process.Start(startInfo);
         }
 

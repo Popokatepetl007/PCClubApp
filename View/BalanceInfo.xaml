@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="PCClubApp.View.BalanceInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PCClubApp.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="800"
+    d:DesignWidth="1620">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="85,40,0,0" Text="Номер карты" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <TextBox x:Name="AccLoginBox" HorizontalAlignment="Left" Margin="85,64,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="725" Foreground="#FFDAF0F5" Background="#CC232836" BorderBrush="{x:Null}" Height="45" Padding="10,10,6,2" FontSize="16" PlaceholderText="0000 0000 0000 0000"/>
+        <CheckBox Content="Запомнить данные карты" Margin="85,144,0,0" VerticalAlignment="Top" Foreground="#FF98A2A5" Background="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" BorderBrush="{x:Null}"/>
+        <Button Content="Отмена" Margin="85,203,0,0" VerticalAlignment="Top" Foreground="#FFDAF0F5" Background="{x:Null}" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}"/>
+        <Button Content="Сохранить изменения" Margin="181,201,0,0" VerticalAlignment="Top" Width="282" Height="40" Foreground="#FFDAF0F5" Background="#FF2F74B0"/>
+        <Button Content="Пополнить баланс" Margin="85,310,0,0" VerticalAlignment="Top" Width="218" Height="40" Foreground="#FFDAF0F5" Background="#FF2F74B0"/>
+
+    </Grid>
+</UserControl>

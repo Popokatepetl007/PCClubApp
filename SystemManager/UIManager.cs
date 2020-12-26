@@ -18,5 +18,11 @@ namespace PCClubApp
             im_br.ImageSource = im_b;
             return im_br;
         }
+
+        public static BitmapImage BitmapImageFromUrl(string image_url)
+        {
+            return new BitmapImage(new Uri(image_url));
+        }
+
     }
 }

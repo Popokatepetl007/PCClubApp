@@ -133,9 +133,25 @@
     <Compile Include="Units\Class1.cs" />
     <Compile Include="Units\ClubUnit.cs" />
     <Compile Include="Units\GameUnits.cs" />
+    <Compile Include="Units\ProfileData.cs" />
     <Compile Include="Units\ShopUnit.cs" />
+    <Compile Include="View\BalanceInfo.xaml.cs">
+      <DependentUpon>BalanceInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GameListView.xaml.cs">
+      <DependentUpon>GameListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PanelControl.xaml.cs">
       <DependentUpon>PanelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfileInfo.xaml.cs">
+      <DependentUpon>ProfileInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfilePanel.xaml.cs">
+      <DependentUpon>ProfilePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReserveInfo.xaml.cs">
+      <DependentUpon>ReserveInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ShopListView.xaml.cs">
       <DependentUpon>ShopListView.xaml</DependentUpon>
@@ -159,6 +175,7 @@
     <Content Include="Assets\GameOn.png" />
     <Content Include="Assets\GamesOff.png" />
     <Content Include="Assets\geraldFull.png" />
+    <Content Include="Assets\Group 564.png" />
     <Content Include="Assets\mail.png" />
     <Content Include="Assets\Mask Group.png" />
     <Content Include="Assets\moniror.png" />
@@ -188,9 +205,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\BalanceInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GameListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PanelControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProfileInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProfilePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReserveInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ShopListView.xaml">
       <Generator>MSBuild:Compile</Generator>

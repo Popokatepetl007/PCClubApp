@@ -57,13 +57,15 @@
         </Button>
 
         <local1:ShopListView x:Name="ShopPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+        <local1:GameListView x:Name="GamePanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+        <local1:ProfilePanel x:Name="AProfilePanel" Width="1920" Height="800" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,100" Visibility="Collapsed"/>
         <Rectangle HorizontalAlignment="Left" Height="43" Margin="26,12,0,0" VerticalAlignment="Top" Width="125">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/UpLogo.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock x:Name="CurrentTimeBox" HorizontalAlignment="Left" Margin="288,16,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualPrimaryBrush="{x:Null}" FontSize="16"/>
-        <TextBlock x:Name="DateNowBox" HorizontalAlignment="Left" Margin="442,18,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" SelectionHighlightColor="{x:Null}" />
+        <TextBlock x:Name="CurrentTimeBox" HorizontalAlignment="Left" Margin="288,21,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualPrimaryBrush="{x:Null}" FontSize="16"/>
+        <TextBlock x:Name="DateNowBox" HorizontalAlignment="Left" Margin="442,23,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" SelectionHighlightColor="{x:Null}" />
         <Rectangle HorizontalAlignment="Left" Height="28" Margin="593,20,0,0" VerticalAlignment="Top" Width="34">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/moniror.png"/>
@@ -87,8 +89,8 @@
                 <ImageBrush ImageSource="/Assets/person.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock HorizontalAlignment="Left" Margin="1460,22,0,0" Text="Nagibator2002" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
-        <Button Content="" Margin="1442,0,0,0" VerticalAlignment="Top" Height="67" Width="190" Background="{x:Null}"/>
+        <TextBlock x:Name="ShowLoginNox" HorizontalAlignment="Left" Margin="1460,22,0,0" Text="Nagibator2002" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
+        <Button Content="" Margin="1442,0,0,0" VerticalAlignment="Top" Height="67" Width="190" Background="{x:Null}" Click="Button_Click_Profile"/>
 
 
     </Grid>

@@ -16,6 +16,10 @@ namespace PCClubApp
         void ShopListResult<ShopUnit>(List<ShopUnit> shopList);
     }
 
+    public interface IRequestDelegateProfile
+    {
+        void ProfileResult(ProfileData profile);
+    }
 
     
 }

@@ -1,0 +1,39 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PCClubApp.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Custom="using:Microsoft.UI.Xaml.Controls"
+    x:Class="PCClubApp.View.ProfileInfo"
+    mc:Ignorable="d"
+    d:DesignHeight="800"
+    d:DesignWidth="1620">
+
+    <Grid>
+        <Rectangle HorizontalAlignment="Left" Height="152" Margin="100,32,0,0" VerticalAlignment="Top" Width="152">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Assets/Group 564.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Button Content="Загрузить новую" Margin="100,210,0,0" VerticalAlignment="Top" Width="152" Height="19" FontSize="9" Padding="8,1,8,3" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <Button Content="Удалить" Margin="100,229,0,0" VerticalAlignment="Top" Width="152" Height="19" FontSize="9" Padding="8,1,8,3" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="439,32,0,0" Text="Логин" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <TextBox x:Name="AccLoginBox" HorizontalAlignment="Left" Margin="439,56,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="725" Foreground="#FFDAF0F5" Background="#CC232836" BorderBrush="{x:Null}" Height="45" Padding="10,10,6,2" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="439,115,0,0" Text="Имя" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <TextBox x:Name="AccNameBox" HorizontalAlignment="Left" Margin="439,139,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="725" Foreground="#FFDAF0F5" Background="#CC232836" BorderBrush="{x:Null}" Height="45" Padding="10,10,6,2" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="439,196,0,0" Text="Дата рождения" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <TextBox x:Name="AccBDayBox" HorizontalAlignment="Left" Margin="439,220,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="329" Foreground="#FFDAF0F5" Background="#CC232836" BorderBrush="{x:Null}" Height="45" Padding="10,10,6,2" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="789,196,0,0" Text="Телефон" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <TextBox x:Name="AccPhoneBox" HorizontalAlignment="Left" Margin="789,220,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="375" Foreground="#FFDAF0F5" Background="#CC232836" BorderBrush="{x:Null}" Height="45" Padding="10,10,6,2" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="439,272,0,0" Text="E-mail" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <TextBox x:Name="AccMailBox" HorizontalAlignment="Left" Margin="439,296,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="725" Foreground="#FFDAF0F5" Background="#CC232836" BorderBrush="{x:Null}" Height="45" Padding="10,10,6,2" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="439,392,0,0" Text="Старый пароль" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <TextBox HorizontalAlignment="Left" Margin="439,416,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="725" Foreground="#FFDAF0F5" Background="#CC232836" BorderBrush="{x:Null}" Height="45" Padding="10,10,6,2" FontSize="16" PlaceholderText="Введите старый пароль"/>
+        <TextBlock HorizontalAlignment="Left" Margin="439,481,0,0" Text="Новый пароль" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <TextBox HorizontalAlignment="Left" Margin="439,505,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="725" Foreground="#FFDAF0F5" Background="#CC232836" BorderBrush="{x:Null}" Height="45" Padding="10,10,6,2" FontSize="16" PlaceholderText="Введите новый пароль"/>
+        <TextBlock HorizontalAlignment="Left" Margin="439,562,0,0" Text="Повторите новый пароль" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
+        <TextBox HorizontalAlignment="Left" Margin="439,586,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="725" Foreground="#FFDAF0F5" Background="#CC232836" BorderBrush="{x:Null}" Height="45" Padding="10,10,6,2" FontSize="16" PlaceholderText="Повторите новый пароль"/>
+        <TextBlock HorizontalAlignment="Left" Margin="439,358,0,0" Text="Сменить пароль" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF2F74B0" FontSize="18"/>
+    </Grid>
+</UserControl>

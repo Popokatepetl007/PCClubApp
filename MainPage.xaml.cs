@@ -37,6 +37,7 @@ namespace PCClubApp
             if (success)
             {
                 LoginView.Visibility = Visibility.Collapsed;
+                MainPanel.SetLogin(LoginTextBox.Text);
                 MainPanel.Visibility = Visibility.Visible;
             }
         }

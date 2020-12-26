@@ -28,6 +28,7 @@ namespace PCClubApp
         private static string user_token;
         public IRequestDelegateLogin req_delegate_login;
         public IRequestDelegateShop req_delegate_shop;
+        public IRequestDelegateProfile req_delegate_profile;
 
 
         public ClanREST(IRequestDelegateLogin iDelegate)
@@ -40,6 +41,10 @@ namespace PCClubApp
             this.req_delegate_shop = iDelegate;
         }
 
+        public ClanREST(IRequestDelegateProfile iDelegate)
+        {
+            this.req_delegate_profile = iDelegate;
+        }
 
         private HttpWebRequest CreateRequest(string request_method, string method)
         {
@@ -123,6 +128,22 @@ namespace PCClubApp
                     }
                     req_delegate_shop.ShopListResult(shopList);
                     Trace.WriteLine(shopList);
+                }
+            );
+        }
+
+        public void ProfileData()
+        {
+            this.RUN_request(
+                "/profile",
+                (data) =>
+                {
+                    Trace.WriteLine(data);
+                    string ydata = "{\"result\":" + data + "}";
+                    dynamic jOb = JObject.Parse(ydata);
+                    /*Trace.WriteLine(jOb.id);
+                    Trace.WriteLine(jOb.Name);*/
+                    req_delegate_profile.ProfileResult(new ProfileData(jOb.result));
                 }
             );
         }

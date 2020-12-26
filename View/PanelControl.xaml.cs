@@ -30,10 +30,6 @@ namespace PCClubApp.View
         public PanelControl()
         {
             InitializeComponent();
-            /*AutoResetEvent autoEvent = new AutoResetEvent(false);
-            Timer timer = new Timer(TimeUpdate, autoEvent, 1000, 250);
-            autoEvent.WaitOne();
-            timer.Change(0, 500);*/
 
             System.Timers.Timer timer = new System.Timers.Timer();
             timer.Elapsed += new System.Timers.ElapsedEventHandler(TimeUpdate);
@@ -45,7 +41,14 @@ namespace PCClubApp.View
         private void DisActive()
         {
             ShopPanel.Visibility = Visibility.Collapsed;
+            AProfilePanel.Visibility = Visibility.Collapsed;
+            GamePanel.Visibility = Visibility.Collapsed;
             BShop.Background = UIManager.GetImageFromAsset("ShopOff");
+        }
+
+        public void SetLogin(string login)
+        {
+            ShowLoginNox.Text = login;
         }
 
 
@@ -69,7 +72,7 @@ namespace PCClubApp.View
             Trace.WriteLine(BGame.Name);
             if (b.Name == BGame.Name)
             {
-                Trace.WriteLine("EA SPOrt");
+                GamePanel.Visibility = Visibility.Visible;
             }
             if (b.Name == BService.Name)
             {
@@ -137,5 +140,10 @@ namespace PCClubApp.View
 
         }
 
+        private void Button_Click_Profile(object sender, RoutedEventArgs e)
+        {
+            DisActive();
+            AProfilePanel.Visibility = Visibility.Visible;
+        }
     }
 }

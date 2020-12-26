@@ -1,0 +1,23 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PCClubApp.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Custom="using:Microsoft.UI.Xaml.Controls"
+    x:Class="PCClubApp.View.ProfilePanel"
+    mc:Ignorable="d"
+    d:DesignHeight="800"
+    d:DesignWidth="1920">
+
+    <Grid>
+        <ListView x:Name="SelectPanel" Width="300" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,32,0,32" SelectionChanged="SelectPanel_SelectionChanged" >
+            <TextBlock x:Name="AccItem" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16,0,0,0" Foreground="#FFDAF0F5" SelectionHighlightColor="#FF2F74B0" FontSize="14" SelectionChanged="TextBlock_SelectionChanged">Настройка аккаунта</TextBlock>
+            <TextBlock x:Name="BalanceItem" Padding="16,0,0,0" Foreground="#FFDAF0F5" SelectionHighlightColor="#7F2F74B0" FontSize="14" SelectionChanged="TextBlock_SelectionChanged">Пополнение баланса</TextBlock>
+            <TextBlock x:Name="RedervItem" Margin="16,0,0,0" Foreground="#FFDAF0F5" SelectionHighlightColor="#7F2F74B0" FontSize="14" SelectionChanged="TextBlock_SelectionChanged">Бронирование</TextBlock>
+        </ListView>
+        <local:ProfileInfo x:Name="AccInfoBlock" HorizontalAlignment="Right" Width="1620" Visibility="Collapsed"  />
+        <local:BalanceInfo x:Name="AccBalanceBlock" HorizontalAlignment="Right" Width="1620" Visibility="Collapsed"  />
+        <local:ReserveInfo x:Name="AccReservBlock" HorizontalAlignment="Right" Width="1620" Visibility="Collapsed"  />
+    </Grid>
+</UserControl>
