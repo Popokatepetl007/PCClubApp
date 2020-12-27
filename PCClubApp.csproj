@@ -138,6 +138,15 @@
     <Compile Include="View\BalanceInfo.xaml.cs">
       <DependentUpon>BalanceInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BrawserPanel.xaml.cs">
+      <DependentUpon>BrawserPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CompSetting.xaml.cs">
+      <DependentUpon>CompSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CompSettingDialog.xaml.cs">
+      <DependentUpon>CompSettingDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GameListView.xaml.cs">
       <DependentUpon>GameListView.xaml</DependentUpon>
     </Compile>
@@ -206,6 +215,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\BalanceInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BrawserPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CompSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CompSettingDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

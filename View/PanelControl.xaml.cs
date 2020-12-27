@@ -26,6 +26,7 @@ namespace PCClubApp.View
     public partial class PanelControl : UserControl
     {
 
+        private int commCashValue = 10000;
         
         public PanelControl()
         {
@@ -35,7 +36,21 @@ namespace PCClubApp.View
             timer.Elapsed += new System.Timers.ElapsedEventHandler(TimeUpdate);
             timer.Interval = 1000;
             timer.Enabled = true;
+            SetComCash(10000);
+        }
 
+        private void SetComCash(int newValue)
+        {
+            CommCash.Text = String.Format("{0}₽", newValue);
+        }
+
+        private void SetMinCash(int value)
+        {
+            if ((commCashValue - value) > 0)
+            {
+                commCashValue = commCashValue - value;
+                SetComCash(commCashValue);
+            }
         }
 
         private void DisActive()
@@ -43,6 +58,7 @@ namespace PCClubApp.View
             ShopPanel.Visibility = Visibility.Collapsed;
             AProfilePanel.Visibility = Visibility.Collapsed;
             GamePanel.Visibility = Visibility.Collapsed;
+            BrowserPanel.Visibility = Visibility.Collapsed;
             BShop.Background = UIManager.GetImageFromAsset("ShopOff");
         }
 
@@ -76,13 +92,17 @@ namespace PCClubApp.View
             }
             if (b.Name == BService.Name)
             {
-                Trace.WriteLine("EA SPOrt");
+                GamePanel.Visibility = Visibility.Visible;
             }
             if (b.Name == BShop.Name)
             {
                 BShop.Background = UIManager.GetImageFromAsset("ShopOn");
                 ShopPanel.Visibility = Visibility.Visible;
                 ShopPanel.OnActive();
+                ShopPanel.ARetCostValue = (int a) =>
+                {
+                    SetMinCash(a);
+                };
             }
             if (b.Name == BNews.Name)
             {
@@ -94,7 +114,7 @@ namespace PCClubApp.View
             }
             if (b.Name == BBrowser.Name)
             {
-                Trace.WriteLine("EA SPOrt");
+                BrowserPanel.Visibility = Visibility.Visible;
             }
 
 
@@ -144,6 +164,17 @@ namespace PCClubApp.View
         {
             DisActive();
             AProfilePanel.Visibility = Visibility.Visible;
+        }
+
+        private async System.Threading.Tasks.Task ShowSettinhsCompAsync()
+        {
+            CompSettingDialog settingsDialog = new CompSettingDialog();
+            ContentDialogResult result = await settingsDialog.ShowAsync();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _ = ShowSettinhsCompAsync();
         }
     }
 }

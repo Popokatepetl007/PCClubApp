@@ -39,8 +39,8 @@
 
                 </Button>
 
-                <TextBox Name="LoginTextBox" HorizontalAlignment="Center" Margin="0,250,0,0" Text="test" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" Height="35" Background="{x:Null}" BorderBrush="#FF3F465F" Foreground="#FFDAF0F5" FontSize="18" TextAlignment="Left" Padding="8,4,0,0" UseLayoutRounding="True"/>
-                <TextBox Name="passwordTextBox" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="319" Height="35" Background="{x:Null}" BorderBrush="#FF3F465F" Padding="8,4,0,0" Foreground="#FFDAF0F5" FontSize="18" Text="test"/>
+                <TextBox Name="LoginTextBox" HorizontalAlignment="Center" Margin="0,250,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" Height="35" Background="{x:Null}" BorderBrush="#FF3F465F" Foreground="#FFDAF0F5" FontSize="18" TextAlignment="Left" Padding="8,4,0,0" UseLayoutRounding="True" PlaceholderText="Login"/>
+                <TextBox Name="passwordTextBox" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="319" Height="35" Background="{x:Null}" BorderBrush="#FF3F465F" Padding="8,4,0,0" Foreground="#FFDAF0F5" FontSize="18" Text="" PlaceholderText="Password"/>
 
             </Grid>
         </Viewbox>

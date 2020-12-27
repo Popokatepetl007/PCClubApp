@@ -14,7 +14,7 @@
         <Rectangle HorizontalAlignment="Left" Height="67" Stroke="#FF3F465F" VerticalAlignment="Top" Width="1980"/>
         <Rectangle HorizontalAlignment="Left" Height="67" Margin="1839,0,0,0" VerticalAlignment="Top" Width="81" Stroke="#FF3F465F">
         </Rectangle>
-        <Button Content="" Margin="1857,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.162,-0.266" Height="44" Width="47">
+        <Button Content="" Margin="1857,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.162,-0.266" Height="44" Width="47" Click="Button_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/exit.png"/>
             </Button.Background>
@@ -58,6 +58,7 @@
 
         <local1:ShopListView x:Name="ShopPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
         <local1:GameListView x:Name="GamePanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+        <local1:BrawserPanel x:Name="BrowserPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
         <local1:ProfilePanel x:Name="AProfilePanel" Width="1920" Height="800" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,100" Visibility="Collapsed"/>
         <Rectangle HorizontalAlignment="Left" Height="43" Margin="26,12,0,0" VerticalAlignment="Top" Width="125">
             <Rectangle.Fill>
@@ -83,14 +84,14 @@
                 <ImageBrush ImageSource="/Assets/mail.png"/>
             </Button.Background>
         </Button>
-        <TextBox HorizontalAlignment="Left" Margin="1668,16,0,0" Text="132$" TextWrapping="Wrap" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" FontSize="18"/>
-        <Rectangle HorizontalAlignment="Left" Height="43" Margin="1577,12,0,0" VerticalAlignment="Top" Width="45" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}">
+        <TextBox x:Name="CommCash" HorizontalAlignment="Left" Margin="1668,16,0,0" Text="132₽" TextWrapping="Wrap" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" FontSize="18"/>
+        <Rectangle HorizontalAlignment="Left" Height="43" Margin="1577,12,0,0" VerticalAlignment="Top" Width="45" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" IsHitTestVisible="False">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/person.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock x:Name="ShowLoginNox" HorizontalAlignment="Left" Margin="1460,22,0,0" Text="Nagibator2002" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
-        <Button Content="" Margin="1442,0,0,0" VerticalAlignment="Top" Height="67" Width="190" Background="{x:Null}" Click="Button_Click_Profile"/>
+        <TextBlock x:Name="ShowLoginNox" HorizontalAlignment="Left" Margin="1460,22,0,0" Text="Nagibator2002" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsHitTestVisible="False"/>
+        <Button Content="" Margin="1442,0,0,0" VerticalAlignment="Top" Height="67" Width="190" Background="#00000000" Click="Button_Click_Profile"/>
 
 
     </Grid>

@@ -22,7 +22,7 @@ namespace PCClubApp
     public class ClanREST
     {
 
-        private const string main_URL = "http://192.168.0.62:8123";
+        private const string main_URL = "http://5.129.77.65:8123";
         private string urlParameters = "?api_key=123";
         private const string DATA = @"{""login"":""master"", ""password"": ""master""}";
         private static string user_token;

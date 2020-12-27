@@ -28,6 +28,8 @@ namespace PCClubApp.View
     {
         private ObservableCollection<ShopUnit> _shopCollection = new ObservableCollection<ShopUnit>();
 
+        public Action<int> ARetCostValue;
+
         public ObservableCollection<ShopUnit> ShopListCollection
         {
             get { return this._shopCollection; }
@@ -59,7 +61,15 @@ namespace PCClubApp.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Windows.UI.Xaml.Controls.Button b = (sender as Windows.UI.Xaml.Controls.Button);
-            Trace.WriteLine(b.GetValue(AutomationProperties.NameProperty));
+            Trace.WriteLine(b.GetValue(AutomationProperties.NameProperty).GetType());
+            foreach (var i in ShopListCollection)
+            {
+                if (i.Id.ToString().Replace(" ", "") == b.GetValue(AutomationProperties.NameProperty).ToString().Replace(" ", ""))
+                {
+                    ARetCostValue(i.Cost);
+                }
+            }
+            
         }
 
     }
