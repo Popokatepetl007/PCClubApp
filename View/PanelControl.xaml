@@ -59,6 +59,7 @@
         <local1:ShopListView x:Name="ShopPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
         <local1:GameListView x:Name="GamePanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
         <local1:BrawserPanel x:Name="BrowserPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+        <local1:NewsView x:Name="NewsPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
         <local1:ProfilePanel x:Name="AProfilePanel" Width="1920" Height="800" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,100" Visibility="Collapsed"/>
         <Rectangle HorizontalAlignment="Left" Height="43" Margin="26,12,0,0" VerticalAlignment="Top" Width="125">
             <Rectangle.Fill>
@@ -79,7 +80,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <TextBlock HorizontalAlignment="Left" Margin="745,18,0,0" Text="03:22" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Padding="4,6,6,5"/>
-        <Button Content="" Margin="1772,17,0,0" VerticalAlignment="Top" Height="33" Width="43" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}">
+        <Button Content="" Margin="1772,17,0,0" VerticalAlignment="Top" Height="33" Width="43" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Click="Button_Click_1">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/mail.png"/>
             </Button.Background>

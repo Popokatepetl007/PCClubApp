@@ -30,6 +30,8 @@ namespace PCClubApp
             Trace.WriteLine("Start App ----------");
             req = new ClanREST(this);
             MainPanel.Visibility = Visibility.Collapsed;
+            WSManager ws = new WSManager();
+            //ws.ConnectAsync();
         }
 
         public void LoginResult(bool success)

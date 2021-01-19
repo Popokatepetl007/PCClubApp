@@ -141,6 +141,9 @@
     <Compile Include="View\BrawserPanel.xaml.cs">
       <DependentUpon>BrawserPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ChatDialog.xaml.cs">
+      <DependentUpon>ChatDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CompSetting.xaml.cs">
       <DependentUpon>CompSetting.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,9 @@
     </Compile>
     <Compile Include="View\GameListView.xaml.cs">
       <DependentUpon>GameListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewsView.xaml.cs">
+      <DependentUpon>NewsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PanelControl.xaml.cs">
       <DependentUpon>PanelControl.xaml</DependentUpon>
@@ -222,6 +228,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ChatDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CompSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GameListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,5 +21,11 @@ namespace PCClubApp
         void ProfileResult(ProfileData profile);
     }
 
+    public interface IRequestDelegateSuccessResult
+    {
+        void SuccessResult();
+        void ErrorResult(string message);
+    }
+
     
 }

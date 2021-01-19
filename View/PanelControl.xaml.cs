@@ -59,6 +59,7 @@ namespace PCClubApp.View
             AProfilePanel.Visibility = Visibility.Collapsed;
             GamePanel.Visibility = Visibility.Collapsed;
             BrowserPanel.Visibility = Visibility.Collapsed;
+            NewsPanel.Visibility = Visibility.Collapsed;
             BShop.Background = UIManager.GetImageFromAsset("ShopOff");
         }
 
@@ -106,7 +107,7 @@ namespace PCClubApp.View
             }
             if (b.Name == BNews.Name)
             {
-                Trace.WriteLine("EA SPOrt");
+                NewsPanel.Visibility = Visibility.Visible;
             }
             if (b.Name == BFavorites.Name)
             {
@@ -175,6 +176,19 @@ namespace PCClubApp.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _ = ShowSettinhsCompAsync();
+        }
+
+
+
+        private async System.Threading.Tasks.Task ShowChat()
+        {
+            ChatDialog settingsDialog = new ChatDialog();
+            ContentDialogResult result = await settingsDialog.ShowAsync();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            _ = ShowChat();
         }
     }
 }

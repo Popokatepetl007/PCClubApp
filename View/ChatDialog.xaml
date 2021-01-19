@@ -1,0 +1,25 @@
+﻿<ContentDialog
+    x:Class="PCClubApp.View.ChatDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PCClubApp.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Диалог"
+    PrimaryButtonText="Закрыть"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick"  Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+    <Grid Margin="0,0,-502,0" Width="1000" Height="621" VerticalAlignment="Top"  >
+        <ListView x:Name="MessagesList" Height="469" VerticalAlignment="Center" Margin="0,0,490,0" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBox Text="{Binding Text}" Background="#7F2F74B0" IsReadOnly="True" FocusVisualPrimaryBrush="#7F2F74B0" FocusVisualSecondaryBrush="#7F2F74B0" TextWrapping="Wrap" BorderBrush="#7F2F74B0" SelectionHighlightColor="#7F2F74B0" SelectionHighlightColorWhenNotFocused="#7F2F74B0" FlowDirection="RightToLeft" HorizontalAlignment="Right" HorizontalContentAlignment="Right"  />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBox x:Name="TextSendMessage" Height="50" VerticalAlignment="Bottom" Margin="8,0,0,10" Width="400" HorizontalAlignment="Left" TextWrapping="Wrap" />
+        <Button Content="Отправить" Margin="413,0,0,19" VerticalAlignment="Bottom" RenderTransformOrigin="0.437,0.531" Click="Button_Click" />
+    </Grid>
+</ContentDialog>

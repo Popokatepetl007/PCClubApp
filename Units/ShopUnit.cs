@@ -50,9 +50,10 @@ namespace PCClubApp
             name = jItem.name;
             description = jItem.description;
             cost = jItem.cost;
-            count = jItem.count;
+            //count = jItem.count;
+            count = 100;
             category = jItem.category;
-            club = new ClubUnit(jItem.club);
+            //club = new ClubUnit(jItem.club);
         }
 
         public string Name
@@ -78,6 +79,8 @@ namespace PCClubApp
 
         public int Count
         { get => count; }
+
+
 
     }
 }

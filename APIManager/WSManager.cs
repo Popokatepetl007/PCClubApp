@@ -14,7 +14,7 @@ namespace PCClubApp
 {
     class WSManager
     {
-        private readonly string ws_url = "ws://192.168.0.62:8123/ws/websocket";
+        private readonly string ws_url = "ws://5.129.77.65:8123/ws/websocket";
         public void ConnectAsync()
         {
             Trace.WriteLine("---------WS Manager----------");
@@ -24,9 +24,9 @@ namespace PCClubApp
             ws.OnError += (s, e) =>
                 Trace.WriteLine(e);
             
-            string subscribe = "SUBSCRIBE\nid:123\ndestination:/topic/ggl\n\n\0";
-            string message = "{\"message\": \"hello\"}";
-            string send_message = String.Format("SEND\nid:123\ndestination:/app/chat\n\n{0}\n\n\0", message);
+            string subscribe = "SUBSCRIBE\nid:123\ndestination:/topic/chat/user/0\n\n\0";
+            string message = "{\"clubId\": 0, \"content\": \"hello\"}";
+            string send_message = String.Format("SEND\nid:123\ndestination:/app/chat/user/send\n\n{0}\n\n\0", message);
             ws.Connect();
             ws.Send(subscribe);
             ws.Send(send_message);

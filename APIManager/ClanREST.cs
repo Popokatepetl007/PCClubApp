@@ -21,14 +21,14 @@ namespace PCClubApp
 
     public class ClanREST
     {
-
         private const string main_URL = "http://5.129.77.65:8123";
-        private string urlParameters = "?api_key=123";
+        //private const string main_URL = "http://192.168.0.62:8123";
         private const string DATA = @"{""login"":""master"", ""password"": ""master""}";
         private static string user_token;
         public IRequestDelegateLogin req_delegate_login;
         public IRequestDelegateShop req_delegate_shop;
         public IRequestDelegateProfile req_delegate_profile;
+        public IRequestDelegateSuccessResult req_delegate_success;
 
 
         public ClanREST(IRequestDelegateLogin iDelegate)
@@ -44,6 +44,11 @@ namespace PCClubApp
         public ClanREST(IRequestDelegateProfile iDelegate)
         {
             this.req_delegate_profile = iDelegate;
+        }
+
+        public ClanREST(IRequestDelegateSuccessResult iDelegate)
+        {
+            this.req_delegate_success = iDelegate;
         }
 
         private HttpWebRequest CreateRequest(string request_method, string method)
@@ -88,6 +93,10 @@ namespace PCClubApp
             {
                 Trace.WriteLine("--------ERROR---------");
                 Trace.WriteLine(e.Message);
+                if (req_delegate_success != null)
+                {
+                    req_delegate_success.ErrorResult("bad");
+                }
             }
         }
 
@@ -109,6 +118,23 @@ namespace PCClubApp
                 );
         }
 
+        public void ReservationPlace(string start, string end, string compId)
+        {
+            string post_data = "{\"start\":\"{start}\", \"end\": \"{end}\", \"computerId\": {cId}}".Replace("{start}", start).Replace("{end}", end).Replace("{cId}", "0");
+            Trace.WriteLine(post_data);
+            this.RUN_request("/desktop/reservation",
+                (data) => {
+                    Trace.WriteLine("----RESERVATION RESULT------");
+                    Trace.WriteLine(data);
+                    Trace.WriteLine("----------------------------");
+                    req_delegate_success.SuccessResult();
+                },
+                method: "POST",
+                post_data: post_data
+                );
+        }
+        
+
         public void ShopList()
         {
             this.RUN_request(
@@ -116,8 +142,9 @@ namespace PCClubApp
                 (data) =>
                 {
                     string pData = PsevdaShop.ShopItems();
-                    string useData = pData;
+                    string useData = data;
                     string ydata = "{\"result\":" + useData + "}";
+                    Trace.WriteLine(ydata);
                     dynamic jOb = JObject.Parse(ydata);
                     JArray resultJsonArray = jOb.result;
                     
@@ -134,16 +161,28 @@ namespace PCClubApp
 
         public void ProfileData()
         {
+            //this.GetPicture();
             this.RUN_request(
                 "/profile",
                 (data) =>
                 {
-                    Trace.WriteLine(data);
                     string ydata = "{\"result\":" + data + "}";
+                    Trace.WriteLine(ydata);
                     dynamic jOb = JObject.Parse(ydata);
                     /*Trace.WriteLine(jOb.id);
                     Trace.WriteLine(jOb.Name);*/
                     req_delegate_profile.ProfileResult(new ProfileData(jOb.result));
+                }
+            );
+        }
+
+        public void GetPicture()
+        {
+            this.RUN_request("/profile/picture",
+                (data) =>
+                {
+                    Trace.WriteLine(data);
+                    
                 }
             );
         }
