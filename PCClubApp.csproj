@@ -120,6 +120,8 @@
   <ItemGroup>
     <Compile Include="APIManager\ClanREST.cs" />
     <Compile Include="APIManager\IRequestDelegate.cs" />
+    <Compile Include="APIManager\StompMessage.cs" />
+    <Compile Include="APIManager\StompMessageSerializer.cs" />
     <Compile Include="APIManager\WSManager.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

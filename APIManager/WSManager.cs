@@ -4,33 +4,39 @@ using System.Collections.Generic;
 using System.Text;
 using WebSocketSharp;
 using System.Diagnostics;
-
-
-
-
+using PCClubApp.APIManager;
+using System.Threading;
 
 
 namespace PCClubApp
 {
     class WSManager
     {
-        private readonly string ws_url = "ws://5.129.77.65:8123/ws/websocket";
-        public void ConnectAsync()
+        private static string ws_url = "ws://5.129.77.65:8123/ws/websocket";
+        private static WebSocket ws;
+        public static void ConnectAsync()
         {
             Trace.WriteLine("---------WS Manager----------");
-            WebSocket ws = new WebSocket(this.ws_url);
+            ws = new WebSocket(ws_url);
             ws.OnMessage += (sender, e) =>
-                Trace.WriteLine("Server said: " + e);
+                Trace.WriteLine("Server said: " + e.Data);
             ws.OnError += (s, e) =>
                 Trace.WriteLine(e);
-            
-            string subscribe = "SUBSCRIBE\nid:123\ndestination:/topic/chat/user/0\n\n\0";
-            string message = "{\"clubId\": 0, \"content\": \"hello\"}";
-            string send_message = String.Format("SEND\nid:123\ndestination:/app/chat/user/send\n\n{0}\n\n\0", message);
+
+            string connectHeader = "{\"header\": {0}}".Replace("{0}", ClanREST.UserToken);
+
+            //string subscribe = String.Format("SUBSCRIBE\nid:123\ndestination:/topic/chat/user/2\n\n{\"header\": \"{0}\"}\n\n\0", ClanREST.UserToken);
+            string tryConnect = String.Format("CONNECT\nid:123\n\n{0}\n\n\0", connectHeader);
+
             ws.Connect();
-            ws.Send(subscribe);
-            ws.Send(send_message);
-            
+            Thread.Sleep(1000);
+            StompMessageSerializer serializer = new StompMessageSerializer();
+            var connect = new StompMessage("CONNECT");
+            connect["accept-version"] = "1.2";
+            //connect["host"] = "";
+            connect["Authorization"] = ClanREST.UserToken;
+            Trace.WriteLine(serializer.Serialize(connect));
+            ws.Send(serializer.Serialize(connect));
         }
 
 
@@ -39,6 +45,14 @@ namespace PCClubApp
             
         }
 
+
+        public static void SendMessageToChat(string textMessage)
+        {
+            Trace.WriteLine(textMessage);
+            string message = "{\"clubId\": 3, \"content\": \"{0}\"}".Replace("{0}", textMessage);
+            string send_message = String.Format("SEND\nid:123\ndestination:/app/chat/user/send\n\n{0}\n\n\0", message);
+            ws.Send(send_message);
+        }
 
 
     }

@@ -23,6 +23,7 @@ namespace PCClubApp
     {
         private const string main_URL = "http://5.129.77.65:8123";
         //private const string main_URL = "http://192.168.0.62:8123";
+        //private const string main_URL = "http://10.0.0.7:8123";
         private const string DATA = @"{""login"":""master"", ""password"": ""master""}";
         private static string user_token;
         public IRequestDelegateLogin req_delegate_login;
@@ -120,7 +121,7 @@ namespace PCClubApp
 
         public void ReservationPlace(string start, string end, string compId)
         {
-            string post_data = "{\"start\":\"{start}\", \"end\": \"{end}\", \"computerId\": {cId}}".Replace("{start}", start).Replace("{end}", end).Replace("{cId}", "0");
+            string post_data = "{\"start\":\"{start}\", \"end\": \"{end}\", \"computerId\": {cId}}".Replace("{start}", start).Replace("{end}", end).Replace("{cId}", "5");
             Trace.WriteLine(post_data);
             this.RUN_request("/desktop/reservation",
                 (data) => {
@@ -186,6 +187,15 @@ namespace PCClubApp
                 }
             );
         }
+
+        public void RegistrationComp(string mac, int number, long clubId)
+        {
+            //string post_data = "{\"macAddress\":\"{mac}\", \"password\": \"{password}\"}".Replace("{login}", login).Replace("{password}", password); ;
+        }
+
+
+        public static string UserToken
+        { get => "Bearer_" + user_token; }
 
     }
 
