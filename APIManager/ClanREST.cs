@@ -30,6 +30,7 @@ namespace PCClubApp
         public IRequestDelegateShop req_delegate_shop;
         public IRequestDelegateProfile req_delegate_profile;
         public IRequestDelegateSuccessResult req_delegate_success;
+        public IRequestDelegateContentList req_delegate_contentList;
 
 
         public ClanREST(IRequestDelegateLogin iDelegate)
@@ -52,16 +53,26 @@ namespace PCClubApp
             this.req_delegate_success = iDelegate;
         }
 
+        public ClanREST(IRequestDelegateContentList iDelegate)
+        {
+            this.req_delegate_contentList = iDelegate;
+        }
+
+        public ClanREST()
+        {
+
+        }
+
         private HttpWebRequest CreateRequest(string request_method, string method)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(main_URL + request_method);
             request.Method = method;
             request.ContentType = "application/json";
             
-            if (user_token != null)
+            if (ClanREST.user_token != null)
             {
-                Trace.WriteLine("user token " + user_token);
-                request.Headers["Authorization"] = "Bearer_" + user_token;
+                Trace.WriteLine("user token " + ClanREST.user_token);
+                request.Headers["Authorization"] = "Bearer_" + ClanREST.user_token;
             }
             return request;
         }
@@ -125,9 +136,6 @@ namespace PCClubApp
             Trace.WriteLine(post_data);
             this.RUN_request("/desktop/reservation",
                 (data) => {
-                    Trace.WriteLine("----RESERVATION RESULT------");
-                    Trace.WriteLine(data);
-                    Trace.WriteLine("----------------------------");
                     req_delegate_success.SuccessResult();
                 },
                 method: "POST",
@@ -142,7 +150,6 @@ namespace PCClubApp
                 "/desktop/product/list",
                 (data) =>
                 {
-                    string pData = PsevdaShop.ShopItems();
                     string useData = data;
                     string ydata = "{\"result\":" + useData + "}";
                     Trace.WriteLine(ydata);
@@ -160,6 +167,20 @@ namespace PCClubApp
             );
         }
 
+        public void BuyProduct(int id)
+        {
+            string post_data = "{\"count\": 1, \"productId\": {p}}".Replace("{p}", id.ToString());
+            this.RUN_request(
+                "/desktop/product/buy",
+                (data) =>
+                {
+
+                },
+                method: "POST",
+                post_data: post_data
+                );
+        }
+
         public void ProfileData()
         {
             //this.GetPicture();
@@ -168,7 +189,6 @@ namespace PCClubApp
                 (data) =>
                 {
                     string ydata = "{\"result\":" + data + "}";
-                    Trace.WriteLine(ydata);
                     dynamic jOb = JObject.Parse(ydata);
                     /*Trace.WriteLine(jOb.id);
                     Trace.WriteLine(jOb.Name);*/
@@ -177,15 +197,36 @@ namespace PCClubApp
             );
         }
 
-        public void GetPicture()
+        public string GetPicture(string pathUrl)
         {
-            this.RUN_request("/profile/picture",
+            string result = "";
+            RUN_request(pathUrl,
                 (data) =>
                 {
                     Trace.WriteLine(data);
-                    
+                    result = data;
                 }
             );
+            return result;
+        }
+
+        public void GetContent()
+        {
+            this.RUN_request("/desktop/content/list?computerId=5",
+                (data) =>
+                {
+                    Trace.WriteLine("----Content-----");
+                    Trace.WriteLine(data);
+                    string ydata = "{\"result\":" + data + "}";
+                    dynamic jOb = JObject.Parse(ydata);
+                    JArray resultJsonArray = jOb.result;
+                    List<GameUnit> contentList = new List<GameUnit>();
+                    foreach (dynamic i in resultJsonArray)
+                    {
+                        contentList.Add(new GameUnit(i));
+                    }
+                    req_delegate_contentList.ContentResult(contentList);
+                });
         }
 
         public void RegistrationComp(string mac, int number, long clubId)

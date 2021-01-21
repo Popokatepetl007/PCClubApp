@@ -18,15 +18,29 @@ using Windows.UI.Xaml.Navigation;
 
 namespace PCClubApp.View
 {
-    public sealed partial class GameListView : UserControl
+    public sealed partial class GameListView : UserControl, IRequestDelegateContentList
     {
+
+        private ClanREST reqClan;
         public GameListView()
         {
             this.InitializeComponent();
-            Games.Items.Add(GameEnumConversion.AppUnitFromEnum(GameUnits.csgo));
+            /*Games.Items.Add(GameEnumConversion.AppUnitFromEnum(GameUnits.csgo));
             Games.Items.Add(GameEnumConversion.AppUnitFromEnum(GameUnits.dota2));
-            Games.Items.Add(GameEnumConversion.AppUnitFromEnum(GameUnits.gtav));
-            
+            Games.Items.Add(GameEnumConversion.AppUnitFromEnum(GameUnits.gtav));*/
+            reqClan = new ClanREST(this);            
+        }
+
+        public void OnStart()
+        {
+            reqClan.GetContent();
+        }
+
+        public void ContentResult(List<GameUnit> listResult)
+        {
+            Trace.WriteLine(listResult);
+            Games.Items.Clear();
+            listResult.ForEach((i) => Games.Items.Add(i) );
         }
 
         private void Games_SelectionChanged(object sender, SelectionChangedEventArgs e)

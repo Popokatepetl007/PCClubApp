@@ -14,6 +14,7 @@ namespace PCClubApp
     public interface IRequestDelegateShop
     {
         void ShopListResult<ShopUnit>(List<ShopUnit> shopList);
+        void ShopResultBuyProduct(bool succes);
     }
 
     public interface IRequestDelegateProfile
@@ -25,6 +26,11 @@ namespace PCClubApp
     {
         void SuccessResult();
         void ErrorResult(string message);
+    }
+
+    public interface IRequestDelegateContentList
+    {
+        void ContentResult(List<GameUnit> listResult);
     }
 
     

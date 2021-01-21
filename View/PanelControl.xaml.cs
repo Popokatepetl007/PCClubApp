@@ -90,6 +90,7 @@ namespace PCClubApp.View
             if (b.Name == BGame.Name)
             {
                 GamePanel.Visibility = Visibility.Visible;
+                GamePanel.OnStart();
             }
             if (b.Name == BService.Name)
             {

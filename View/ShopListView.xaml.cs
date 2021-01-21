@@ -49,12 +49,18 @@ namespace PCClubApp.View
 
         public void ShopListResult<ShopUnit>(List<ShopUnit> shopList)
         {
+            Products.Items.Clear();
             shopList.ForEach((i) =>
             {
                 PCClubApp.ShopUnit ss = i as PCClubApp.ShopUnit;
                 _shopCollection.Add(ss);
                 Products.Items.Add(ss);
             });
+        }
+
+        public void ShopResultBuyProduct(bool succes)
+        {
+
         }
 
 
@@ -67,6 +73,7 @@ namespace PCClubApp.View
                 if (i.Id.ToString().Replace(" ", "") == b.GetValue(AutomationProperties.NameProperty).ToString().Replace(" ", ""))
                 {
                     ARetCostValue(i.Cost);
+                    req.BuyProduct(i.Id);
                 }
             }
             

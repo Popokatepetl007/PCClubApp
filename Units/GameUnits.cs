@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace PCClubApp
@@ -13,6 +14,12 @@ namespace PCClubApp
         chrome,
         opera,
         mazilla
+    }
+
+    public enum ContentCategory
+    {
+        GAME,
+        APPLICATION
     }
 
     class GameEnumConversion
@@ -61,6 +68,8 @@ namespace PCClubApp
         private string name;
         private string path;
         private string img;
+        private int id;
+        private ContentCategory category;
 
         public GameUnit(string n, string p, string i)
         {
@@ -69,9 +78,23 @@ namespace PCClubApp
             img = i;
         }
 
+        public GameUnit(dynamic jItem)
+        {
+            name = jItem.name;
+            path = jItem.path;
+            id = jItem.id;
+            img = String.Format("/desktop/content/picture/{0}", id);
+            category = jItem.category == "GAME" ? ContentCategory.GAME : ContentCategory.APPLICATION;
+            Trace.WriteLine(img);
+            _ = UIManager.BitmapImageFromUrl(img);
+        }
+
         public string Name { get => name; }
         public string Path { get => path; }
         public string Img { get => img; }
+
+        public int Id { get => id; }
+        public ContentCategory Category { get => category; }
 
         public BitmapImage ImgS { get => UIManager.BitmapImageFromUrl(img); }
     }
