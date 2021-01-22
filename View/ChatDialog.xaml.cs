@@ -35,7 +35,7 @@ namespace PCClubApp.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MessagesList.Items.Add(new ChatMessage(TextSendMessage.Text));
-            WSManager.SendMessageToChat(TextSendMessage.Text);
+            
             TextSendMessage.Text = "";
             
         }

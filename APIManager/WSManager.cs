@@ -6,6 +6,12 @@ using WebSocketSharp;
 using System.Diagnostics;
 using PCClubApp.APIManager;
 using System.Threading;
+using System.Threading.Tasks;
+using Quobject.SocketIoClientDotNet.Client;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
+
+
 
 
 namespace PCClubApp
@@ -13,47 +19,26 @@ namespace PCClubApp
     class WSManager
     {
         private static string ws_url = "ws://5.129.77.65:8123/ws/websocket";
-        private static WebSocket ws;
-        public static void ConnectAsync()
+        public static ISocketChat soc_chat;
+        public static void StartWS()
         {
-            Trace.WriteLine("---------WS Manager----------");
-            ws = new WebSocket(ws_url);
-            ws.OnMessage += (sender, e) =>
-                Trace.WriteLine("Server said: " + e.Data);
-            ws.OnError += (s, e) =>
-                Trace.WriteLine(e);
-
-            string connectHeader = "{\"header\": {0}}".Replace("{0}", ClanREST.UserToken);
-
-            //string subscribe = String.Format("SUBSCRIBE\nid:123\ndestination:/topic/chat/user/2\n\n{\"header\": \"{0}\"}\n\n\0", ClanREST.UserToken);
-            string tryConnect = String.Format("CONNECT\nid:123\n\n{0}\n\n\0", connectHeader);
-
-            ws.Connect();
-            Thread.Sleep(1000);
-            StompMessageSerializer serializer = new StompMessageSerializer();
-            var connect = new StompMessage("CONNECT");
-            connect["accept-version"] = "1.2";
-            //connect["host"] = "";
-            connect["Authorization"] = ClanREST.UserToken;
-            Trace.WriteLine(serializer.Serialize(connect));
-            ws.Send(serializer.Serialize(connect));
-        }
-
-
-        public void Stamp()
-        {
+            var socket = IO.Socket("http://10.0.0.2:8124");
             
+            socket.On(Socket.EVENT_CONNECT, () =>
+            {
+                Trace.WriteLine("--Socket Connected--");
+                string regMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new { compId = ProfileManager.compId, token = ClanREST.UserToken });
+                socket.Emit("openSession", regMessage);
+            });
+
+            socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) =>
+            {
+                Trace.WriteLine(data);
+                dynamic jOb = JObject.Parse(data.ToString());
+                soc_chat.MessageInput(jOb.id);
+                
+            });
+            socket.Connect();
         }
-
-
-        public static void SendMessageToChat(string textMessage)
-        {
-            Trace.WriteLine(textMessage);
-            string message = "{\"clubId\": 3, \"content\": \"{0}\"}".Replace("{0}", textMessage);
-            string send_message = String.Format("SEND\nid:123\ndestination:/app/chat/user/send\n\n{0}\n\n\0", message);
-            ws.Send(send_message);
-        }
-
-
     }
 }

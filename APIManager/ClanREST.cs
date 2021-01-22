@@ -31,6 +31,7 @@ namespace PCClubApp
         public IRequestDelegateProfile req_delegate_profile;
         public IRequestDelegateSuccessResult req_delegate_success;
         public IRequestDelegateContentList req_delegate_contentList;
+        public IRequestChat req_delegate_chat;
 
 
         public ClanREST(IRequestDelegateLogin iDelegate)
@@ -58,6 +59,10 @@ namespace PCClubApp
             this.req_delegate_contentList = iDelegate;
         }
 
+        public ClanREST(IRequestChat iDelegate)
+        {
+            this.req_delegate_chat = iDelegate;
+        }
         public ClanREST()
         {
 

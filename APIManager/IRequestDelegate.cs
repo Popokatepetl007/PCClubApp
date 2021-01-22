@@ -33,5 +33,16 @@ namespace PCClubApp
         void ContentResult(List<GameUnit> listResult);
     }
 
+
+    public interface ISocketChat
+    {
+        void MessageInput(int id);
+    }
+
+    public interface IRequestChat
+    {
+        void MessgateResult(string message);
+    }
+
     
 }
