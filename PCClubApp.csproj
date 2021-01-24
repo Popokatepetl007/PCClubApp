@@ -118,6 +118,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="APIManager\ChatClient.cs" />
     <Compile Include="APIManager\ClanREST.cs" />
     <Compile Include="APIManager\IRequestDelegate.cs" />
     <Compile Include="APIManager\StompMessage.cs" />

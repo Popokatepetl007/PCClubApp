@@ -41,7 +41,7 @@ namespace PCClubApp
 
     public interface IRequestChat
     {
-        void MessgateResult(string message);
+        void MessgateResult(ChatMessage chatMessage);
     }
 
     

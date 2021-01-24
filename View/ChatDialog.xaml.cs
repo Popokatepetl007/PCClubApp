@@ -35,23 +35,11 @@ namespace PCClubApp.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MessagesList.Items.Add(new ChatMessage(TextSendMessage.Text));
-            
             TextSendMessage.Text = "";
             
         }
     }
 
-    public class ChatMessage{
-        private string textMessage;
-
-        public ChatMessage(string textMessage)
-        {
-            this.textMessage = textMessage;
-        }
-
-        public string Text
-        { get => this.textMessage; }
-
-    }
+    
 
 }

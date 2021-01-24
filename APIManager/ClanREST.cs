@@ -239,6 +239,30 @@ namespace PCClubApp
             //string post_data = "{\"macAddress\":\"{mac}\", \"password\": \"{password}\"}".Replace("{login}", login).Replace("{password}", password); ;
         }
 
+        public void PostChatMessage(string content)
+        {
+            string post_data = Newtonsoft.Json.JsonConvert.SerializeObject(new { clubId = ProfileManager.clubId, content = content });
+            this.RUN_request("/chat/user/send",
+                (data) =>
+                {
+                    Trace.WriteLine("----POST Chat MessageResult-----");
+                    Trace.WriteLine(data);
+                },
+                method: "POST",
+                post_data: post_data
+                );
+        }
+
+        public void GetMessgeByID(int id)
+        {
+            this.RUN_request(String.Format("/chat/message/{0}", id),
+                (data) =>
+                {
+                    dynamic jOb = JObject.Parse(data);
+                    req_delegate_chat.MessgateResult(new ChatMessage(jOb));
+                });
+        }
+
 
         public static string UserToken
         { get => "Bearer_" + user_token; }

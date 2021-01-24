@@ -39,7 +39,6 @@ namespace PCClubApp
                 LoginView.Visibility = Visibility.Collapsed;
                 MainPanel.SetLogin(LoginTextBox.Text);
                 MainPanel.Visibility = Visibility.Visible;
-                WSManager.StartWS();
             }
         }
 
@@ -48,5 +47,6 @@ namespace PCClubApp
             this.req.Login(LoginTextBox.Text, passwordTextBox.Text);
 
         }
+
     }
 }

@@ -23,10 +23,11 @@ namespace PCClubApp.View
     /// <summary>
     /// Логика взаимодействия для PanelControl.xaml
     /// </summary>
-    public partial class PanelControl : UserControl
+    public partial class PanelControl : UserControl, IViewChatDelegate
     {
 
         private int commCashValue = 10000;
+        private ChatClient chatClient;
         
         public PanelControl()
         {
@@ -66,6 +67,9 @@ namespace PCClubApp.View
         public void SetLogin(string login)
         {
             ShowLoginNox.Text = login;
+            chatClient = new ChatClient(this);
+            WSManager.StartWS();
+            WSManager.soc_chat = chatClient;
         }
 
 
@@ -190,6 +194,11 @@ namespace PCClubApp.View
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             _ = ShowChat();
+        }
+
+        public void NewMessageEvent(ChatMessage chatMessage)
+        {
+            
         }
     }
 }
