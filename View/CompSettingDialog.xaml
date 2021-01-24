@@ -13,8 +13,8 @@
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick" Background="#FF2B3042">
 
     <Grid Height="250">
-       <TextBox x:Name="macAddressBox" Height="45" PlaceholderText="MacAddress" />
-       <TextBox x:Name="numberBox" Height="45" Margin="0,177,0,28" PlaceholderText="Номер" />
-       <TextBox x:Name="ClubBox" Height="45" Margin="0,27,0,178" PlaceholderText="Club Id" />
+        <TextBox x:Name="macAddressBox" Height="45" PlaceholderText="MacAddress" TextChanged="Box_TextChanged" />
+       <TextBox x:Name="numberBox" Height="45" Margin="0,177,0,28" PlaceholderText="Номер" InputScope="Number" TextChanged="Box_TextChanged" />
+        <TextBox x:Name="ClubBox" Height="45" Margin="0,27,0,178" PlaceholderText="Club Id" InputScope="Number" TextChanged="Box_TextChanged" />
     </Grid>
 </ContentDialog>

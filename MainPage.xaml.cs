@@ -29,13 +29,18 @@ namespace PCClubApp
             this.InitializeComponent();
             req = new ClanREST(this);
             MainPanel.Visibility = Visibility.Collapsed;
-            
+
         }
 
         public void LoginResult(bool success)
         {
-            if (success)
+            StorageManager sm = new StorageManager();
+
+            if (success && sm.ClubIdExist && sm.CompIdExist)
             {
+                ProfileManager.clubId = sm.ClubId;
+                ProfileManager.compId = sm.ComtId;
+
                 LoginView.Visibility = Visibility.Collapsed;
                 MainPanel.SetLogin(LoginTextBox.Text);
                 MainPanel.Visibility = Visibility.Visible;

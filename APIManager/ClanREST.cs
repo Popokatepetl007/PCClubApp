@@ -234,9 +234,19 @@ namespace PCClubApp
                 });
         }
 
-        public void RegistrationComp(string mac, int number, long clubId)
+        public void RegistrationComp(string mac, int number, int clubId)
         {
-            //string post_data = "{\"macAddress\":\"{mac}\", \"password\": \"{password}\"}".Replace("{login}", login).Replace("{password}", password); ;
+            string post_data = Newtonsoft.Json.JsonConvert.SerializeObject(new { macAddress = mac, clubId = clubId, number = number });
+            Trace.WriteLine(post_data);
+            this.RUN_request(
+                "/computer",
+                (data) =>
+                {
+
+                },
+                method: "POST",
+                post_data: post_data
+                );
         }
 
         public void PostChatMessage(string content)

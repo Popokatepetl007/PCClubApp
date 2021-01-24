@@ -132,8 +132,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemManager\ProfileManager.cs" />
+    <Compile Include="SystemManager\StorageManager.cs" />
     <Compile Include="SystemManager\SystemController.cs" />
     <Compile Include="SystemManager\UIManager.cs" />
+    <Compile Include="Units\ChatMessage.cs" />
     <Compile Include="Units\Class1.cs" />
     <Compile Include="Units\ClubUnit.cs" />
     <Compile Include="Units\GameUnits.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="View\testGrid.xaml.cs">
       <DependentUpon>testGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDelegates\IViewChatDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

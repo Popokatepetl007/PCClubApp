@@ -175,6 +175,7 @@ namespace PCClubApp.View
         private async System.Threading.Tasks.Task ShowSettinhsCompAsync()
         {
             CompSettingDialog settingsDialog = new CompSettingDialog();
+
             ContentDialogResult result = await settingsDialog.ShowAsync();
         }
 
