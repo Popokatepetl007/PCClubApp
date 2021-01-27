@@ -19,6 +19,10 @@ namespace PCClubApp.View
 {
     public sealed partial class ChatDialog : ContentDialog
     {
+
+        public Func<string> ReservAction;
+        public Action<string> SendMessageAction;
+
         public ChatDialog()
         {
             this.InitializeComponent();
@@ -34,9 +38,9 @@ namespace PCClubApp.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            SendMessageAction(TextSendMessage.Text);
             MessagesList.Items.Add(new ChatMessage(TextSendMessage.Text));
             TextSendMessage.Text = "";
-            
         }
     }
 

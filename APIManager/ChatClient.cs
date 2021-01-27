@@ -17,7 +17,7 @@ namespace PCClubApp
             view_chat_delegate = iDelegate;
         }
 
-        void sendMessage(string messageText)
+        public void sendMessage(string messageText)
         {
             req.PostChatMessage(messageText);
         }

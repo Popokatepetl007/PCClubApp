@@ -150,6 +150,9 @@
     <Compile Include="View\ChatDialog.xaml.cs">
       <DependentUpon>ChatDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ChatDialogView.xaml.cs">
+      <DependentUpon>ChatDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CompSetting.xaml.cs">
       <DependentUpon>CompSetting.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,7 @@
     <Content Include="Assets\BrowsersOff.png" />
     <Content Include="Assets\Clan.png" />
     <Content Include="Assets\clock.png" />
+    <Content Include="Assets\CloseIcon.png" />
     <Content Include="Assets\exit.png" />
     <Content Include="Assets\FaviritesOff.png" />
     <Content Include="Assets\GameOn.png" />
@@ -203,12 +207,14 @@
     <Content Include="Assets\moniror.png" />
     <Content Include="Assets\NewsOff.png" />
     <Content Include="Assets\person.png" />
+    <Content Include="Assets\PostMessageIcon.png" />
     <Content Include="Assets\romb.png" />
     <Content Include="Assets\ServicesOff.png" />
     <Content Include="Assets\ShopOff.png" />
     <Content Include="Assets\ShopOn.png" />
     <Content Include="Assets\UpLogo.png" />
     <Content Include="Assets\welcome.png" />
+    <Content Include="Clan.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -236,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ChatDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChatDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

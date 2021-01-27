@@ -242,6 +242,12 @@ namespace PCClubApp
                 "/computer",
                 (data) =>
                 {
+                    dynamic jOb = JObject.Parse(data);
+                    StorageManager sm = new StorageManager();
+                    int compId = jOb.number;
+                    int clubIdIn = jOb.club.id;
+                    sm.SetClubIdValue(clubIdIn);
+                    sm.SetCompIdValue(compId);
 
                 },
                 method: "POST",

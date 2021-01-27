@@ -28,7 +28,7 @@ namespace PCClubApp.View
 
         private int commCashValue = 10000;
         private ChatClient chatClient;
-        
+        private Action<ChatMessage> resiveAction;
         public PanelControl()
         {
             InitializeComponent();
@@ -38,6 +38,7 @@ namespace PCClubApp.View
             timer.Interval = 1000;
             timer.Enabled = true;
             SetComCash(10000);
+            resiveAction = ChatPanel.ResiveMessage;
         }
 
         private void SetComCash(int newValue)
@@ -189,17 +190,19 @@ namespace PCClubApp.View
         private async System.Threading.Tasks.Task ShowChat()
         {
             ChatDialog settingsDialog = new ChatDialog();
+            settingsDialog.SendMessageAction = (mess) => chatClient.sendMessage(mess);
             ContentDialogResult result = await settingsDialog.ShowAsync();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            _ = ShowChat();
+            ChatPanel.Visibility = Visibility.Visible;
+            ChatPanel.SendMessageAction = (mess) => chatClient.sendMessage(mess);
         }
 
         public void NewMessageEvent(ChatMessage chatMessage)
         {
-            
+            resiveAction(chatMessage);
         }
     }
 }
