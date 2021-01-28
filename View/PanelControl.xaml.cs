@@ -18,6 +18,7 @@ using System.Threading;
 using System.Timers;
 using Windows.UI.Core;
 
+
 namespace PCClubApp.View
 {
     /// <summary>
@@ -71,6 +72,7 @@ namespace PCClubApp.View
             chatClient = new ChatClient(this);
             WSManager.StartWS();
             WSManager.soc_chat = chatClient;
+            CompIdBox.Text = ProfileManager.compId.ToString();
         }
 
 
@@ -113,6 +115,7 @@ namespace PCClubApp.View
             }
             if (b.Name == BNews.Name)
             {
+                NewsPanel.OnActive();
                 NewsPanel.Visibility = Visibility.Visible;
             }
             if (b.Name == BFavorites.Name)
@@ -202,7 +205,11 @@ namespace PCClubApp.View
 
         public void NewMessageEvent(ChatMessage chatMessage)
         {
-            resiveAction(chatMessage);
+            IAsyncAction asyncAction = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                resiveAction(chatMessage);
+            });
+            
         }
     }
 }

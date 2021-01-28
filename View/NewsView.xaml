@@ -6,10 +6,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignHeight="800"
+    d:DesignWidth="1620">
 
     <Grid>
-        <WebView x:Name="WebNews"  Source="http://vk.com" />
+        <ListView x:Name="NewsList" Height="800" VerticalAlignment="Top" Margin="0,0,0,0"  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Center" Margin="300,0,0,0">
+                        <Rectangle Width="500" Height="500" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" >
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Assets/SplashScreen.scale-200.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBox Text="{Binding Text}" Width="500" Height="500" IsTapEnabled="False" IsReadOnly="True" IsHoldingEnabled="False" AllowFocusOnInteraction="False" Margin="550,0,0,0" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Background="#00000000" BorderBrush="#00000000" Foreground="#FFDAF0F5" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

@@ -17,11 +17,24 @@ using Windows.UI.Xaml.Navigation;
 
 namespace PCClubApp.View
 {
-    public sealed partial class NewsView : UserControl
+    public sealed partial class NewsView : UserControl, IRequestNews
     {
+        private ClanREST req;
         public NewsView()
         {
             this.InitializeComponent();
+            req = new ClanREST(this);
+        }
+
+        public void OnActive()
+        {
+            req.GetNews();
+        }
+
+        public void NewsResult(List<NewsUnit> listNews)
+        {
+            NewsList.Items.Clear();
+            listNews.ForEach((i) => NewsList.Items.Add(i));
         }
     }
 }

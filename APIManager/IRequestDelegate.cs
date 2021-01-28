@@ -8,7 +8,7 @@ namespace PCClubApp
 {
     public interface IRequestDelegateLogin
     {
-        void LoginResult(bool success);
+        void LoginResult(bool success, int userId, EUserRole userRole);
     }
 
     public interface IRequestDelegateShop
@@ -42,6 +42,11 @@ namespace PCClubApp
     public interface IRequestChat
     {
         void MessgateResult(ChatMessage chatMessage);
+    }
+
+    public interface IRequestNews
+    {
+        void NewsResult(List<NewsUnit> listNews);
     }
 
     

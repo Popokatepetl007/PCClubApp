@@ -32,7 +32,7 @@ namespace PCClubApp
 
         }
 
-        public void LoginResult(bool success)
+        public void LoginResult(bool success, int userId, EUserRole userRole)
         {
             StorageManager sm = new StorageManager();
 
@@ -40,7 +40,8 @@ namespace PCClubApp
             {
                 ProfileManager.clubId = sm.ClubId;
                 ProfileManager.compId = sm.ComtId;
-
+                ProfileManager.userID = userId;
+                ProfileManager.userRole = userRole;
                 LoginView.Visibility = Visibility.Collapsed;
                 MainPanel.SetLogin(LoginTextBox.Text);
                 MainPanel.Visibility = Visibility.Visible;

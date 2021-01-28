@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace PCClubApp
 {
@@ -24,6 +25,7 @@ namespace PCClubApp
 
         public void MessageInput(int id)
         {
+            Trace.WriteLine("----NEW MESSAGE INPUT---");
             req.GetMessgeByID(id);
         }
 

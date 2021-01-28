@@ -59,7 +59,7 @@
         <local1:ShopListView x:Name="ShopPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
         <local1:GameListView x:Name="GamePanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
         <local1:BrawserPanel x:Name="BrowserPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
-        <local1:NewsView x:Name="NewsPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+        <local1:NewsView x:Name="NewsPanel" Width="1700" Height="900" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
         <local1:ProfilePanel x:Name="AProfilePanel" Width="1920" Height="800" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,100" Visibility="Collapsed"/>
         <local1:ChatDialogView x:Name="ChatPanel" Width="1620" Height="800" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,100" Visibility="Collapsed"/>
             <Rectangle HorizontalAlignment="Left" Height="43" Margin="26,12,0,0" VerticalAlignment="Top" Width="125">
@@ -74,7 +74,7 @@
                 <ImageBrush ImageSource="/Assets/moniror.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock HorizontalAlignment="Left" Margin="633,18,0,0" Text="15" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualPrimaryBrush="{x:Null}" SelectionHighlightColor="{x:Null}" Width="32" Padding="4,6,6,5"/>
+        <TextBlock x:Name="CompIdBox" HorizontalAlignment="Left" Margin="633,18,0,0" Text="15" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualPrimaryBrush="{x:Null}" SelectionHighlightColor="{x:Null}" Width="32" Padding="4,6,6,5"/>
         <Rectangle HorizontalAlignment="Left" Height="30" Margin="710,18,0,0" VerticalAlignment="Top" Width="29">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/clock.png"/>

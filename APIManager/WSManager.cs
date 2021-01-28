@@ -22,21 +22,21 @@ namespace PCClubApp
         public static ISocketChat soc_chat;
         public static void StartWS()
         {
-            var socket = IO.Socket("http://10.0.0.2:8124");
-            
+            var socket = IO.Socket("http://5.129.77.65:8124");
+            Trace.WriteLine("--Socket INIT--");
             socket.On(Socket.EVENT_CONNECT, () =>
             {
                 Trace.WriteLine("--Socket Connected--");
                 string regMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new { compId = ProfileManager.compId, token = ClanREST.UserToken });
                 socket.Emit("openSession", regMessage);
             });
-
+            
             socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) =>
             {
-                Trace.WriteLine(data);
+                Trace.WriteLine("---Chat Message comin------");
                 dynamic jOb = JObject.Parse(data.ToString());
-                soc_chat.MessageInput(jOb.id);
-                
+                int c_id = jOb.id;
+                soc_chat.MessageInput(c_id);
             });
             socket.Connect();
         }

@@ -139,6 +139,7 @@
     <Compile Include="Units\Class1.cs" />
     <Compile Include="Units\ClubUnit.cs" />
     <Compile Include="Units\GameUnits.cs" />
+    <Compile Include="Units\NewsUnit.cs" />
     <Compile Include="Units\ProfileData.cs" />
     <Compile Include="Units\ShopUnit.cs" />
     <Compile Include="View\BalanceInfo.xaml.cs">

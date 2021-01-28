@@ -32,6 +32,7 @@ namespace PCClubApp
         public IRequestDelegateSuccessResult req_delegate_success;
         public IRequestDelegateContentList req_delegate_contentList;
         public IRequestChat req_delegate_chat;
+        public IRequestNews req_delegate_news;
 
 
         public ClanREST(IRequestDelegateLogin iDelegate)
@@ -63,9 +64,23 @@ namespace PCClubApp
         {
             this.req_delegate_chat = iDelegate;
         }
+
+        public ClanREST(IRequestNews iDelegate)
+        {
+            this.req_delegate_news = iDelegate;
+        }
         public ClanREST()
         {
 
+        }
+
+        private JArray ParseList(string inputData)
+        {
+            string ydata = "{\"result\":" + inputData + "}";
+            dynamic jOb = JObject.Parse(ydata);
+            JArray resultJsonArray = jOb.result;
+            
+            return resultJsonArray;
         }
 
         private HttpWebRequest CreateRequest(string request_method, string method)
@@ -94,6 +109,7 @@ namespace PCClubApp
                 {
                     requestWriter.Write(post_data);
                 }
+                
             }
                 
             try
@@ -128,7 +144,9 @@ namespace PCClubApp
                         dynamic result = JObject.Parse(data);
                         string token = result.token;
                         user_token = result.token;
-                        req_delegate_login.LoginResult(true);
+                        int user_id = result.id;
+                        string user_role = result.role;
+                        req_delegate_login.LoginResult(true, user_id, ProfileManager.GetUserRoleFromString(user_role));
                     },
                 method: "POST",
                 post_data: post_data
@@ -154,15 +172,9 @@ namespace PCClubApp
             this.RUN_request(
                 "/desktop/product/list",
                 (data) =>
-                {
-                    string useData = data;
-                    string ydata = "{\"result\":" + useData + "}";
-                    Trace.WriteLine(ydata);
-                    dynamic jOb = JObject.Parse(ydata);
-                    JArray resultJsonArray = jOb.result;
-                    
+                {                    
                     List<ShopUnit> shopList = new List<ShopUnit>();
-                    foreach (var i in resultJsonArray)
+                    foreach (var i in this.ParseList(data))
                     {
                         shopList.Add(new ShopUnit(i));
                     }
@@ -217,21 +229,38 @@ namespace PCClubApp
 
         public void GetContent()
         {
-            this.RUN_request("/desktop/content/list?computerId=5",
+            this.RUN_request(String.Format("/desktop/content/list?computerId={0}", ProfileManager.compId),
                 (data) =>
                 {
                     Trace.WriteLine("----Content-----");
                     Trace.WriteLine(data);
-                    string ydata = "{\"result\":" + data + "}";
-                    dynamic jOb = JObject.Parse(ydata);
-                    JArray resultJsonArray = jOb.result;
+
                     List<GameUnit> contentList = new List<GameUnit>();
-                    foreach (dynamic i in resultJsonArray)
+                    foreach (dynamic i in this.ParseList(data))
                     {
                         contentList.Add(new GameUnit(i));
                     }
                     req_delegate_contentList.ContentResult(contentList);
                 });
+        }
+
+        public void GetNews()
+        {
+            this.RUN_request(
+                "/desktop/news/list",
+                (data) =>
+                {
+                    Trace.WriteLine("--NEWS--");
+                    Trace.WriteLine(data);
+
+                    List<NewsUnit> newsList = new List<NewsUnit>();
+                    foreach (dynamic i in this.ParseList(data))
+                    {
+                        newsList.Add(new NewsUnit(i));
+                    }
+                    req_delegate_news.NewsResult(newsList);
+                }
+            );
         }
 
         public void RegistrationComp(string mac, int number, int clubId)
@@ -258,6 +287,15 @@ namespace PCClubApp
         public void PostChatMessage(string content)
         {
             string post_data = Newtonsoft.Json.JsonConvert.SerializeObject(new { clubId = ProfileManager.clubId, content = content });
+            Trace.WriteLine(post_data);
+
+            Encoding ascii = Encoding.ASCII;
+            Encoding unicode = Encoding.UTF8;
+            byte[] unicodeBytes = unicode.GetBytes(post_data);
+            byte[] asciiBytes = Encoding.Convert(unicode, ascii, unicodeBytes);
+            char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
+            ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
+            string asciiString = new string(asciiChars);
             this.RUN_request("/chat/user/send",
                 (data) =>
                 {
@@ -275,6 +313,7 @@ namespace PCClubApp
                 (data) =>
                 {
                     dynamic jOb = JObject.Parse(data);
+                    Trace.WriteLine("--MESSAGE RESPONCE READY---");
                     req_delegate_chat.MessgateResult(new ChatMessage(jOb));
                 });
         }
