@@ -72,7 +72,8 @@ namespace PCClubApp.View
             chatClient = new ChatClient(this);
             WSManager.StartWS();
             WSManager.soc_chat = chatClient;
-            CompIdBox.Text = ProfileManager.compId.ToString();
+            CompIdBox.Text = ProfileManager.compNumber.ToString();
+            
         }
 
 

@@ -18,11 +18,12 @@ namespace PCClubApp
 {
     class WSManager
     {
-        private static string ws_url = "ws://5.129.77.65:8123/ws/websocket";
+        private static string live_ws_url = "http://5.129.77.65:8124";
+        public static string loc_ws_url = "http://10.0.0.11:8124";
         public static ISocketChat soc_chat;
         public static void StartWS()
         {
-            var socket = IO.Socket("http://5.129.77.65:8124");
+            var socket = IO.Socket(WSManager.live_ws_url);
             Trace.WriteLine("--Socket INIT--");
             socket.On(Socket.EVENT_CONNECT, () =>
             {
@@ -34,6 +35,8 @@ namespace PCClubApp
             socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) =>
             {
                 Trace.WriteLine("---Chat Message comin------");
+                Trace.WriteLine(data);
+                Trace.WriteLine("---------------------");
                 dynamic jOb = JObject.Parse(data.ToString());
                 int c_id = jOb.id;
                 soc_chat.MessageInput(c_id);

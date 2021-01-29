@@ -14,6 +14,8 @@ namespace PCClubApp
         private string name;
         private string phone;
         private string email;
+        private float balance;
+
 
         public ProfileData(dynamic jItem)
         {
@@ -23,6 +25,7 @@ namespace PCClubApp
             name = jItem.name;
             phone = jItem.phone;
             email = jItem.email;
+            balance = jItem.balance;
         }
 
         public int Id { get => id; }
@@ -31,6 +34,7 @@ namespace PCClubApp
         public string Phone { get => phone; }
         public string Birthday { get => birthday; }
         public string Email { get => email; }
+        public float Balance { get => balance;  }
 
     }
 }

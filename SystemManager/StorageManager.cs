@@ -14,6 +14,7 @@ namespace PCClubApp
         private Windows.Storage.StorageFolder localFolder;
         readonly string compIdKey = "compIdKey";
         readonly string clubIdKey = "clubIdKey";
+        readonly string compNimberKey = "compNumberKey";
 
         public StorageManager()
         {
@@ -31,6 +32,11 @@ namespace PCClubApp
             localSettings.Values[clubIdKey] = value;
         }
 
+        public void SetCompNumberValue(int value)
+        {
+            localSettings.Values[compNimberKey] = value;
+        }
+
 
         public bool CompIdExist
         { get => localSettings.Values[compIdKey] != null; }
@@ -40,6 +46,8 @@ namespace PCClubApp
 
         public int ComtId => CompIdExist ? Convert.ToInt32(localSettings.Values[compIdKey]) : -1;
         public int ClubId => CompIdExist ? Convert.ToInt32(localSettings.Values[clubIdKey]) : -1;
+
+        public int CompNumber => CompIdExist ? Convert.ToInt32(localSettings.Values[compNimberKey]) : -1;
 
     }
 }

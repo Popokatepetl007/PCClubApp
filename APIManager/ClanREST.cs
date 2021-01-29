@@ -23,7 +23,7 @@ namespace PCClubApp
     {
         private const string main_URL = "http://5.129.77.65:8123";
         //private const string main_URL = "http://192.168.0.62:8123";
-        //private const string main_URL = "http://10.0.0.7:8123";
+        //private const string main_URL = "http://10.0.0.13:8123";
         private const string DATA = @"{""login"":""master"", ""password"": ""master""}";
         private static string user_token;
         public IRequestDelegateLogin req_delegate_login;
@@ -273,10 +273,12 @@ namespace PCClubApp
                 {
                     dynamic jOb = JObject.Parse(data);
                     StorageManager sm = new StorageManager();
-                    int compId = jOb.number;
+                    int compId = jOb.id;
                     int clubIdIn = jOb.club.id;
+                    int compNumber = jOb.number;
                     sm.SetClubIdValue(clubIdIn);
                     sm.SetCompIdValue(compId);
+                    sm.SetCompNumberValue(compNumber);
 
                 },
                 method: "POST",

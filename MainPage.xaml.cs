@@ -29,7 +29,7 @@ namespace PCClubApp
             this.InitializeComponent();
             req = new ClanREST(this);
             MainPanel.Visibility = Visibility.Collapsed;
-
+            this.req.Login("test", "qwerty");
         }
 
         public void LoginResult(bool success, int userId, EUserRole userRole)
@@ -40,11 +40,13 @@ namespace PCClubApp
             {
                 ProfileManager.clubId = sm.ClubId;
                 ProfileManager.compId = sm.ComtId;
+                ProfileManager.compNumber = sm.CompNumber;
                 ProfileManager.userID = userId;
                 ProfileManager.userRole = userRole;
                 LoginView.Visibility = Visibility.Collapsed;
                 MainPanel.SetLogin(LoginTextBox.Text);
                 MainPanel.Visibility = Visibility.Visible;
+                //req.ProfileData();
             }
         }
 

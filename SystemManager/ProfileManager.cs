@@ -11,7 +11,9 @@ namespace PCClubApp
         public static int userID = 2;
         public static int compId = 5;
         public static int clubId = 3;
+        public static int compNumber = 0;
         public static EUserRole userRole = EUserRole.Gamer;
+        public static float balance = 0;
 
         public static EUserRole GetUserRoleFromString(string string_role)
         {
