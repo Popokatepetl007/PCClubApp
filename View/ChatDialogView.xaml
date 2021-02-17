@@ -8,31 +8,90 @@
     mc:Ignorable="d"
     d:DesignHeight="800"
     d:DesignWidth="1620" Background="Black">
+    <Page.Resources>
+        <Style x:Key="MessageItemStyle" TargetType="SelectorItem">
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="Width" Value="450" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+
+        <Style
+        x:Key="RightAlignedMessageStyle"
+        BasedOn="{StaticResource MessageItemStyle}"
+        TargetType="SelectorItem">
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+
+        <Style
+        x:Key="LeftAlignedMessageStyle"
+        BasedOn="{StaticResource MessageItemStyle}"
+        TargetType="SelectorItem">
+            <Setter Property="Background" Value="Orange" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+
+        <styleSelectors:MessageContainerStyleSelector
+        x:Key="MessageContainerStyleSelector"
+        ReceivedStyle="{StaticResource LeftAlignedMessageStyle}"
+        
+        SentStyle="{StaticResource RightAlignedMessageStyle}" />
+
+        <DataTemplate x:Key="MessageTemplate" x:DataType="messages:ChatMessage">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                Style="{StaticResource BodyTextBlockStyle}"
+                Text="{x:Bind Text, Mode=OneWay}"
+                TextWrapping="WrapWholeWords" />
+
+                <StackPanel
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                   
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <ItemsPanelTemplate x:Key="MessageItemPanelTemplate">
+            <ItemsStackPanel VerticalAlignment="Bottom" ItemsUpdatingScrollMode="KeepLastItemInView" />
+        </ItemsPanelTemplate>
+    </Page.Resources>
     <Grid Width="1620" Height="800" Background="#00000000">
         <Grid  Width="702" Height="492" Background="#CC131725" >
-        <ListView x:Name="MessagesList" Height="305" VerticalAlignment="Top" Margin="29,88,29,0"  >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid HorizontalAlignment="Right">
+            <ListView x:Name="MessagesList" Height="305" VerticalAlignment="Top" Margin="29,88,29,0"  >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Right">
                             <TextBox Text="{Binding Text}" Margin="0,0,0,-1" Background="#7F2F74B0" IsReadOnly="True" FocusVisualPrimaryBrush="#7F2F74B0" FocusVisualSecondaryBrush="#7F2F74B0" TextWrapping="Wrap" BorderBrush="#7F2F74B0" SelectionHighlightColor="#7F2F74B0" SelectionHighlightColorWhenNotFocused="#7F2F74B0" FlowDirection="RightToLeft" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <TextBox x:Name="TextSendMessage" Height="50" VerticalAlignment="Bottom" Margin="29,0,94,19" TextWrapping="Wrap" BorderBrush="#FF3F465F" Background="{x:Null}" />
-        <Button Content="" Margin="631,0,0,28" VerticalAlignment="Bottom" RenderTransformOrigin="0.437,0.531" Click="Button_Click" Width="42" Height="32" >
-            <Button.Background>
-                <ImageBrush ImageSource="/Assets/PostMessageIcon.png"/>
-            </Button.Background>
-            <Button.RenderTransform>
-                <CompositeTransform ScaleX="1"/>
-            </Button.RenderTransform>
-        </Button>
-        <Button Content="" Margin="674,10,0,0" VerticalAlignment="Top" Height="17" Width="18" Click="Button_Click_Close">
-            <Button.Background>
-                <ImageBrush ImageSource="/Assets/CloseIcon.png"/>
-            </Button.Background>
-        </Button>
-    </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBox x:Name="TextSendMessage" Height="50" VerticalAlignment="Bottom" Margin="29,0,94,19" TextWrapping="Wrap" BorderBrush="#FF3F465F" Background="{x:Null}" />
+            <Button Content="" Margin="631,0,0,34" VerticalAlignment="Bottom" RenderTransformOrigin="0.437,0.531" Click="Button_Click" Width="25" Height="25" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/PostMessageIcon.png"/>
+                </Button.Background>
+                <Button.RenderTransform>
+                    <CompositeTransform ScaleX="1"/>
+                </Button.RenderTransform>
+            </Button>
+            <Button Content="" Margin="674,10,0,0" VerticalAlignment="Top" Height="17" Width="18" Click="Button_Click_Close">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/CloseIcon.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
     </Grid>
 </UserControl>

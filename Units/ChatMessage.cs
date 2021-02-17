@@ -13,10 +13,12 @@ namespace PCClubApp
         private string chatId;
         private int id;
         private int userId;
+        private EMessageType message_type;
 
         public ChatMessage(string textMessage)
         {
             this.textMessage = textMessage;
+            this.message_type = EMessageType.Sent;
         }
 
         public ChatMessage(dynamic jObj)
@@ -26,6 +28,7 @@ namespace PCClubApp
             this.id = jObj.id;
             this.chatId = jObj.chatId;
             this.userId = jObj.userId;
+            this.message_type = EMessageType.Recived;
         }
 
         public string Text
@@ -37,5 +40,15 @@ namespace PCClubApp
         public int Id
         { get => this.id; }
 
+        public EMessageType MessageType
+        { get => this.MessageType; }
+
+
+    }
+
+    public enum EMessageType
+    {
+        Sent,
+        Recived
     }
 }
