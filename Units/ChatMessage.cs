@@ -41,7 +41,7 @@ namespace PCClubApp
         { get => this.id; }
 
         public EMessageType MessageType
-        { get => this.MessageType; }
+        { get => this.message_type; }
 
 
     }

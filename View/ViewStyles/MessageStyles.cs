@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.Diagnostics;
 
 namespace PCClubApp.View
 {
@@ -18,9 +19,12 @@ namespace PCClubApp.View
 
         protected override Style SelectStyleCore(object item, DependencyObject container)
         {
+            Trace.WriteLine("----------STYLE MESSAGE--------");
             var message = item as ChatMessage;
+            Trace.WriteLine(message.Text);
             if (message != null)
             {
+                Trace.WriteLine(message.MessageType == EMessageType.Sent ? "SENT" : "RECEVED");
                 return message.MessageType == EMessageType.Sent
                            ? this.SentStyle
                            : this.ReceivedStyle;

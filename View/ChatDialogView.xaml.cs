@@ -23,16 +23,20 @@ namespace PCClubApp.View
 
         public Func<string> ReservAction;
         public Action<string> SendMessageAction;
+        private List<ChatMessage> MessagesItems;
 
         public ChatDialogView()
         {
+
             this.InitializeComponent();
+            MessagesItems = new List<ChatMessage>();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SendMessageAction(TextSendMessage.Text);
             MessagesList.Items.Add(new ChatMessage(TextSendMessage.Text));
+            MessagesList.UpdateLayout();
             TextSendMessage.Text = "";
         }
 

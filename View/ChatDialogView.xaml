@@ -4,76 +4,80 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PCClubApp.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:messages="using:System.ServiceModel.Channels" xmlns:pcclubapp="using:PCClubApp"
     mc:Ignorable="d"
     d:DesignHeight="800"
     d:DesignWidth="1620" Background="Black">
-    <Page.Resources>
+    <UserControl.Resources>
         <Style x:Key="MessageItemStyle" TargetType="SelectorItem">
             <Setter Property="Height" Value="Auto" />
-            <Setter Property="Width" Value="450" />
+            <Setter Property="Width" Value="350" />
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="VerticalContentAlignment" Value="Stretch" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="Padding" Value="10" />
+            <Setter Property="Padding" Value="8" />
             <Setter Property="Margin" Value="5" />
+            <Setter Property="CornerRadius" Value="8"/>
         </Style>
 
         <Style
         x:Key="RightAlignedMessageStyle"
         BasedOn="{StaticResource MessageItemStyle}"
         TargetType="SelectorItem">
-            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="Background" Value="#7F2F74B0" />
             <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="CornerRadius" Value="8"/>
         </Style>
 
         <Style
         x:Key="LeftAlignedMessageStyle"
         BasedOn="{StaticResource MessageItemStyle}"
         TargetType="SelectorItem">
-            <Setter Property="Background" Value="Orange" />
+            <Setter Property="Background" Value="#7F3F465F" />
             <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="CornerRadius" Value="8"/>
         </Style>
 
-        <styleSelectors:MessageContainerStyleSelector
+        <local:MessageContainerStyleSelector
         x:Key="MessageContainerStyleSelector"
         ReceivedStyle="{StaticResource LeftAlignedMessageStyle}"
         
         SentStyle="{StaticResource RightAlignedMessageStyle}" />
 
-        <DataTemplate x:Key="MessageTemplate" x:DataType="messages:ChatMessage">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <TextBlock
-                Style="{StaticResource BodyTextBlockStyle}"
-                Text="{x:Bind Text, Mode=OneWay}"
-                TextWrapping="WrapWholeWords" />
-
-                <StackPanel
-                Grid.Row="1"
-                Margin="0,5,0,0"
-                HorizontalAlignment="Right"
-                Orientation="Horizontal">
-                   
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
+        
 
         <ItemsPanelTemplate x:Key="MessageItemPanelTemplate">
             <ItemsStackPanel VerticalAlignment="Bottom" ItemsUpdatingScrollMode="KeepLastItemInView" />
         </ItemsPanelTemplate>
-    </Page.Resources>
+    </UserControl.Resources>
     <Grid Width="1620" Height="800" Background="#00000000">
         <Grid  Width="702" Height="492" Background="#CC131725" >
-            <ListView x:Name="MessagesList" Height="305" VerticalAlignment="Top" Margin="29,88,29,0"  >
+            <ListView x:Name="MessagesList" Height="305" VerticalAlignment="Top" Margin="29,88,29,0" IsItemClickEnabled="False"
+            IsTapEnabled="False"
+            ItemContainerStyleSelector="{StaticResource MessageContainerStyleSelector}"
+            
+            ItemsPanel="{StaticResource MessageItemPanelTemplate}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Right">
-                            <TextBox Text="{Binding Text}" Margin="0,0,0,-1" Background="#7F2F74B0" IsReadOnly="True" FocusVisualPrimaryBrush="#7F2F74B0" FocusVisualSecondaryBrush="#7F2F74B0" TextWrapping="Wrap" BorderBrush="#7F2F74B0" SelectionHighlightColor="#7F2F74B0" SelectionHighlightColorWhenNotFocused="#7F2F74B0" FlowDirection="RightToLeft" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                        <Grid CornerRadius="8,8,8,8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                            Style="{StaticResource BodyTextBlockStyle}"
+                            Text="{Binding Text, Mode=OneWay}"
+                            TextWrapping="Wrap" />
+
+                            <StackPanel
+                            Grid.Row="1"
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Right"
+                            CornerRadius="8"
+                            Orientation="Horizontal">
+
+                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

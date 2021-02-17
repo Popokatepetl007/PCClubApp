@@ -195,6 +195,7 @@
       <DependentUpon>testGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDelegates\IViewChatDelegate.cs" />
+    <Compile Include="View\ViewStyles\MessageStyles.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
