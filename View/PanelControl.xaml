@@ -9,7 +9,7 @@
              d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/geraldFull.png"/>
+            <ImageBrush ImageSource="http://5.129.77.65:8123/bg/get/BG_DESKTOP"/>
         </Grid.Background>
         <Rectangle HorizontalAlignment="Left" Height="67" Stroke="#FF3F465F" VerticalAlignment="Top" Width="1980"/>
         <Rectangle HorizontalAlignment="Left" Height="67" Margin="1839,0,0,0" VerticalAlignment="Top" Width="81" Stroke="#FF3F465F">

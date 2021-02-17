@@ -25,7 +25,7 @@
                 </Rectangle>
                 <Rectangle HorizontalAlignment="Center" Height="49" Margin="0,162,0,0" VerticalAlignment="Top" Width="162">
                     <Rectangle.Fill>
-                        <ImageBrush ImageSource="/Assets/Clan.png"/>
+                        <ImageBrush ImageSource="http://5.129.77.65:8123/bg/get/LOGO"/>
                     </Rectangle.Fill>
                 </Rectangle>
                 <Button Content="Войти" HorizontalAlignment="Center" Margin="0,370,0,0" VerticalAlignment="Top" Height="35" Width="319" Click="Button_Click"  Foreground="White" BorderBrush="{x:Null}">

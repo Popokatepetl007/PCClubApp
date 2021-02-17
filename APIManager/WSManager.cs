@@ -31,8 +31,8 @@ namespace PCClubApp
                 string regMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new { compId = ProfileManager.compId, token = ClanREST.UserToken });
                 socket.Emit("openSession", regMessage);
             });
-            
-            socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) =>
+
+            /*socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) =>
             {
                 Trace.WriteLine("---Chat Message comin------");
                 Trace.WriteLine(data);
@@ -40,8 +40,27 @@ namespace PCClubApp
                 dynamic jOb = JObject.Parse(data.ToString());
                 int c_id = jOb.id;
                 soc_chat.MessageInput(c_id);
-            });
+            });*/
+
+            socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) => WSManager.OnMessage(data));
+
             socket.Connect();
         }
+
+        private static void OnMessage(object data)
+        {
+            Trace.WriteLine("---Chat Message comin------");
+            Trace.WriteLine(data);
+            Trace.WriteLine("---------------------");
+            dynamic jOb = JObject.Parse(data.ToString());
+            int c_id = jOb.id;
+            soc_chat.MessageInput(c_id);
+        }
+
+        private static void OnCompManage(object data)
+        {
+
+        }
+
     }
 }

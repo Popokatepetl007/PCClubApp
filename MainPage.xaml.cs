@@ -29,12 +29,16 @@ namespace PCClubApp
             this.InitializeComponent();
             req = new ClanREST(this);
             MainPanel.Visibility = Visibility.Collapsed;
-            this.req.Login("test", "qwerty");
+            //this.req.Login("test", "qwerty");
         }
 
         public void LoginResult(bool success, int userId, EUserRole userRole)
         {
             StorageManager sm = new StorageManager();
+
+            /*sm.SetClubIdValue(3);
+            sm.SetCompIdValue(16);
+            sm.SetCompNumberValue(10);*/
 
             if (success && sm.ClubIdExist && sm.CompIdExist)
             {
@@ -48,12 +52,12 @@ namespace PCClubApp
                 MainPanel.Visibility = Visibility.Visible;
                 //req.ProfileData();
             }
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.req.Login(LoginTextBox.Text, passwordTextBox.Text);
-
         }
 
     }
