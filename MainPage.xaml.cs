@@ -40,17 +40,34 @@ namespace PCClubApp
             sm.SetCompIdValue(16);
             sm.SetCompNumberValue(10);*/
 
-            if (success && sm.ClubIdExist && sm.CompIdExist)
+            if (success)
             {
-                ProfileManager.clubId = sm.ClubId;
-                ProfileManager.compId = sm.ComtId;
-                ProfileManager.compNumber = sm.CompNumber;
-                ProfileManager.userID = userId;
-                ProfileManager.userRole = userRole;
-                LoginView.Visibility = Visibility.Collapsed;
-                MainPanel.SetLogin(LoginTextBox.Text);
-                MainPanel.Visibility = Visibility.Visible;
-                //req.ProfileData();
+                if (sm.ClubIdExist && sm.CompIdExist && userRole == EUserRole.Gamer)
+                {
+                    ProfileManager.clubId = sm.ClubId;
+                    ProfileManager.compId = sm.ComtId;
+                    ProfileManager.compNumber = sm.CompNumber;
+                    ProfileManager.userID = userId;
+                    ProfileManager.userRole = userRole;
+                    LoginView.Visibility = Visibility.Collapsed;
+                    MainPanel.SetLogin(LoginTextBox.Text);
+                    MainPanel.Visibility = Visibility.Visible;
+                    LoginTextBox.Text = "";
+                    passwordTextBox.Text = "";
+                    req.req_delegate_profile = MainPanel;
+                    req.ProfileData();
+                    MainPanel.LogOutAction = () => {
+                        LoginView.Visibility = Visibility.Visible;
+                        MainPanel.Visibility = Visibility.Collapsed;
+                        req.LogOut();
+                    };
+                }
+                
+                if (userRole != EUserRole.Gamer)
+                {
+                    _ = MainPanel.ShowSettinhsCompAsync();
+                }
+
             }
             
         }

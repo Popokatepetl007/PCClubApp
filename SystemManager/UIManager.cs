@@ -29,11 +29,12 @@ namespace PCClubApp
 
         public static BitmapImage BitmapImageFromUrl(string image_url)
         {
-            Trace.WriteLine("------imaData--------");
+            /*Trace.WriteLine("------imaData--------");
             ClanREST reqM = new ClanREST();
             string imaData = reqM.GetPicture(image_url);
             Trace.WriteLine(imaData);
-            return Base64StringToBitmap(imaData);
+            return Base64StringToBitmap(imaData);*/
+            return null;
             //return new BitmapImage(new Uri(image_url));
         }
 

@@ -9,7 +9,13 @@ using System.Web;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
-
+using System.Drawing;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Media;
+using Windows.Storage.Streams;
+using Microsoft.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace PCClubApp
 
@@ -97,6 +103,31 @@ namespace PCClubApp
             return request;
         }
 
+        private Stream RUN_Stream(string req_method)
+        {
+            HttpWebRequest request = CreateRequest(req_method, "GET");
+
+            try
+            {
+                WebResponse webResponse = request.GetResponse();
+                using (Stream webStream = webResponse.GetResponseStream() ?? Stream.Null)
+                {
+                    //Image img = Image.FromStream(responseStream);
+                    return webStream;
+                }
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine("--------ERROR---------");
+                Trace.WriteLine(e.Message);
+                if (req_delegate_success != null)
+                {
+                    req_delegate_success.ErrorResult("bad");
+                }
+                return null;
+            }
+        }
+
 
         private void RUN_request(string req_method, Action<string> succes_method, string method = "GET", string post_data = "")
         {
@@ -151,6 +182,11 @@ namespace PCClubApp
                 method: "POST",
                 post_data: post_data
                 );
+        }
+
+        public void LogOut()
+        {
+            user_token = null;
         }
 
         public void ReservationPlace(string start, string end, string compId)
@@ -209,22 +245,53 @@ namespace PCClubApp
                     dynamic jOb = JObject.Parse(ydata);
                     /*Trace.WriteLine(jOb.id);
                     Trace.WriteLine(jOb.Name);*/
-                    req_delegate_profile.ProfileResult(new ProfileData(jOb.result));
+                    ProfileData pd = new ProfileData(jOb.result);
+                    ProfileManager.profile_data = pd;
+                    if (req_delegate_profile != null)
+                    {
+                        req_delegate_profile.ProfileResult(pd);
+                    }
                 }
             );
         }
 
-        public string GetPicture(string pathUrl)
+        public ImageSource GetPicture(string pathUrl)
         {
-            string result = "";
-            RUN_request(pathUrl,
-                (data) =>
+
+            /*Stream sr = RUN_Stream(pathUrl);*/
+            HttpWebRequest lxRequest = (HttpWebRequest)WebRequest.Create(
+               main_URL + pathUrl);
+
+            if (ClanREST.user_token != null)
+            {
+                lxRequest.Headers["Authorization"] = "Bearer_" + ClanREST.user_token;
+            }
+
+            String lsResponse = string.Empty;
+            using (HttpWebResponse lxResponse = (HttpWebResponse)lxRequest.GetResponse())
+            {
+                using (BinaryReader reader = new BinaryReader(lxResponse.GetResponseStream()))
                 {
-                    Trace.WriteLine(data);
-                    result = data;
+                    
+                    Byte[] lnByte = reader.ReadBytes(0);
+                    MemoryStream lxMS = new MemoryStream();
+                    Byte[] lnBuffer = reader.ReadBytes(1024);
+                    while (lnBuffer.Length > 0)
+                    {
+                        lxMS.Write(lnBuffer, 0, lnBuffer.Length);
+                        lnBuffer = reader.ReadBytes(1024);
+                    }
+
+                    using (InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream())
+                    {
+                        stream.AsStreamForWrite().Write(lxMS.ToArray(), 0, lxMS.ToArray().Length);
+                        BitmapImage image = new BitmapImage();
+                        image.SetSource(stream);
+                        
+                        return image;
+                    }
                 }
-            );
-            return result;
+            }
         }
 
         public void GetContent()

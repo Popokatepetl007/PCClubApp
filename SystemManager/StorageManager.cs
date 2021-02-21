@@ -22,6 +22,11 @@ namespace PCClubApp
             this.localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
         }
 
+        public void SaveToStorage()
+        {
+
+        }
+
         public void SetCompIdValue(int value)
         {
             localSettings.Values[compIdKey] = value;

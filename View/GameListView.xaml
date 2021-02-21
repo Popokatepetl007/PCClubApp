@@ -12,7 +12,7 @@
     <GridView x:Name="Games" SelectionMode="Extended" IsItemClickEnabled="True" AllowDrop="True" SelectionChanged="Games_SelectionChanged">
         <GridView.ItemTemplate>
             <DataTemplate>
-                <Grid Width="250" Height="250">
+                <Grid Width="250" Height="250"  AutomationProperties.Name="{Binding Id}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="400"/>
                         <RowDefinition/>

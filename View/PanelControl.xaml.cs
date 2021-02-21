@@ -24,12 +24,13 @@ namespace PCClubApp.View
     /// <summary>
     /// Логика взаимодействия для PanelControl.xaml
     /// </summary>
-    public partial class PanelControl : UserControl, IViewChatDelegate
+    public partial class PanelControl : UserControl, IViewChatDelegate, IRequestDelegateProfile
     {
 
         private int commCashValue = 10000;
         private ChatClient chatClient;
         private Action<ChatMessage> resiveAction;
+        public Action LogOutAction;
         public PanelControl()
         {
             InitializeComponent();
@@ -177,7 +178,7 @@ namespace PCClubApp.View
             AProfilePanel.Visibility = Visibility.Visible;
         }
 
-        private async System.Threading.Tasks.Task ShowSettinhsCompAsync()
+        public async System.Threading.Tasks.Task ShowSettinhsCompAsync()
         {
             CompSettingDialog settingsDialog = new CompSettingDialog();
 
@@ -186,7 +187,8 @@ namespace PCClubApp.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _ = ShowSettinhsCompAsync();
+            //_ = ShowSettinhsCompAsync();
+            LogOutAction();
         }
 
 
@@ -211,6 +213,12 @@ namespace PCClubApp.View
                 resiveAction(chatMessage);
             });
             
+        }
+
+        public void ProfileResult(ProfileData profile)
+        {
+            ShowLoginNox.Text = profile.Name;
+            SetComCash((int)profile.Balance);
         }
     }
 }

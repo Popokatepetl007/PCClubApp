@@ -7,6 +7,9 @@ using System.Reflection;
 using System.Linq;
 using System.Diagnostics;
 using System.Resources;
+using Windows.UI.Xaml.Media.Imaging;
+using System.Text.RegularExpressions;
+using Windows.UI.Xaml.Media;
 
 namespace PCClubApp
 {
@@ -30,6 +33,23 @@ namespace PCClubApp
         private int count;
         private ClubUnit club;
         private string category;
+        private ClanREST res;
+        private ImageSource image;
+
+        private void SetImage()
+        {
+
+                /*this.image = null;
+                ClanREST res = new ClanREST();
+                string img_data = res.GetPicture("/desktop/product/picture/" + this.id.ToString());
+                Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
+                string convert = regex.Replace(img_data, string.Empty);
+                byte[] NewBytes = Convert.FromBase64String(convert);
+                MemoryStream ms = new MemoryStream(NewBytes);
+                ms.Position = 0;
+                this.image = new BitmapImage();
+                image.SetSource(ms.AsRandomAccessStream());*/
+        }
 
         public ShopUnit(string jString)
         {
@@ -42,6 +62,9 @@ namespace PCClubApp
             count = result.count;
             category = result.category;
             club = new ClubUnit(result.club);
+            //SetImage();
+            this.res = new ClanREST();
+            this.image = this.res.GetPicture("/desktop/product/picture/" + this.id.ToString());
         }
 
         public ShopUnit(dynamic jItem)
@@ -54,6 +77,9 @@ namespace PCClubApp
             count = 100;
             category = jItem.category;
             //club = new ClubUnit(jItem.club);
+            //SetImage();
+            this.res = new ClanREST();
+            this.image = this.res.GetPicture("/desktop/product/picture/" + this.id.ToString());
         }
 
         public string Name
@@ -80,7 +106,8 @@ namespace PCClubApp
         public int Count
         { get => count; }
 
-
+        public ImageSource Image
+        { get => image; }
 
     }
 }

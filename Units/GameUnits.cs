@@ -34,9 +34,9 @@ namespace PCClubApp
                 case GameUnits.dota2:
                     return new GameUnit("Gota2", "Dota2", "https://w7.pngwing.com/pngs/361/42/png-transparent-dota-2-dota-2-league-of-legends-the-international-video-game-axe-logo-game-logo-international.png");
                 case GameUnits.chrome:
-                    return new GameUnit("Google Chrome", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe", "https://i.pinimg.com/originals/25/cb/12/25cb125f913f7af06ef4560d65fa75c7.png");
+                    return new GameUnit("Google Chrome", "steam://rungameid/730", "https://i.pinimg.com/originals/25/cb/12/25cb125f913f7af06ef4560d65fa75c7.png");
                 case GameUnits.opera:
-                    return new GameUnit("Opera", "", "https://aux2.iconspalace.com/uploads/opera-ios7-icon-256.png");
+                    return new GameUnit("Opera", "steam://rungameid/730", "https://aux2.iconspalace.com/uploads/opera-ios7-icon-256.png");
                 case GameUnits.mazilla:
                     return new GameUnit("FireFox", "", "https://d33wubrfki0l68.cloudfront.net/06185f059f69055733688518b798a0feb4c7f160/9f07a/images/product-identity-assets/firefox.png");
                 default:
