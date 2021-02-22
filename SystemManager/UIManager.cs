@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Popups;
 
 namespace PCClubApp
 {
@@ -16,6 +17,12 @@ namespace PCClubApp
         public static void WriteInputStream(string name, string data)
         {
             
+        }
+
+        public static async System.Threading.Tasks.Task ShoeNeedAdminAsync()
+        {
+            var dialog = new MessageDialog("Необходимо обратиться к Администратору");
+            _ = await dialog.ShowAsync();
         }
 
         public static ImageBrush GetImageFromAsset(string name)

@@ -25,6 +25,15 @@ namespace PCClubApp
             return EUserRole.Gamer;
         }
 
+        public static void SetValues(int _userId, EUserRole _userRole, StorageManager _sm)
+        {
+            clubId = _sm.ClubId;
+            compId = _sm.ComtId;
+            compNumber = _sm.CompNumber;
+            userID = _userId;
+            userRole = _userRole;
+        }
+
     }
 
     public enum EUserRole

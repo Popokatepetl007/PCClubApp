@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
 
@@ -24,6 +25,7 @@ namespace PCClubApp
     public sealed partial class MainPage : Page, IRequestDelegateLogin
     {
         private ClanREST req;
+        private bool checkLoginPar = false;
         public MainPage()
         {
             this.InitializeComponent();
@@ -31,6 +33,7 @@ namespace PCClubApp
             MainPanel.Visibility = Visibility.Collapsed;
             //this.req.Login("test", "qwerty");
         }
+
 
         public void LoginResult(bool success, int userId, EUserRole userRole)
         {
@@ -42,28 +45,32 @@ namespace PCClubApp
 
             if (success)
             {
-                if (sm.ClubIdExist && sm.CompIdExist && userRole == EUserRole.Gamer)
+                if (userRole == EUserRole.Gamer || userRole == EUserRole.Check)
                 {
-                    ProfileManager.clubId = sm.ClubId;
-                    ProfileManager.compId = sm.ComtId;
-                    ProfileManager.compNumber = sm.CompNumber;
-                    ProfileManager.userID = userId;
-                    ProfileManager.userRole = userRole;
-                    LoginView.Visibility = Visibility.Collapsed;
-                    MainPanel.SetLogin(LoginTextBox.Text);
-                    MainPanel.Visibility = Visibility.Visible;
-                    LoginTextBox.Text = "";
-                    passwordTextBox.Text = "";
-                    req.req_delegate_profile = MainPanel;
-                    req.ProfileData();
-                    MainPanel.LogOutAction = () => {
-                        LoginView.Visibility = Visibility.Visible;
-                        MainPanel.Visibility = Visibility.Collapsed;
-                        req.LogOut();
-                    };
+                    if (sm.ClubIdExist && sm.CompIdExist)
+                    {
+                        ProfileManager.SetValues(userId, userRole, sm);
+                        LoginView.Visibility = Visibility.Collapsed;
+                        MainPanel.SetLogin(LoginTextBox.Text);
+                        MainPanel.Visibility = Visibility.Visible;
+                        LoginTextBox.Text = "";
+                        passwordTextBox.Text = "";
+                        req.req_delegate_profile = MainPanel;
+                        req.ProfileData();
+                        MainPanel.LogOutAction = () =>
+                        {
+                            LoginView.Visibility = Visibility.Visible;
+                            MainPanel.Visibility = Visibility.Collapsed;
+                            req.LogOut();
+                        };
+                    }
+                    else
+                    {
+                        _ = UIManager.ShoeNeedAdminAsync();
+                    }
                 }
                 
-                if (userRole != EUserRole.Gamer)
+                if (userRole == EUserRole.Admin || userRole == EUserRole.Owner)
                 {
                     _ = MainPanel.ShowSettinhsCompAsync();
                 }
@@ -74,8 +81,42 @@ namespace PCClubApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.req.Login(LoginTextBox.Text, passwordTextBox.Text);
+            this.req.Login(LoginTextBox.Text, checkLoginPar? LoginTextBox.Text : passwordTextBox.Text);
         }
 
+
+        private void Button_Check(object sender, RoutedEventArgs e)
+        {
+            LoginTextBox.Text = "";
+            passwordTextBox.Text = "";
+            if (checkLoginPar)
+            {
+                passwordTextBox.Visibility = Visibility.Visible;
+                LoginTextBox.PlaceholderText = "Login";
+                CheckInButton.Content = "У меня чек";
+            }
+            else
+            {
+                passwordTextBox.Visibility = Visibility.Collapsed;
+                LoginTextBox.PlaceholderText = "Введите номер чека";
+                CheckInButton.Content = "У меня Логин/Пароль";
+            }
+            checkLoginPar = !checkLoginPar;
+        }
+
+
+        private void MainPanel_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LoginView_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if(e.Key == Windows.System.VirtualKey.Enter)
+            {
+                this.req.Login(LoginTextBox.Text, checkLoginPar ? LoginTextBox.Text : passwordTextBox.Text);
+            }
+            
+        }
     }
 }

@@ -34,13 +34,7 @@
                 <ImageBrush ImageSource="/Assets/BrowsersOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" x:Name="BShop" Margin="392,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
-            <Button.FocusVisualSecondaryBrush>
-                <ImageBrush ImageSource="/Assets/ShopOn.png"/>
-            </Button.FocusVisualSecondaryBrush>
-            <Button.FocusVisualPrimaryBrush>
-                <ImageBrush ImageSource="/Assets/ShopOn.png"/>
-            </Button.FocusVisualPrimaryBrush>
+        <Button Content="" x:Name="BShop" Margin="392,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel" >
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/ShopOff.png"/>
             </Button.Background>

@@ -44,14 +44,14 @@
         
         SentStyle="{StaticResource RightAlignedMessageStyle}" />
 
-        
+
 
         <ItemsPanelTemplate x:Key="MessageItemPanelTemplate">
             <ItemsStackPanel VerticalAlignment="Bottom" ItemsUpdatingScrollMode="KeepLastItemInView" />
         </ItemsPanelTemplate>
     </UserControl.Resources>
     <Grid Width="1620" Height="800" Background="#00000000">
-        <Grid  Width="702" Height="492" Background="#CC131725" >
+        <Grid  Width="702" Height="492" Background="#E5131725" >
             <ListView x:Name="MessagesList" Height="305" VerticalAlignment="Top" Margin="29,88,29,0" IsItemClickEnabled="False"
             IsTapEnabled="False"
             ItemContainerStyleSelector="{StaticResource MessageContainerStyleSelector}"
@@ -82,7 +82,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <TextBox x:Name="TextSendMessage" Height="50" VerticalAlignment="Bottom" Margin="29,0,94,19" TextWrapping="Wrap" BorderBrush="#FF3F465F" Background="{x:Null}" />
+            <TextBox x:Name="TextSendMessage" Height="50" VerticalAlignment="Bottom" Margin="29,0,94,19" TextWrapping="Wrap" BorderBrush="#FF3F465F" KeyDown="TextSendMessage_KeyDown" Background="{x:Null}" />
             <Button Content="" Margin="631,0,0,34" VerticalAlignment="Bottom" RenderTransformOrigin="0.437,0.531" Click="Button_Click" Width="25" Height="25" >
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/PostMessageIcon.png"/>
@@ -96,6 +96,8 @@
                     <ImageBrush ImageSource="/Assets/CloseIcon.png"/>
                 </Button.Background>
             </Button>
+            <TextBlock HorizontalAlignment="Left" Margin="29,27,0,0" Text="Администратор" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"/>
+            <TextBlock HorizontalAlignment="Left" Margin="28,47,0,0" Text="Online" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="9" Foreground="#FF72CA88"/>
         </Grid>
     </Grid>
 </UserControl>

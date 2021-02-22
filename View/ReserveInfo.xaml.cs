@@ -28,6 +28,7 @@ namespace PCClubApp.View
         {
             this.InitializeComponent();
             req = new ClanREST(this);
+            DateStartField.MinDate = DateTime.Now;
         }
 
         private string CondDataPicker(DateTime date, string time)

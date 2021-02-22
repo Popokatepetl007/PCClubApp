@@ -32,12 +32,17 @@ namespace PCClubApp.View
             MessagesItems = new List<ChatMessage>();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SendMessageFromEvent()
         {
             SendMessageAction(TextSendMessage.Text);
             MessagesList.Items.Add(new ChatMessage(TextSendMessage.Text));
             MessagesList.UpdateLayout();
             TextSendMessage.Text = "";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SendMessageFromEvent();
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
@@ -50,5 +55,13 @@ namespace PCClubApp.View
             MessagesList.Items.Add(chatMessage);
         }
 
+        private void TextSendMessage_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                SendMessageFromEvent();
+            }
+            
+        }
     }
 }

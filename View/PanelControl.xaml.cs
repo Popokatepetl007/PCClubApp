@@ -69,12 +69,12 @@ namespace PCClubApp.View
 
         public void SetLogin(string login)
         {
-            ShowLoginNox.Text = login;
+            ShowLoginNox.Text = login.Length > 16 ? "Accaunt" : login;
             chatClient = new ChatClient(this);
             WSManager.StartWS();
             WSManager.soc_chat = chatClient;
             CompIdBox.Text = ProfileManager.compNumber.ToString();
-            
+            GamePanelStart();
         }
 
 
@@ -89,17 +89,42 @@ namespace PCClubApp.View
         }
 
 
+        private void GamePanelStart()
+        {
+            GamePanel.Visibility = Visibility.Visible;
+            GamePanel.OnStart();
+        }
+
+        private void ShopPanelStart()
+        {
+            ShopPanel.Visibility = Visibility.Visible;
+            ShopPanel.OnActive();
+            ShopPanel.ARetCostValue = (int a) =>
+            {
+                SetMinCash(a);
+            };
+        }
+
+        private void NewsPanelStart()
+        {
+            NewsPanel.OnActive();
+            NewsPanel.Visibility = Visibility.Visible;
+        }
+
+        private void BrowserPanelStart()
+        {
+            BrowserPanel.Visibility = Visibility.Visible;
+        }
+
+
         private void Button_Click_SelectPanel(object sender, RoutedEventArgs e)
         {
             Windows.UI.Xaml.Controls.Button b = (sender as Windows.UI.Xaml.Controls.Button);
             DisActive();
 
-            Trace.WriteLine(b.Name);
-            Trace.WriteLine(BGame.Name);
             if (b.Name == BGame.Name)
             {
-                GamePanel.Visibility = Visibility.Visible;
-                GamePanel.OnStart();
+                GamePanelStart();
             }
             if (b.Name == BService.Name)
             {
@@ -107,18 +132,12 @@ namespace PCClubApp.View
             }
             if (b.Name == BShop.Name)
             {
-                BShop.Background = UIManager.GetImageFromAsset("ShopOn");
-                ShopPanel.Visibility = Visibility.Visible;
-                ShopPanel.OnActive();
-                ShopPanel.ARetCostValue = (int a) =>
-                {
-                    SetMinCash(a);
-                };
+                //BShop.Background = UIManager.GetImageFromAsset("ShopOn");
+                ShopPanelStart();
             }
             if (b.Name == BNews.Name)
             {
-                NewsPanel.OnActive();
-                NewsPanel.Visibility = Visibility.Visible;
+                NewsPanelStart();
             }
             if (b.Name == BFavorites.Name)
             {
@@ -126,7 +145,7 @@ namespace PCClubApp.View
             }
             if (b.Name == BBrowser.Name)
             {
-                BrowserPanel.Visibility = Visibility.Visible;
+                BrowserPanelStart();
             }
 
 

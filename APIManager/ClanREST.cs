@@ -167,9 +167,8 @@ namespace PCClubApp
 
 
         public void Login(string login, string password)
-        {
-            //TODO: - reform post string
-            string post_data = "{\"login\":\"{login}\", \"password\": \"{password}\"}".Replace("{login}", login).Replace("{password}", password);
+        {   
+            string post_data = Newtonsoft.Json.JsonConvert.SerializeObject(new { login = login, password = password });
             this.RUN_request("/login",
                 (data) => {
                         dynamic result = JObject.Parse(data);
@@ -187,11 +186,13 @@ namespace PCClubApp
         public void LogOut()
         {
             user_token = null;
+            WSManager.CloseWS();
         }
 
         public void ReservationPlace(string start, string end, string compId)
         {
-            string post_data = "{\"start\":\"{start}\", \"end\": \"{end}\", \"computerId\": {cId}}".Replace("{start}", start).Replace("{end}", end).Replace("{cId}", "5");
+  
+            string post_data = Newtonsoft.Json.JsonConvert.SerializeObject(new { start = start, end = end, computerId = compId });
             Trace.WriteLine(post_data);
             this.RUN_request("/desktop/reservation",
                 (data) => {
@@ -222,7 +223,7 @@ namespace PCClubApp
 
         public void BuyProduct(int id)
         {
-            string post_data = "{\"count\": 1, \"productId\": {p}}".Replace("{p}", id.ToString());
+            string post_data = Newtonsoft.Json.JsonConvert.SerializeObject(new { count = 1, productId = id});
             this.RUN_request(
                 "/desktop/product/buy",
                 (data) =>

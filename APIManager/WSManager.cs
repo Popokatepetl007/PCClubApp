@@ -21,6 +21,7 @@ namespace PCClubApp
         private static string live_ws_url = "http://5.129.77.65:8124";
         public static string loc_ws_url = "http://10.0.0.11:8124";
         public static ISocketChat soc_chat;
+        private static Socket _socket;
         public static void StartWS()
         {
             var socket = IO.Socket(WSManager.live_ws_url);
@@ -36,6 +37,12 @@ namespace PCClubApp
             socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) => WSManager.OnMessage(data));
 
             socket.Connect();
+            _socket = socket;
+        }
+
+        public static void CloseWS()
+        {
+            _socket.Close();
         }
 
         private static void OnMessage(object data)

@@ -30,7 +30,7 @@ namespace PCClubApp.View
 
         private void Browsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SystemController.appRunAsync(GameUnits.chrome);
+            //SystemController.appRunAsync(GameUnits.chrome);
         }
     }
 }

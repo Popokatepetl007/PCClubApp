@@ -46,10 +46,17 @@ namespace PCClubApp.View
             AccInfoBlock.Visibility = Visibility.Collapsed;
             AccBalanceBlock.Visibility = Visibility.Collapsed;
             AccReservBlock.Visibility = Visibility.Collapsed;
-            if (SelectPanel.SelectedIndex == 0)
+            if (SelectPanel.SelectedIndex == 0 )
             {
-                AccInfoBlock.Visibility = Visibility.Visible;
-                AccInfoBlock.OnActive();
+                if (ProfileManager.userRole == EUserRole.Gamer)
+                {
+                    AccInfoBlock.Visibility = Visibility.Visible;
+                    AccInfoBlock.OnActive();
+                }
+                else
+                {
+                    SelectPanel.SelectedIndex = 1;
+                }
             }
             if (SelectPanel.SelectedIndex == 1)
             {
