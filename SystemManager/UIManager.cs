@@ -14,14 +14,16 @@ namespace PCClubApp
     class UIManager
     {
 
+        public static Action LogOutAction;
+
         public static void WriteInputStream(string name, string data)
         {
             
         }
 
-        public static async System.Threading.Tasks.Task ShoeNeedAdminAsync()
+        public static async System.Threading.Tasks.Task ShoeNeedAdminAsync(string messageText = "")
         {
-            var dialog = new MessageDialog("Необходимо обратиться к Администратору");
+            var dialog = new MessageDialog("Необходимо обратиться к Администратору:\n" + messageText);
             _ = await dialog.ShowAsync();
         }
 
@@ -34,15 +36,12 @@ namespace PCClubApp
             return im_br;
         }
 
-        public static BitmapImage BitmapImageFromUrl(string image_url)
+        
+
+        public static ImageSource BitmapImageFromUrl(string image_url)
         {
-            /*Trace.WriteLine("------imaData--------");
             ClanREST reqM = new ClanREST();
-            string imaData = reqM.GetPicture(image_url);
-            Trace.WriteLine(imaData);
-            return Base64StringToBitmap(imaData);*/
-            return null;
-            //return new BitmapImage(new Uri(image_url));
+            return  reqM.GetPicture(image_url);
         }
 
         public static BitmapImage Base64StringToBitmap(string imageData)

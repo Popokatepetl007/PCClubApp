@@ -71,10 +71,12 @@ namespace PCClubApp.View
         {
             ShowLoginNox.Text = login.Length > 16 ? "Accaunt" : login;
             chatClient = new ChatClient(this);
-            WSManager.StartWS();
-            WSManager.soc_chat = chatClient;
             CompIdBox.Text = ProfileManager.compNumber.ToString();
-            GamePanelStart();
+            WSManager.StartWS(() => {
+                WSManager.soc_chat = chatClient;
+                IAsyncAction asyncAction = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, GamePanelStart);
+            });
+            
         }
 
 
@@ -207,7 +209,8 @@ namespace PCClubApp.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //_ = ShowSettinhsCompAsync();
-            LogOutAction();
+            //LogOutAction();
+            UIManager.LogOutAction();
         }
 
 

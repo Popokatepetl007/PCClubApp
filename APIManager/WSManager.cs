@@ -22,7 +22,7 @@ namespace PCClubApp
         public static string loc_ws_url = "http://10.0.0.11:8124";
         public static ISocketChat soc_chat;
         private static Socket _socket;
-        public static void StartWS()
+        public static void StartWS(Action connect_ready)
         {
             var socket = IO.Socket(WSManager.live_ws_url);
             Trace.WriteLine("--Socket INIT--");
@@ -31,10 +31,11 @@ namespace PCClubApp
                 Trace.WriteLine("--Socket Connected--");
                 string regMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new { compId = ProfileManager.compId, token = ClanREST.UserToken });
                 socket.Emit("openSession", regMessage);
+                connect_ready();
             });
 
-
             socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) => WSManager.OnMessage(data));
+            socket.On(String.Format("/topic/manage/{0}", ProfileManager.compId), (data) => WSManager.OnCompManage(data));
 
             socket.Connect();
             _socket = socket;
@@ -42,6 +43,7 @@ namespace PCClubApp
 
         public static void CloseWS()
         {
+            Trace.WriteLine("--Socket Closed--");
             _socket.Close();
         }
 
@@ -57,7 +59,7 @@ namespace PCClubApp
 
         private static void OnCompManage(object data)
         {
-
+            Trace.WriteLine(data);
         }
 
     }

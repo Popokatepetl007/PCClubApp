@@ -42,6 +42,7 @@ namespace PCClubApp.View
             AccPhoneBox.Text = profile.Phone;
             AccMailBox.Text = profile.Email;
             AccBDayBox.Text = profile.Birthday;
+            ProfileImageRect.Source = UIManager.BitmapImageFromUrl("/profile/picture");
         }
     }
 }

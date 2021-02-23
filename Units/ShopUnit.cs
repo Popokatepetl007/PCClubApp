@@ -107,7 +107,7 @@ namespace PCClubApp
         { get => count; }
 
         public ImageSource Image
-        { get => image; }
+        { get => UIManager.BitmapImageFromUrl("/desktop/product/picture/" + this.id.ToString()); }
 
     }
 }

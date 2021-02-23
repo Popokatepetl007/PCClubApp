@@ -58,16 +58,7 @@ namespace PCClubApp.View
         private void Games_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Trace.WriteLine("---AppRun----");
-            Windows.UI.Xaml.Controls.Grid b = (sender as Windows.UI.Xaml.Controls.Grid);
-            foreach (var i in GameListCollection)
-            {
-                if (i.Id.ToString().Replace(" ", "") == b.GetValue(AutomationProperties.NameProperty).ToString().Replace(" ", ""))
-                {
-                    _ = SystemController.appRunAsync(i);
-                }
-            }
-
-            
+            _ = SystemController.appRunAsync((GameUnit)Games.SelectedItem);
         }
     }
 }

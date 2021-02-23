@@ -23,7 +23,7 @@
                         <ColumnDefinition Width="250"/>
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="{Binding Img}" Width="250" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <Image Source="{Binding ImgS}" Width="250" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" />
                     <TextBlock Text="{Binding Name}" Margin="0,230,0,0" Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="#FFDAF0F5" FontSize="13" HorizontalAlignment="Center" />
                 </Grid>
             </DataTemplate>

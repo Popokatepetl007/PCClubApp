@@ -35,6 +35,14 @@ namespace PCClubApp
         }
 
 
+        private void LogOutAction()
+        {
+            LoginView.Visibility = Visibility.Visible;
+            MainPanel.Visibility = Visibility.Collapsed;
+            req.LogOut();
+        }
+
+
         public void LoginResult(bool success, int userId, EUserRole userRole)
         {
             StorageManager sm = new StorageManager();
@@ -57,12 +65,13 @@ namespace PCClubApp
                         passwordTextBox.Text = "";
                         req.req_delegate_profile = MainPanel;
                         req.ProfileData();
-                        MainPanel.LogOutAction = () =>
+                        UIManager.LogOutAction = LogOutAction;
+                        /*MainPanel.LogOutAction = () =>
                         {
                             LoginView.Visibility = Visibility.Visible;
                             MainPanel.Visibility = Visibility.Collapsed;
                             req.LogOut();
-                        };
+                        };*/
                     }
                     else
                     {

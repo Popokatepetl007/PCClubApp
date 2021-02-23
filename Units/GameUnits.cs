@@ -86,7 +86,6 @@ namespace PCClubApp
             img = String.Format("/desktop/content/picture/{0}", id);
             category = jItem.category == "GAME" ? ContentCategory.GAME : ContentCategory.APPLICATION;
             Trace.WriteLine(img);
-            _ = UIManager.BitmapImageFromUrl(img);
         }
 
         public string Name { get => name; }
@@ -96,7 +95,7 @@ namespace PCClubApp
         public int Id { get => id; }
         public ContentCategory Category { get => category; }
 
-        public BitmapImage ImgS { get => UIManager.BitmapImageFromUrl(img); }
+        public object ImgS { get => UIManager.BitmapImageFromUrl(img); }
     }
 
 }

@@ -129,7 +129,7 @@ namespace PCClubApp
         }
 
 
-        private void RUN_request(string req_method, Action<string> succes_method, string method = "GET", string post_data = "")
+        private async System.Threading.Tasks.Task RUN_requestAsync(string req_method, Action<string> succes_method, string method = "GET", string post_data = "")
         {
             HttpWebRequest request = CreateRequest(req_method, method);
             request.ContentLength = post_data.Length;
@@ -145,7 +145,7 @@ namespace PCClubApp
                 
             try
             {
-                WebResponse webResponse = request.GetResponse();
+                WebResponse webResponse = await request.GetResponseAsync();
                 using (Stream webStream = webResponse.GetResponseStream() ?? Stream.Null)
                 using (StreamReader responseReader = new StreamReader(webStream))
                 {
@@ -153,10 +153,27 @@ namespace PCClubApp
                     succes_method(response);
                 }
             }
-            catch (Exception e)
+            catch (WebException e)
             {
-                Trace.WriteLine("--------ERROR---------");
-                Trace.WriteLine(e.Message);
+                Trace.WriteLine("--------ERROR--------- " + req_method);
+                
+                using (Stream webStream = e.Response.GetResponseStream() ?? Stream.Null)
+                using (StreamReader responseReader = new StreamReader(webStream))
+                {
+                    string response = responseReader.ReadToEnd();
+                    
+                    try
+                    {
+                        dynamic result = JObject.Parse(response);
+                        if ((int)result.errorCode == 3)
+                        {
+                            UIManager.LogOutAction();
+                            _ = UIManager.ShoeNeedAdminAsync((string)result.errorMessage);
+                        }
+                    }
+                    catch (Exception)
+                    { }
+                }
                 if (req_delegate_success != null)
                 {
                     req_delegate_success.ErrorResult("bad");
@@ -165,11 +182,10 @@ namespace PCClubApp
         }
 
 
-
         public void Login(string login, string password)
         {   
             string post_data = Newtonsoft.Json.JsonConvert.SerializeObject(new { login = login, password = password });
-            this.RUN_request("/login",
+            _ = this.RUN_requestAsync("/login",
                 (data) => {
                         dynamic result = JObject.Parse(data);
                         string token = result.token;
@@ -194,7 +210,7 @@ namespace PCClubApp
   
             string post_data = Newtonsoft.Json.JsonConvert.SerializeObject(new { start = start, end = end, computerId = compId });
             Trace.WriteLine(post_data);
-            this.RUN_request("/desktop/reservation",
+            _ = this.RUN_requestAsync("/desktop/reservation",
                 (data) => {
                     req_delegate_success.SuccessResult();
                 },
@@ -206,7 +222,7 @@ namespace PCClubApp
 
         public void ShopList()
         {
-            this.RUN_request(
+            _ = this.RUN_requestAsync(
                 "/desktop/product/list",
                 (data) =>
                 {                    
@@ -224,7 +240,7 @@ namespace PCClubApp
         public void BuyProduct(int id)
         {
             string post_data = Newtonsoft.Json.JsonConvert.SerializeObject(new { count = 1, productId = id});
-            this.RUN_request(
+            _ = this.RUN_requestAsync(
                 "/desktop/product/buy",
                 (data) =>
                 {
@@ -238,7 +254,7 @@ namespace PCClubApp
         public void ProfileData()
         {
             //this.GetPicture();
-            this.RUN_request(
+            _ = this.RUN_requestAsync(
                 "/profile",
                 (data) =>
                 {
@@ -286,9 +302,11 @@ namespace PCClubApp
                     using (InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream())
                     {
                         stream.AsStreamForWrite().Write(lxMS.ToArray(), 0, lxMS.ToArray().Length);
+                        Trace.WriteLine(stream.Size);
+                        stream.Seek(0);
                         BitmapImage image = new BitmapImage();
                         image.SetSource(stream);
-                        
+                        Trace.WriteLine(image.PixelWidth);
                         return image;
                     }
                 }
@@ -297,7 +315,7 @@ namespace PCClubApp
 
         public void GetContent()
         {
-            this.RUN_request(String.Format("/desktop/content/list?computerId={0}", ProfileManager.compId),
+            _ = this.RUN_requestAsync(String.Format("/desktop/content/list?computerId={0}", ProfileManager.compId),
                 (data) =>
                 {
                     Trace.WriteLine("----Content-----");
@@ -314,7 +332,7 @@ namespace PCClubApp
 
         public void GetNews()
         {
-            this.RUN_request(
+            _ = this.RUN_requestAsync(
                 "/desktop/news/list",
                 (data) =>
                 {
@@ -335,7 +353,7 @@ namespace PCClubApp
         {
             string post_data = Newtonsoft.Json.JsonConvert.SerializeObject(new { macAddress = mac, clubId = clubId, number = number });
             Trace.WriteLine(post_data);
-            this.RUN_request(
+            _ = this.RUN_requestAsync(
                 "/computer",
                 (data) =>
                 {
@@ -366,7 +384,7 @@ namespace PCClubApp
             char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
             ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
             string asciiString = new string(asciiChars);
-            this.RUN_request("/chat/user/send",
+            _ = this.RUN_requestAsync("/chat/user/send",
                 (data) =>
                 {
                     Trace.WriteLine("----POST Chat MessageResult-----");
@@ -379,7 +397,7 @@ namespace PCClubApp
 
         public void GetMessgeByID(int id)
         {
-            this.RUN_request(String.Format("/chat/message/{0}", id),
+            _ = this.RUN_requestAsync(String.Format("/chat/message/{0}", id),
                 (data) =>
                 {
                     dynamic jOb = JObject.Parse(data);
@@ -394,6 +412,29 @@ namespace PCClubApp
 
     }
 
-    
+    public static class WebRequestExtensions
+    {
+        public static WebResponse GetResponseWithoutException(this WebRequest request)
+        {
+            if (request == null)
+            {
+                throw new ArgumentNullException("request");
+            }
+
+            try
+            {
+                return request.GetResponse();
+            }
+            catch (WebException e)
+            {
+                if (e.Response == null)
+                {
+                    throw;
+                }
+
+                return e.Response;
+            }
+        }
+    }
 
 }
