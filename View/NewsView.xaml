@@ -14,7 +14,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Center" Margin="300,0,0,0">
-                        <MediaPlayerElement Source="{Binding SourceFile}" AutoPlay="True" Width="400" HorizontalAlignment="Left" VerticalAlignment="Center" Height="400">
+                        <MediaPlayerElement Source="{Binding SourceFile}" AreTransportControlsEnabled="True" AutoPlay="True" Width="400" HorizontalAlignment="Left" VerticalAlignment="Center" Height="400">
                             
                         </MediaPlayerElement>
                         <TextBox Text="{Binding Text}" Width="500" Height="500" IsTapEnabled="False" IsReadOnly="True" IsHoldingEnabled="False" AllowFocusOnInteraction="False" Margin="550,0,0,0" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Background="#00000000" BorderBrush="#00000000" Foreground="#FFDAF0F5" />
