@@ -16,8 +16,8 @@
             <TextBlock x:Name="BalanceItem" Padding="16,0,0,0" Foreground="#FFDAF0F5" SelectionHighlightColor="#7F2F74B0" FontSize="14" SelectionChanged="TextBlock_SelectionChanged">Пополнение баланса</TextBlock>
             <TextBlock x:Name="RedervItem" Margin="16,0,0,0" Foreground="#FFDAF0F5" SelectionHighlightColor="#7F2F74B0" FontSize="14" SelectionChanged="TextBlock_SelectionChanged">Бронирование</TextBlock>
         </ListView>
-        <local:ProfileInfo x:Name="AccInfoBlock" HorizontalAlignment="Right" Width="1620" Visibility="Collapsed"  />
-        <local:BalanceInfo x:Name="AccBalanceBlock" HorizontalAlignment="Right" Width="1620" Visibility="Collapsed"  />
-        <local:ReserveInfo x:Name="AccReservBlock" HorizontalAlignment="Right" Width="1620" Visibility="Collapsed"  />
+        <local:ProfileInfo x:Name="AccInfoBlock" Visibility="Collapsed" Margin="300,0,0,0"  />
+        <local:BalanceInfo x:Name="AccBalanceBlock" Visibility="Collapsed" Margin="300,0,0,0"  />
+        <local:ReserveInfo x:Name="AccReservBlock" Visibility="Collapsed" Margin="300,0,0,0"  />
     </Grid>
 </UserControl>

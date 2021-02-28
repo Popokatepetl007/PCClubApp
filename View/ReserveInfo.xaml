@@ -17,11 +17,11 @@
         <TextBlock HorizontalAlignment="Left" Margin="386,120,0,0" Text="Дата и время конца" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
         <TextBlock HorizontalAlignment="Left" Margin="93,244,0,0" Text="Номер ПК" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5"/>
         <ComboBox x:Name="CompListBox" Margin="93,268,0,0" Width="230" Height="38" Background="#CC232836" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF98A2A5">
-            <TextBlock>001</TextBlock>
-            <TextBlock>002</TextBlock>
-            <TextBlock>003</TextBlock>
-            <TextBlock>004</TextBlock>
-            <TextBlock>005</TextBlock>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Number}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
         <Button Content="Отмена" Margin="100,334,0,0" VerticalAlignment="Top" Foreground="#FFDAF0F5" Background="{x:Null}" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}"/>
         <Button Content="Забронировать" Margin="196,332,0,0" VerticalAlignment="Top" Width="218" Height="40" Foreground="#FFDAF0F5" Background="#FF2F74B0" Click="Button_Click"/>

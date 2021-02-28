@@ -38,14 +38,26 @@ namespace PCClubApp.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Trace.WriteLine("-------RES DATA--------");
-            string start = CondDataPicker(DateStartField.Date.Value.DateTime, TimeStartPicker.Time.ToString());
-            string end = CondDataPicker(DateEndField.Date.Value.DateTime, TimeEndPicker.Time.ToString());
-            string compId =(CompListBox.SelectionBoxItem as TextBlock).Text;
-            Trace.WriteLine(start);
-            Trace.WriteLine(end);
-            Trace.WriteLine(compId);
-            req.ReservationPlace(start, end, compId);
+            try {
+                string start = CondDataPicker(DateStartField.Date.Value.DateTime, TimeStartPicker.Time.ToString());
+                string end = CondDataPicker(DateEndField.Date.Value.DateTime, TimeEndPicker.Time.ToString());
+                string compId = ProfileManager.ComputersList[CompListBox.SelectedIndex].Id.ToString();
+
+                req.ReservationPlace(start, end, compId);
+            }
+            catch { }
+            
+        }
+
+        public void OnActive()
+        {
+            CompListBox.Items.Clear();
+            if (ProfileManager.ComputersList == null) return;
+            foreach(var i in ProfileManager.ComputersList)
+            {
+                CompListBox.Items.Add(i);
+            }
+            CompListBox.SelectedIndex = 0;
         }
 
         void IRequestDelegateSuccessResult.SuccessResult()

@@ -205,6 +205,22 @@ namespace PCClubApp
             WSManager.CloseWS();
         }
 
+
+        public void GetComputersList()
+        {
+            _ = this.RUN_requestAsync("/desktop/computer",
+                (data) =>
+                {
+                    Trace.WriteLine(data);
+                    List<Computer> _list = new List<Computer>();
+                    foreach (dynamic i in ParseList(data))
+                    {
+                        _list.Add(new Computer((int)i.id, (int)i.number));
+                    }
+                    ProfileManager.SetCompList(_list);
+                });
+        }
+
         public void ReservationPlace(string start, string end, string compId)
         {
   
@@ -264,6 +280,7 @@ namespace PCClubApp
                     Trace.WriteLine(jOb.Name);*/
                     ProfileData pd = new ProfileData(jOb.result);
                     ProfileManager.profile_data = pd;
+                    this.GetComputersList();
                     if (req_delegate_profile != null)
                     {
                         req_delegate_profile.ProfileResult(pd);

@@ -148,6 +148,7 @@
     <Compile Include="Units\ChatMessage.cs" />
     <Compile Include="Units\Class1.cs" />
     <Compile Include="Units\ClubUnit.cs" />
+    <Compile Include="Units\Computer.cs" />
     <Compile Include="Units\GameUnits.cs" />
     <Compile Include="Units\NewsUnit.cs" />
     <Compile Include="Units\ProfileData.cs" />

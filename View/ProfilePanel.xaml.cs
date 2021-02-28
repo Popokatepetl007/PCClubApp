@@ -65,6 +65,7 @@ namespace PCClubApp.View
             if (SelectPanel.SelectedIndex == 2)
             {
                 AccReservBlock.Visibility = Visibility.Visible;
+                AccReservBlock.OnActive();
             }
         }
     }

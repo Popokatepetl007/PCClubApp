@@ -15,6 +15,7 @@ namespace PCClubApp
         public static EUserRole userRole = EUserRole.Gamer;
         public static float balance = 0;
         public static ProfileData profile_data = null;
+        private static List<Computer> compList;
 
         public static EUserRole GetUserRoleFromString(string string_role)
         {
@@ -33,6 +34,14 @@ namespace PCClubApp
             userID = _userId;
             userRole = _userRole;
         }
+
+        public static void SetCompList(List<Computer> _list)
+        {
+            compList = _list;
+        }
+
+        public static List<Computer> ComputersList
+        { get => compList; }
 
     }
 

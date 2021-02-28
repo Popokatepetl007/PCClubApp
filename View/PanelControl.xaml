@@ -12,50 +12,49 @@
             <ImageBrush ImageSource="http://5.129.77.65:8123/bg/get/BG_DESKTOP"/>
         </Grid.Background>
         <Rectangle HorizontalAlignment="Left" Height="67" Stroke="#FF3F465F" VerticalAlignment="Top" Width="1980"/>
-        <Rectangle HorizontalAlignment="Left" Height="67" Margin="1839,0,0,0" VerticalAlignment="Top" Width="81" Stroke="#FF3F465F">
-        </Rectangle>
-        <Button Content="" Margin="1857,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.162,-0.266" Height="44" Width="47" Click="Button_Click">
+        <Rectangle HorizontalAlignment="Right" Height="67" VerticalAlignment="Top" Width="81" Stroke="#FF3F465F"/>
+        <Button Content="" Margin="0,10,16,0" VerticalAlignment="Top" RenderTransformOrigin="-0.162,-0.266" Height="44" Click="Button_Click" HorizontalAlignment="Right" Width="47">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/exit.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" x:Name="BGame" Margin="51,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
+        <Button Content="" x:Name="BGame" Margin="39,0,0,59" VerticalAlignment="Bottom" Width="100" Height="100" Click="Button_Click_SelectPanel">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/GamesOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" x:Name="BService" Margin="156,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
+        <Button Content="" x:Name="BService" Margin="156,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/ServicesOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" x:Name="BBrowser" Margin="271,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
+        <Button Content="" x:Name="BBrowser" Margin="271,0,0,59" VerticalAlignment="Bottom" Width="100" Height="100" Click="Button_Click_SelectPanel">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/BrowsersOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" x:Name="BShop" Margin="392,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel" >
+        <Button Content="" x:Name="BShop" Margin="392,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100" >
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/ShopOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" x:Name="BFavorites" Margin="509,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
+        <Button Content="" x:Name="BFavorites" Margin="509,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/FaviritesOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" x:Name="BNews" Margin="622,921,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Click_SelectPanel">
+        <Button Content="" x:Name="BNews" Margin="622,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/NewsOff.png"/>
             </Button.Background>
         </Button>
 
-        <local1:ShopListView x:Name="ShopPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
-        <local1:GameListView x:Name="GamePanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
-        <local1:BrawserPanel x:Name="BrowserPanel" Width="1700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
-        <local1:NewsView x:Name="NewsPanel" Width="1700" Height="900" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
-        <local1:ProfilePanel x:Name="AProfilePanel" Width="1920" Height="800" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,100" Visibility="Collapsed"/>
-        <local1:ChatDialogView x:Name="ChatPanel" Width="1620" Height="800" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,100" Visibility="Collapsed"/>
+        <local1:ShopListView x:Name="ShopPanel" Visibility="Collapsed" Margin="100,100,100,170" />
+        <local1:GameListView x:Name="GamePanel" Margin="100,100,100,170" Visibility="Collapsed"/>
+        <local1:BrawserPanel x:Name="BrowserPanel" Margin="100,100,100,170" Visibility="Collapsed"/>
+        <local1:NewsView x:Name="NewsPanel" Margin="100,100,100,170" Visibility="Collapsed"/>
+        <local1:ProfilePanel x:Name="AProfilePanel"  Margin="0,100,100,170" Visibility="Collapsed"/>
+        <local1:ChatDialogView x:Name="ChatPanel"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,100" Visibility="Collapsed"/>
         <Rectangle HorizontalAlignment="Left" Height="43" Margin="26,12,0,0" VerticalAlignment="Top" Width="125">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/UpLogo.png"/>
@@ -75,19 +74,19 @@
             </Rectangle.Fill>
         </Rectangle>
         <TextBlock HorizontalAlignment="Left" Margin="745,18,0,0" Text="03:22" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Padding="4,6,6,5"/>
-        <Button Content="" Margin="1772,17,0,0" VerticalAlignment="Top" Height="33" Width="43" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Click="Button_Click_1">
+        <Button Content="" Margin="0,17,105,0" VerticalAlignment="Top" Height="33" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Click="Button_Click_1" HorizontalAlignment="Right" Width="43">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/mail.png"/>
             </Button.Background>
         </Button>
-        <TextBlock x:Name="CommCash" HorizontalAlignment="Left" Margin="1673,20,0,0" Text="132₽" TextWrapping="Wrap" VerticalAlignment="Top"  Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" FontSize="18"/>
-        <Rectangle HorizontalAlignment="Left" Height="43" Margin="1577,12,0,0" VerticalAlignment="Top" Width="45" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" IsHitTestVisible="False">
+        <TextBlock x:Name="CommCash" Margin="0,20,208,0" Text="132₽" TextWrapping="Wrap" VerticalAlignment="Top"  Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" FontSize="18" HorizontalAlignment="Right" Width="39"/>
+        <Rectangle Height="43" Margin="0,12,298,0" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" IsHitTestVisible="False" HorizontalAlignment="Right" Width="45">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/person.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock x:Name="ShowLoginNox" HorizontalAlignment="Left" Margin="1460,22,0,0" Text="Nagibator2002" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsHitTestVisible="False"/>
-        <Button Content="" Margin="1442,0,0,0" VerticalAlignment="Top" Height="67" Width="190" Background="#00000000" Click="Button_Click_Profile"/>
+        <TextBlock x:Name="ShowLoginNox" Margin="0,22,368,0" Text="Nagibator2002" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsHitTestVisible="False" HorizontalAlignment="Right" Width="92"/>
+        <Button Content="" Margin="0,0,288,0" VerticalAlignment="Top" Height="67" Background="#00000000" Click="Button_Click_Profile" HorizontalAlignment="Right" Width="190"/>
 
 
     </Grid>
