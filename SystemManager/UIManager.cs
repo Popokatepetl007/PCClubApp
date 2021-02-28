@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Popups;
+using Windows.Media.Core;
 
 namespace PCClubApp
 {
@@ -42,6 +43,12 @@ namespace PCClubApp
         {
             ClanREST reqM = new ClanREST();
             return  reqM.GetPicture(image_url);
+        }
+
+        public static MediaSource GetMediaSourceByUrl(string media_url, string content_type)
+        {
+            ClanREST reqM = new ClanREST();
+            return reqM.GetVideoSource(media_url, content_type);
         }
 
         public static BitmapImage Base64StringToBitmap(string imageData)

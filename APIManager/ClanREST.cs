@@ -16,6 +16,7 @@ using Windows.Storage.Streams;
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Media.Core;
 
 namespace PCClubApp
 
@@ -289,12 +290,10 @@ namespace PCClubApp
             );
         }
 
-        public ImageSource GetPicture(string pathUrl)
+        private InMemoryRandomAccessStream RunStream(string path_url)
         {
-
-            /*Stream sr = RUN_Stream(pathUrl);*/
             HttpWebRequest lxRequest = (HttpWebRequest)WebRequest.Create(
-               main_URL + pathUrl);
+                           main_URL + path_url);
 
             if (ClanREST.user_token != null)
             {
@@ -306,7 +305,7 @@ namespace PCClubApp
             {
                 using (BinaryReader reader = new BinaryReader(lxResponse.GetResponseStream()))
                 {
-                    
+
                     Byte[] lnByte = reader.ReadBytes(0);
                     MemoryStream lxMS = new MemoryStream();
                     Byte[] lnBuffer = reader.ReadBytes(1024);
@@ -316,18 +315,28 @@ namespace PCClubApp
                         lnBuffer = reader.ReadBytes(1024);
                     }
 
-                    using (InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream())
-                    {
-                        stream.AsStreamForWrite().Write(lxMS.ToArray(), 0, lxMS.ToArray().Length);
-                        Trace.WriteLine(stream.Size);
-                        stream.Seek(0);
-                        BitmapImage image = new BitmapImage();
-                        image.SetSource(stream);
-                        Trace.WriteLine(image.PixelWidth);
-                        return image;
-                    }
+                    InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream();
+                    stream.AsStreamForWrite().Write(lxMS.ToArray(), 0, lxMS.ToArray().Length);
+                    stream.Seek(0);
+                    return stream;
                 }
             }
+        }
+
+
+        public MediaSource GetVideoSource(string path_url, string content_type)
+        {
+            InMemoryRandomAccessStream stream = this.RunStream(path_url);
+            MediaSource _reault = MediaSource.CreateFromStream(stream, content_type);
+            return _reault;
+        }
+
+        public ImageSource GetPicture(string pathUrl)
+        {
+            InMemoryRandomAccessStream stream = RunStream(pathUrl);
+            BitmapImage image = new BitmapImage();
+            image.SetSource(stream);
+            return image;
         }
 
         public void GetContent()

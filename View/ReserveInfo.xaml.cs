@@ -45,7 +45,9 @@ namespace PCClubApp.View
 
                 req.ReservationPlace(start, end, compId);
             }
-            catch { }
+            catch {
+                ShowPopOver("Данные не заполенны");
+            }
             
         }
 
