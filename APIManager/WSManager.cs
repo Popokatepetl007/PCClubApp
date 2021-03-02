@@ -31,7 +31,9 @@ namespace PCClubApp
                 Trace.WriteLine("--Socket Connected--");
                 string regMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new { compId = ProfileManager.compId, token = ClanREST.UserToken });
                 socket.Emit("openSession", regMessage);
+                Thread.Sleep(3000);
                 connect_ready();
+                
             });
 
             socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) => WSManager.OnMessage(data));

@@ -7,10 +7,112 @@
              xmlns:local="using:PCClubApp" xmlns:local1="using:PCClubApp.View"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="http://5.129.77.65:8123/bg/get/BG_DESKTOP"/>
+    <UserControl.Resources>
+        <Style x:Key="ButtonStyleShop" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource ButtonBackground}"/>
+            <Setter Property="BackgroundSizing" Value="OuterBorderEdge"/>
+            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
+            <Setter Property="Padding" Value="{StaticResource ButtonPadding}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}"/>
+            <Setter Property="FocusVisualMargin" Value="-3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BackgroundSizing="{TemplateBinding BackgroundSizing}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" CornerRadius="{TemplateBinding CornerRadius}" ContentTransitions="{TemplateBinding ContentTransitions}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="ContentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ContentPresenter>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid >
+
+        <Grid.Background >
+            <ImageBrush ImageSource="http://5.129.77.65:8123/bg/get/BG_DESKTOP" Opacity="0.4"/>
         </Grid.Background>
+
+        <Grid x:Name="LoginHelloView" Margin="0,0,76,59" Height="340" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="307" Visibility="Collapsed">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Assets/FrstRomb.png"/>
+            </Grid.Background>
+            <Rectangle Height="37" Margin="110,69,93,0" VerticalAlignment="Top" Opacity="0.4">
+                <Rectangle.FocusVisualPrimaryBrush>
+                    <ImageBrush/>
+                </Rectangle.FocusVisualPrimaryBrush>
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Assets/UpLogo.png" Stretch="Uniform"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock Margin="83,111,0,0" Text="Добро пожаловать!" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133" Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="#FFDAF0F5"/>
+            <TextBlock HorizontalAlignment="Left" Margin="61,143,0,0" Text="Ваш сеанс начался, всю необходимую информацию вы можете увидеть на панели вверху экрана. 
+                       На панели внизу экрана вы можете переключаться между необходимыми вам сервисами, выбирать игры, читать новости и прочее." TextWrapping="Wrap" VerticalAlignment="Top" Height="107" Width="177" FontSize="10" Foreground="#FFDAF0F5" TextAlignment="Center" FocusVisualPrimaryBrush="#FFDAF0F5" />
+            <TextBlock HorizontalAlignment="Left" Margin="103,250,0,0" Text="Приятного отдыха, Клуб Clan" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="10" FocusVisualPrimaryBrush="#FFDAF0F5" Foreground="#FFDAF0F5" Width="93" TextAlignment="Center"/>
+            <Button Content="" Margin="141,296,0,0" VerticalAlignment="Top" Height="19" Width="15" Click="Button_Click_2">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/CloseIcon.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+
+        
+        
         <Rectangle HorizontalAlignment="Left" Height="67" Stroke="#FF3F465F" VerticalAlignment="Top" Width="1980"/>
         <Rectangle HorizontalAlignment="Right" Height="67" VerticalAlignment="Top" Width="81" Stroke="#FF3F465F"/>
         <Button Content="" Margin="0,10,16,0" VerticalAlignment="Top" RenderTransformOrigin="-0.162,-0.266" Height="44" Click="Button_Click" HorizontalAlignment="Right" Width="47">
@@ -33,10 +135,12 @@
                 <ImageBrush ImageSource="/Assets/BrowsersOff.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" x:Name="BShop" Margin="392,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100" >
+        <Button Style="{StaticResource ButtonStyleShop}" Content="" x:Name="BShop" Margin="392,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100"  >
+            
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/ShopOff.png"/>
             </Button.Background>
+                    
         </Button>
         <Button Content="" x:Name="BFavorites" Margin="509,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100">
             <Button.Background>
@@ -79,13 +183,13 @@
                 <ImageBrush ImageSource="/Assets/mail.png"/>
             </Button.Background>
         </Button>
-        <TextBlock x:Name="CommCash" Margin="0,20,208,0" Text="132₽" TextWrapping="Wrap" VerticalAlignment="Top"  Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" FontSize="18" HorizontalAlignment="Right" Width="39"/>
+        <TextBlock x:Name="CommCash" Margin="0,20,208,0" Text="132₽" TextWrapping="Wrap" VerticalAlignment="Top"  Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" FontSize="18" HorizontalAlignment="Right" Width="50"/>
         <Rectangle Height="43" Margin="0,12,298,0" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" IsHitTestVisible="False" HorizontalAlignment="Right" Width="45">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/person.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock x:Name="ShowLoginNox" Margin="0,22,368,0" Text="Nagibator2002" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsHitTestVisible="False" HorizontalAlignment="Right" Width="92"/>
+        <TextBlock x:Name="ShowLoginNox" Margin="0,22,368,0" Text="Nagibator2002" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsHitTestVisible="False" HorizontalAlignment="Right" Width="100"/>
         <Button Content="" Margin="0,0,288,0" VerticalAlignment="Top" Height="67" Background="#00000000" Click="Button_Click_Profile" HorizontalAlignment="Right" Width="190"/>
 
 

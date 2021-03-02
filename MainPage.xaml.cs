@@ -32,6 +32,11 @@ namespace PCClubApp
             req = new ClanREST(this);
             MainPanel.Visibility = Visibility.Collapsed;
             //this.req.Login("test", "qwerty");
+            StorageManager sm = new StorageManager();
+            if (sm.CompIdExist)
+            {
+                CompNameText.Text = String.Format("Номер ПК: {0}", sm.CompNumber);
+            }
         }
 
 
@@ -64,7 +69,7 @@ namespace PCClubApp
                         LoginTextBox.Text = "";
                         passwordTextBox.Text = "";
                         req.req_delegate_profile = MainPanel;
-                        req.ProfileData();
+                        
                         UIManager.LogOutAction = LogOutAction;
                         /*MainPanel.LogOutAction = () =>
                         {

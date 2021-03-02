@@ -212,6 +212,7 @@
     <Content Include="Assets\CloseIcon.png" />
     <Content Include="Assets\exit.png" />
     <Content Include="Assets\FaviritesOff.png" />
+    <Content Include="Assets\FrstRomb.png" />
     <Content Include="Assets\GameOn.png" />
     <Content Include="Assets\GamesOff.png" />
     <Content Include="Assets\geraldFull.png" />

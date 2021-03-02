@@ -27,7 +27,7 @@ namespace PCClubApp.View
     public partial class PanelControl : UserControl, IViewChatDelegate, IRequestDelegateProfile
     {
 
-        private int commCashValue = 10000;
+        private int commCashValue = 0;
         private ChatClient chatClient;
         private Action<ChatMessage> resiveAction;
         public Action LogOutAction;
@@ -39,7 +39,6 @@ namespace PCClubApp.View
             timer.Elapsed += new System.Timers.ElapsedEventHandler(TimeUpdate);
             timer.Interval = 1000;
             timer.Enabled = true;
-            SetComCash(10000);
             resiveAction = ChatPanel.ResiveMessage;
         }
 
@@ -50,10 +49,15 @@ namespace PCClubApp.View
 
         private void SetMinCash(int value)
         {
-            if ((commCashValue - value) > 0)
+            if ((commCashValue - value) >= 0)
             {
-                commCashValue = commCashValue - value;
+                commCashValue = (int)ProfileManager.balance - value;
+                ProfileManager.balance = commCashValue;
                 SetComCash(commCashValue);
+            }
+            else
+            {
+                _ = UIManager.ShoeNeedAdminAsync("Недостаточно средств");
             }
         }
 
@@ -72,9 +76,12 @@ namespace PCClubApp.View
             ShowLoginNox.Text = login.Length > 16 ? "Accaunt" : login;
             chatClient = new ChatClient(this);
             CompIdBox.Text = ProfileManager.compNumber.ToString();
+            LoginHelloView.Visibility = Visibility.Visible;
             WSManager.StartWS(() => {
                 WSManager.soc_chat = chatClient;
                 IAsyncAction asyncAction = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, GamePanelStart);
+                ClanREST req = new ClanREST();
+                req.ProfileData();
             });
             
         }
@@ -123,6 +130,7 @@ namespace PCClubApp.View
         {
             Windows.UI.Xaml.Controls.Button b = (sender as Windows.UI.Xaml.Controls.Button);
             DisActive();
+            
 
             if (b.Name == BGame.Name)
             {
@@ -241,6 +249,13 @@ namespace PCClubApp.View
         {
             ShowLoginNox.Text = profile.Name;
             SetComCash((int)profile.Balance);
+            commCashValue = (int)profile.Balance;
+            
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            LoginHelloView.Visibility = Visibility.Collapsed;
         }
     }
 }

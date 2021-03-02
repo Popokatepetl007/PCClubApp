@@ -75,6 +75,7 @@ namespace PCClubApp.View
                 {
                     ARetCostValue(i.Cost);
                     req.BuyProduct(i.Id);
+                    break;
                 }
             }
             

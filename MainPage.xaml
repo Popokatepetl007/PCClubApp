@@ -9,44 +9,61 @@
     Background="#FF2B3042">
 
     <Grid>
-        <Viewbox x:Name="LoginView" HorizontalAlignment="Center" Margin="0,0,0,0" Stretch="Fill" VerticalAlignment="Center" Height="700" Width="532" ScrollViewer.VerticalScrollBarVisibility="Visible" KeyDown="LoginView_KeyDown">
-            <Viewbox.FocusVisualPrimaryBrush>
-                <ImageBrush ImageSource="/Assets/6gr.png"/>
-            </Viewbox.FocusVisualPrimaryBrush>
+        <Grid x:Name="LoginView" >
+            <TextBlock x:Name="CompNameText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="64,32,0,0" Foreground="#FF515975" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Grid Height="600" Width="532">
-                <Grid.Background>
-                    <ImageBrush ImageSource="/Assets/6gr.png"/>
-                </Grid.Background>
-                <Rectangle HorizontalAlignment="Center" Height="532" Stroke="#00000000" VerticalAlignment="Center" Width="532">
+                <Rectangle Grid.Column="1" Margin="0,0,0,0">
                     <Rectangle.Fill>
-                        <ImageBrush ImageSource="/romb.png"/>
+                        <ImageBrush ImageSource="http://5.129.77.65:8123/bg/get/BG_DESKTOP" Stretch="UniformToFill"/>
                     </Rectangle.Fill>
                 </Rectangle>
-                <Rectangle HorizontalAlignment="Center" Height="49" Margin="0,162,0,0" VerticalAlignment="Top" Width="162">
-                    <Rectangle.Fill>
-                        <ImageBrush ImageSource="http://5.129.77.65:8123/bg/get/LOGO"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-                <Button Content="Войти" HorizontalAlignment="Center" Margin="0,370,0,0" VerticalAlignment="Top" Height="35" Width="319" Click="Button_Click"  Foreground="White" BorderBrush="{x:Null}">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFDAF0F5" Offset="1"/>
-                            <GradientStop Color="#FF2F74B0" Offset="0"/>
-                            <GradientStop Color="#FF577FEA" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-
-                </Button>
-                <Button x:Name="CheckInButton" HorizontalAlignment="Center" Margin="0,270,0,0" Content="У меня чек" Background="{x:Null}" Foreground="#FF577FEA" Click="Button_Check" >
-                    
-                </Button>
-                <TextBox Name="LoginTextBox" HorizontalAlignment="Center" Margin="0,250,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" Height="35" Background="{x:Null}" BorderBrush="#FF3F465F" Foreground="#FFDAF0F5" FontSize="18" TextAlignment="Left" Padding="8,4,0,0" UseLayoutRounding="True" PlaceholderText="Login"/>
-                <TextBox Name="passwordTextBox" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="319" Height="35" Background="{x:Null}" BorderBrush="#FF3F465F" Padding="8,4,0,0" Foreground="#FFDAF0F5" FontSize="18" Text="" PlaceholderText="Password"/>
-
             </Grid>
-        </Viewbox>
-        <local1:PanelControl x:Name="MainPanel" Loaded="MainPanel_Loaded" />
+
+            <Viewbox  HorizontalAlignment="Center" Margin="0,0,0,0" Stretch="Fill" VerticalAlignment="Center" Height="700" Width="532" ScrollViewer.VerticalScrollBarVisibility="Visible" KeyDown="LoginView_KeyDown">
+                <Viewbox.FocusVisualPrimaryBrush>
+                    <ImageBrush ImageSource="/Assets/6gr.png"/>
+                </Viewbox.FocusVisualPrimaryBrush>
+
+                <Grid Height="600" Width="532">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Assets/6gr.png"/>
+                    </Grid.Background>
+                    <Rectangle HorizontalAlignment="Center" Height="532" Stroke="#00000000" VerticalAlignment="Center" Width="532">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="/romb.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle HorizontalAlignment="Center" Height="49" Margin="0,162,0,0" VerticalAlignment="Top" Width="162">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="http://5.129.77.65:8123/bg/get/LOGO"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Button Content="Войти" HorizontalAlignment="Center" Margin="0,370,0,0" VerticalAlignment="Top" Height="35" Width="319" Click="Button_Click"  Foreground="White" BorderBrush="{x:Null}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFDAF0F5" Offset="1"/>
+                                <GradientStop Color="#FF2F74B0" Offset="0"/>
+                                <GradientStop Color="#FF577FEA" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+
+                    </Button>
+                    <Button x:Name="CheckInButton" HorizontalAlignment="Center" Margin="0,270,0,0" Content="У меня чек" Background="{x:Null}" Foreground="#FF577FEA" Click="Button_Check" >
+
+                    </Button>
+                    <TextBox Name="LoginTextBox" HorizontalAlignment="Center" Margin="0,250,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" Height="35" Background="{x:Null}" BorderBrush="#FF3F465F" Foreground="#FFDAF0F5" FontSize="18" TextAlignment="Left" Padding="8,4,0,0" UseLayoutRounding="True" PlaceholderText="Login"/>
+                    <TextBox Name="passwordTextBox" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="319" Height="35" Background="{x:Null}" BorderBrush="#FF3F465F" Padding="8,4,0,0" Foreground="#FFDAF0F5" FontSize="18" Text="" PlaceholderText="Password"/>
+
+                </Grid>
+            </Viewbox>
+
+        </Grid>
+        <local1:PanelControl x:Name="MainPanel" Loaded="MainPanel_Loaded" Visibility="Collapsed" />
 
 
 

@@ -38,8 +38,5 @@ namespace PCClubApp
         public object SourceFile
         { get => file_type == null ? null : UIManager.GetMediaSourceByUrl(String.Format("/desktop/news/file/{0}", this.file_id), file_type); }
 
-
-
-
     }
 }
