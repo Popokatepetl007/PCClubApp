@@ -149,6 +149,7 @@
     <Compile Include="Units\Class1.cs" />
     <Compile Include="Units\ClubUnit.cs" />
     <Compile Include="Units\Computer.cs" />
+    <Compile Include="Units\Enumes\ESystemAction.cs" />
     <Compile Include="Units\GameUnits.cs" />
     <Compile Include="Units\NewsUnit.cs" />
     <Compile Include="Units\ProfileData.cs" />
@@ -332,6 +333,7 @@
   <ItemGroup>
     <None Include="PCClubApp_TemporaryKey.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

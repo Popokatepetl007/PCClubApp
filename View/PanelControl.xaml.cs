@@ -31,6 +31,7 @@ namespace PCClubApp.View
         private ChatClient chatClient;
         private Action<ChatMessage> resiveAction;
         public Action LogOutAction;
+        private ClanREST req;
         public PanelControl()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace PCClubApp.View
             timer.Interval = 1000;
             timer.Enabled = true;
             resiveAction = ChatPanel.ResiveMessage;
+            req = new ClanREST(this);
         }
 
         private void SetComCash(int newValue)
@@ -49,6 +51,7 @@ namespace PCClubApp.View
 
         private void SetMinCash(int value)
         {
+            
             if ((commCashValue - value) >= 0)
             {
                 commCashValue = (int)ProfileManager.balance - value;
@@ -80,8 +83,7 @@ namespace PCClubApp.View
             WSManager.StartWS(() => {
                 WSManager.soc_chat = chatClient;
                 IAsyncAction asyncAction = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, GamePanelStart);
-                ClanREST req = new ClanREST();
-                req.ProfileData();
+                this.req.ProfileData();
             });
             
         }
@@ -110,6 +112,7 @@ namespace PCClubApp.View
             ShopPanel.OnActive();
             ShopPanel.ARetCostValue = (int a) =>
             {
+                Trace.WriteLine(a);
                 SetMinCash(a);
             };
         }
@@ -218,6 +221,7 @@ namespace PCClubApp.View
         {
             //_ = ShowSettinhsCompAsync();
             //LogOutAction();
+            DisActive();
             UIManager.LogOutAction();
         }
 
@@ -247,10 +251,12 @@ namespace PCClubApp.View
 
         public void ProfileResult(ProfileData profile)
         {
-            ShowLoginNox.Text = profile.Name;
-            SetComCash((int)profile.Balance);
-            commCashValue = (int)profile.Balance;
-            
+            IAsyncAction asyncAction = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                ShowLoginNox.Text = profile.Name;
+                SetComCash((int)profile.Balance);
+                ProfileManager.balance = profile.Balance;
+                commCashValue = (int)profile.Balance;
+            });
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

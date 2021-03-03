@@ -271,19 +271,19 @@ namespace PCClubApp
         public void ProfileData()
         {
             //this.GetPicture();
+            Trace.WriteLine("-----PROFILE START------");
             _ = this.RUN_requestAsync(
                 "/profile",
                 (data) =>
                 {
                     string ydata = "{\"result\":" + data + "}";
                     dynamic jOb = JObject.Parse(ydata);
-                    /*Trace.WriteLine(jOb.id);
-                    Trace.WriteLine(jOb.Name);*/
+
                     ProfileData pd = new ProfileData(jOb.result);
                     ProfileManager.profile_data = pd;
                     this.GetComputersList();
                     if (req_delegate_profile != null)
-                    {
+                    { 
                         req_delegate_profile.ProfileResult(pd);
                     }
                 }

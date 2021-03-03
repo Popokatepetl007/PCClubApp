@@ -111,8 +111,8 @@
             </Button>
         </Grid>
 
-        
-        
+
+
         <Rectangle HorizontalAlignment="Left" Height="67" Stroke="#FF3F465F" VerticalAlignment="Top" Width="1980"/>
         <Rectangle HorizontalAlignment="Right" Height="67" VerticalAlignment="Top" Width="81" Stroke="#FF3F465F"/>
         <Button Content="" Margin="0,10,16,0" VerticalAlignment="Top" RenderTransformOrigin="-0.162,-0.266" Height="44" Click="Button_Click" HorizontalAlignment="Right" Width="47">
@@ -136,11 +136,11 @@
             </Button.Background>
         </Button>
         <Button Style="{StaticResource ButtonStyleShop}" Content="" x:Name="BShop" Margin="392,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100"  >
-            
+
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/ShopOff.png"/>
             </Button.Background>
-                    
+
         </Button>
         <Button Content="" x:Name="BFavorites" Margin="509,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100">
             <Button.Background>
@@ -171,7 +171,7 @@
                 <ImageBrush ImageSource="/Assets/moniror.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock x:Name="CompIdBox" HorizontalAlignment="Left" Margin="633,18,0,0" Text="15" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualPrimaryBrush="{x:Null}" SelectionHighlightColor="{x:Null}" Width="32" Padding="4,6,6,5"/>
+        <TextBlock x:Name="CompIdBox" HorizontalAlignment="Left" Margin="633,18,0,0" Text="15" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFDAF0F5"  FocusVisualPrimaryBrush="{x:Null}" SelectionHighlightColor="{x:Null}" Width="46" Padding="4,6,6,5"/>
         <Rectangle HorizontalAlignment="Left" Height="30" Margin="710,18,0,0" VerticalAlignment="Top" Width="29">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/clock.png"/>

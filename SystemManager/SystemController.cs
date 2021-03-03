@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Linq;
 using Windows.System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 
 namespace PCClubApp
@@ -38,13 +40,31 @@ namespace PCClubApp
                     ).FirstOrDefault();
         }
 
-        public static void ShutDownPC()
+        public static void ActionComputer(ESystemAction _action)
         {
-            var psi = new ProcessStartInfo("shutdown", "/s /t 0");
-            psi.CreateNoWindow = true;
-            psi.UseShellExecute = false;
-            Process.Start(psi);
+            switch (_action)
+            {
+                case ESystemAction.SHUTDOWN:
+                    {
+                        ShutDownPC();
+                        break;
+                    }
+                case ESystemAction.REBOOT:
+                    {
+                        
+                        break;
+                    }
+                default: break;
+            }
+        }
+
+        private static void ShutDownPC()
+        {
+            ShutdownManager.BeginShutdown(Windows.System.ShutdownKind.Shutdown, TimeSpan.FromSeconds(1));
+            Process.Start("shutdown", "/s /t 0");
         }
 
     }
+
+   
 }

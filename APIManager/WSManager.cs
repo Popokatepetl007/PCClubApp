@@ -37,7 +37,7 @@ namespace PCClubApp
             });
 
             socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) => WSManager.OnMessage(data));
-            socket.On(String.Format("/topic/manage/{0}", ProfileManager.compId), (data) => WSManager.OnCompManage(data));
+            socket.On(String.Format("/manage/{0}", ProfileManager.compId), (data) => WSManager.OnCompManage(data));
 
             socket.Connect();
             _socket = socket;
@@ -61,7 +61,12 @@ namespace PCClubApp
 
         private static void OnCompManage(object data)
         {
-            Trace.WriteLine(data);
+            dynamic jOb = JObject.Parse(data.ToString());
+            foreach (var i in Enum.GetValues(typeof(ESystemAction)))
+            {
+                if(i.ToString() == (string)jOb.action) SystemController.ActionComputer((ESystemAction)i);
+            }
+
         }
 
     }
