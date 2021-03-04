@@ -10,7 +10,6 @@
     <UserControl.Resources>
         <Style x:Key="ButtonStyleShop" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource ButtonBackground}"/>
-            <Setter Property="BackgroundSizing" Value="OuterBorderEdge"/>
             <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
             <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}"/>
             <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
@@ -120,37 +119,139 @@
                 <ImageBrush ImageSource="/Assets/exit.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" x:Name="BGame" Margin="39,0,0,59" VerticalAlignment="Bottom" Width="100" Height="100" Click="Button_Click_SelectPanel">
-            <Button.Background>
-                <ImageBrush ImageSource="/Assets/GamesOff.png"/>
-            </Button.Background>
+        <Button Content="" x:Name="BGame" Margin="39,0,0,59" VerticalAlignment="Bottom" Width="100" Height="100" Click="Button_Click_SelectPanel" PointerEntered="B_PointerEntered" PointerExited="B_PointerExited">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="RootElement" CornerRadius="10" BorderThickness="2" FocusVisualPrimaryBrush="{x:Null}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="MouseOver" GeneratedDuration="0:0:0.1"/>
+                                    <VisualTransition To="Pressed" GeneratedDuration="0:0:0.1"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/GamesOff.png"/>
+                        </Border.Background>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
-        <Button Content="" x:Name="BService" Margin="156,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100">
-            <Button.Background>
-                <ImageBrush ImageSource="/Assets/ServicesOff.png"/>
-            </Button.Background>
+        <Button Content="" x:Name="BService" Margin="156,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100" PointerEntered="B_PointerEntered" PointerExited="B_PointerExited">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="RootElement" CornerRadius="10" BorderThickness="2" FocusVisualPrimaryBrush="{x:Null}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="MouseOver" GeneratedDuration="0:0:0.1"/>
+                                    <VisualTransition To="Pressed" GeneratedDuration="0:0:0.1"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/ServicesOff.png"/>
+                        </Border.Background>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
-        <Button Content="" x:Name="BBrowser" Margin="271,0,0,59" VerticalAlignment="Bottom" Width="100" Height="100" Click="Button_Click_SelectPanel">
-            <Button.Background>
-                <ImageBrush ImageSource="/Assets/BrowsersOff.png"/>
-            </Button.Background>
+        <Button Content="" x:Name="BBrowser" Margin="271,0,0,59" VerticalAlignment="Bottom" Width="100" Height="100" Click="Button_Click_SelectPanel" ManipulationMode="Scale" PointerEntered="B_PointerEntered" PointerExited="B_PointerExited">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="RootElement" CornerRadius="10" BorderThickness="2" FocusVisualPrimaryBrush="{x:Null}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="MouseOver" GeneratedDuration="0:0:0.1"/>
+                                    <VisualTransition To="Pressed" GeneratedDuration="0:0:0.1"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/BrowsersOff.png"/>
+                        </Border.Background>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
-        <Button Style="{StaticResource ButtonStyleShop}" Content="" x:Name="BShop" Margin="392,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100"  >
+        <Button Content="" x:Name="BShop" Margin="392,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100" PointerEntered="B_PointerEntered" PointerExited="B_PointerExited" AllowFocusOnInteraction="False" ManipulationMode="None" UseSystemFocusVisuals="False"  >
 
-            <Button.Background>
-                <ImageBrush ImageSource="/Assets/ShopOff.png"/>
-            </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="RootElement" CornerRadius="10" BorderThickness="2" FocusVisualPrimaryBrush="{x:Null}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="MouseOver" GeneratedDuration="0:0:0.1"/>
+                                    <VisualTransition To="Pressed" GeneratedDuration="0:0:0.1"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/ShopOff.png"/>
+                        </Border.Background>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
 
         </Button>
-        <Button Content="" x:Name="BFavorites" Margin="509,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100">
-            <Button.Background>
-                <ImageBrush ImageSource="/Assets/FaviritesOff.png"/>
-            </Button.Background>
+        <Button Content="" x:Name="BFavorites" Margin="509,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100" PointerEntered="B_PointerEntered" PointerExited="B_PointerExited">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="RootElement" CornerRadius="10" BorderThickness="2" FocusVisualPrimaryBrush="{x:Null}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="MouseOver" GeneratedDuration="0:0:0.1"/>
+                                    <VisualTransition To="Pressed" GeneratedDuration="0:0:0.1"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/FaviritesOff.png"/>
+                        </Border.Background>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
-        <Button Content="" x:Name="BNews" Margin="622,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100">
-            <Button.Background>
-                <ImageBrush ImageSource="/Assets/NewsOff.png"/>
-            </Button.Background>
+        <Button Content="" x:Name="BNews" Margin="622,0,0,59" VerticalAlignment="Bottom" Width="100" Click="Button_Click_SelectPanel" Height="100" PointerEntered="B_PointerEntered" PointerExited="B_PointerExited">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="RootElement" CornerRadius="10" BorderThickness="2" FocusVisualPrimaryBrush="{x:Null}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="MouseOver" GeneratedDuration="0:0:0.1"/>
+                                    <VisualTransition To="Pressed" GeneratedDuration="0:0:0.1"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/NewsOff.png"/>
+                        </Border.Background>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
 
         <local1:ShopListView x:Name="ShopPanel" Visibility="Collapsed" Margin="100,100,100,170" />
@@ -183,7 +284,7 @@
                 <ImageBrush ImageSource="/Assets/mail.png"/>
             </Button.Background>
         </Button>
-        <TextBlock x:Name="CommCash" Margin="0,20,208,0" Text="132₽" TextWrapping="Wrap" VerticalAlignment="Top"  Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" FontSize="18" HorizontalAlignment="Right" Width="50"/>
+        <TextBlock x:Name="CommCash" Margin="0,20,208,0" Text="----₽" TextWrapping="Wrap" VerticalAlignment="Top"  Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" FontSize="18" HorizontalAlignment="Right" Width="50"/>
         <Rectangle Height="43" Margin="0,12,298,0" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" IsHitTestVisible="False" HorizontalAlignment="Right" Width="45">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/person.png"/>

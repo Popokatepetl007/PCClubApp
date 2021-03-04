@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
+using Windows.System;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
 
@@ -101,6 +102,7 @@ namespace PCClubApp
 
         private void Button_Check(object sender, RoutedEventArgs e)
         {
+            ShutdownManager.BeginShutdown(ShutdownKind.Restart, TimeSpan.FromSeconds(0));
             LoginTextBox.Text = "";
             passwordTextBox.Text = "";
             if (checkLoginPar)

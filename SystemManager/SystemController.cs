@@ -42,27 +42,10 @@ namespace PCClubApp
 
         public static void ActionComputer(ESystemAction _action)
         {
-            switch (_action)
-            {
-                case ESystemAction.SHUTDOWN:
-                    {
-                        ShutDownPC();
-                        break;
-                    }
-                case ESystemAction.REBOOT:
-                    {
-                        
-                        break;
-                    }
-                default: break;
-            }
+            ShutdownManager.BeginShutdown( _action == ESystemAction.SHUTDOWN ? ShutdownKind.Shutdown : ShutdownKind.Restart, TimeSpan.FromSeconds(1));
         }
 
-        private static void ShutDownPC()
-        {
-            ShutdownManager.BeginShutdown(Windows.System.ShutdownKind.Shutdown, TimeSpan.FromSeconds(1));
-            Process.Start("shutdown", "/s /t 0");
-        }
+        
 
     }
 

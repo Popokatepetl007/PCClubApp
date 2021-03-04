@@ -12,7 +12,7 @@
   <Identity
     Name="15586SoftWeather.ClanLauncher"
     Publisher="CN=843DFED1-8B93-4C85-B0CA-53EED5BE13E5"
-    Version="1.3.24.0" />
+    Version="1.3.28.0" />
 
   <mp:PhoneIdentity PhoneProductId="2f590b54-ccc4-4c48-9340-27c2f82ff3f7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -58,14 +58,11 @@
     </Application>
   </Applications>
 
-  <Capabilities>
-    <Capability Name="internetClient" />
-    <uap4:Capability Name="offlineMapsManagement"/>
-    <Capability Name="internetClientServer"/>
-    <Capability Name="privateNetworkClientServer"/>
-    <iot:Capability Name="systemManagement"/>
-    <uap:Capability Name="picturesLibrary"/>
-    <Capability Name="allJoyn"/>
-    <DeviceCapability Name="proximity"/>
-  </Capabilities>
+	<Capabilities>
+		<Capability Name="internetClient" />
+		<Capability Name="allJoyn" />
+		<iot:Capability Name="systemManagement" />
+		<iot:Capability Name="lowLevelDevices" />
+
+	</Capabilities>
 </Package>

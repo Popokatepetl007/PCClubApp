@@ -8,29 +8,84 @@
         xmlns:local="clr-namespace:PCClubApp.View" xmlns:local1="clr-namespace:PCClubApp"
 
       d:DesignHeight="450" d:DesignWidth="800">
-    <GridView x:Name="Products" SelectionMode="None">
-        <GridView.ItemTemplate>
-            <DataTemplate>
-                <Grid Width="250" Height="400">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="400"/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="250"/>
-                        <ColumnDefinition Width="250"/>
-                        <ColumnDefinition Width="250"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="{Binding Image}"  Width="250" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" >
-                        
-                    </Image>
-                    <TextBlock Text="{Binding Name}" Margin="16,230,0,0" Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="#FFDAF0F5" FontSize="13" />
-                    <TextBlock Text="{Binding CostValue}" Margin="0,225,16,0" HorizontalAlignment="Right" FocusVisualPrimaryBrush="#FFDAF0F5" Foreground="#FFDAF0F5" FontSize="20"/>
-                    <TextBlock Text="{Binding Description}" Margin="16,260,16,72" TextWrapping="Wrap" FontSize="9" FocusVisualPrimaryBrush="#FFDAF0F5" Foreground="#FFDAF0F5"  />
-                    <Button VerticalAlignment="Bottom" AutomationProperties.Name="{Binding Id}"  HorizontalAlignment="Center" Width="240" Height="40" BorderBrush="#FF2F74B0" Padding="0,0,0,4" Background="#FF2F74B0" Content="Купить" FontSize="12" Margin="0,0,0,0" Click="Button_Click" />
-                </Grid>
-            </DataTemplate>
-        </GridView.ItemTemplate>
-    </GridView>
+    <UserControl.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="TabNavigation" Value="Once"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled"/>
+            <Setter Property="ScrollViewer.IsHorizontalRailEnabled" Value="False"/>
+            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+            <Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="True"/>
+            <Setter Property="ScrollViewer.ZoomMode" Value="Disabled"/>
+            <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
+            <Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <ListViewItemPresenter 
+                                           CheckBrush="{x:Null}"
+                                           CheckMode="Inline"
+                                           
+                                           DragBackground="{x:Null}"
+                                           DragForeground="{x:Null}"
+                                           
+                                           FocusBorderBrush="{x:Null}"
+                                           
+                                           SelectedBackground="{x:Null}"
+                                           SelectedForeground="#FF2F74B0"
+                                           PointerOverForeground="#FF2F74B0"
+                                           SelectedPressedBackground="#FF2F74B0"
+                                           />
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Top">
+        <TextBlock  Text="Товары:" HorizontalAlignment="Left" Width="89" Height="28" VerticalAlignment="Top" Margin="0,0,0,0" TextAlignment="Left" LineHeight="10" Foreground="#FFDAF0F5" FontSize="22"/>
+        <ListView  x:Name="CategorySwitchView" HorizontalAlignment="Left" Width="704" Margin="105,8,0,0" 
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    ScrollViewer.HorizontalScrollMode="Enabled"                  
+                    ScrollViewer.VerticalScrollMode="Disabled" SelectionChanged="CategorySwitchView_SelectionChanged" Foreground="#FFDAF0F5" FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" Height="34" VerticalAlignment="Top">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <GridView x:Name="Products" SelectionMode="None" Margin="0,55,0,0">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="250" Height="400">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="400"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="250"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Image}"  Width="250" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" >
+
+                        </Image>
+                        <TextBlock Text="{Binding Name}" Margin="16,230,0,0" Foreground="#FFDAF0F5" FocusVisualPrimaryBrush="#FFDAF0F5" FontSize="13" />
+                        <TextBlock Text="{Binding CostValue}" Margin="0,225,16,0" HorizontalAlignment="Right" FocusVisualPrimaryBrush="#FFDAF0F5" Foreground="#FFDAF0F5" FontSize="20"/>
+                        <TextBlock Text="{Binding Description}" Margin="16,260,16,72" TextWrapping="Wrap" FontSize="9" FocusVisualPrimaryBrush="#FFDAF0F5" Foreground="#FFDAF0F5"  />
+                        <Button VerticalAlignment="Bottom" AutomationProperties.Name="{Binding Id}"  HorizontalAlignment="Center" Width="240" Height="40" BorderBrush="#FF2F74B0" Padding="0,0,0,4" Background="#FF2F74B0" Content="Купить" FontSize="12" Margin="0,0,0,0" Click="Button_Click" />
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
 </UserControl>

@@ -30,6 +30,8 @@ namespace PCClubApp.View
 
         public Action<int> ARetCostValue;
 
+        readonly string all_cats = "Все";
+
         public ObservableCollection<ShopUnit> ShopListCollection
         {
             get { return this._shopCollection; }
@@ -49,14 +51,24 @@ namespace PCClubApp.View
 
         public void ShopListResult<ShopUnit>(List<ShopUnit> shopList)
         {
-            Products.Items.Clear();
+            CategorySwitchView.Items.Clear();
+            _shopCollection.Clear();
+            List<string> categoryNamesList = new List<string>();
+            categoryNamesList.Add(all_cats);
+            CategorySwitchView.Items.Add(new CategoryProduct(all_cats));
             shopList.ForEach((i) =>
             {
                 PCClubApp.ShopUnit ss = i as PCClubApp.ShopUnit;
                 _shopCollection.Add(ss);
-                Products.Items.Add(ss);
-                
+
+                if (!categoryNamesList.Contains(ss.Category))
+                {
+                    categoryNamesList.Add(ss.Category);
+                    CategorySwitchView.Items.Add(new CategoryProduct(ss.Category));
+                }
             });
+            CategorySwitchView.SelectedIndex = 0;
+            FilterItemsByCategoryname(all_cats);
         }
 
         public void ShopResultBuyProduct(bool succes)
@@ -81,5 +93,35 @@ namespace PCClubApp.View
             
         }
 
+        private void CategorySwitchView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            CategoryProduct _t = CategorySwitchView.SelectedItem as CategoryProduct;
+            FilterItemsByCategoryname(_t.Name);
+        }
+
+        private void FilterItemsByCategoryname(string name)
+        {
+            Products.Items.Clear();
+            foreach (var i in _shopCollection) {
+                if (i.Category == name || name == all_cats) Products.Items.Add(i);
+            }
+        }
+
     }
+
+    public class CategoryProduct
+    {
+        private string category_name;
+
+        public CategoryProduct(string _name)
+        {
+            this.category_name = _name;
+        }
+
+        public string Name
+        { get => this.category_name; }
+
+    }
+
 }

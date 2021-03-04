@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using System.Threading;
 using System.Timers;
 using Windows.UI.Core;
-
+using Windows.System;
 
 namespace PCClubApp.View
 {
@@ -262,6 +262,21 @@ namespace PCClubApp.View
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             LoginHelloView.Visibility = Visibility.Collapsed;
+        }
+
+        private void B_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            Button _b = sender as Button;
+            _b.Height *= 1.2;
+            _b.Width *= 1.2;
+
+        }
+
+        private void B_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            Button _b = sender as Button;
+            _b.Height /= 1.2;
+            _b.Width /= 1.2;
         }
     }
 }
