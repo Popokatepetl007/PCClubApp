@@ -6,11 +6,11 @@ namespace PCClubApp
 {
     public class ClubUnit
     {
-        public int id;
-        public string address;
-        public string name;
-        public string phone;
-        public string worktime;
+        private int id;
+        private string address;
+        private string name;
+        private string phone;
+        private string worktime;
 
         public ClubUnit(dynamic jData)
         {
@@ -20,6 +20,14 @@ namespace PCClubApp
             phone = jData.phone;
             worktime = jData.worktime;
         }
+
+        public string Name
+        { get => name; }
+
+        public string Address
+        { get => address; }
+        public int Id
+        { get => id; }
 
     }
 }

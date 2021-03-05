@@ -27,7 +27,17 @@ namespace PCClubApp.View
             macAddressBox.Text = SystemController.GetMacAddress();
             IsSecondaryButtonEnabled = false;
             macAddressBox.IsEnabled = false;
+            ClubBox.IsEnabled = false;
             req = new ClanREST(this);
+            req.GetClubList((result) =>
+            {
+                ClubBox.IsEnabled = true;
+                activeRing.IsActive = false;
+                foreach (var i in result)
+                {
+                    ClubBox.Items.Add(i);
+                }
+            });
         }
 
         public void ErrorResult(string message)
@@ -47,7 +57,7 @@ namespace PCClubApp.View
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            req.RegistrationComp(macAddressBox.Text, int.Parse(numberBox.Text), int.Parse(ClubBox.Text));
+           if (ClubBox.SelectedIndex >= 0) req.RegistrationComp(macAddressBox.Text, int.Parse(numberBox.Text), (ClubBox.SelectedItem as ClubUnit).Id);
         }
 
         private void Box_TextChanged(object sender, TextChangedEventArgs e)
@@ -66,7 +76,12 @@ namespace PCClubApp.View
                 }
             }
 
-            IsSecondaryButtonEnabled = ActCBox(macAddressBox.Text) && ActCBox(numberBox.Text) && ActCBox(ClubBox.Text);
+            IsSecondaryButtonEnabled = ActCBox(macAddressBox.Text) && ActCBox(numberBox.Text) && ClubBox.SelectedIndex >= 0;
+        }
+
+        private void ClubBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            IsSecondaryButtonEnabled = numberBox.Text != "" && ClubBox.SelectedIndex >= 0;
         }
     }
 }

@@ -222,6 +222,23 @@ namespace PCClubApp
                 });
         }
 
+
+        public void GetClubList(Action<List<ClubUnit>> Succesed)
+        {
+            List<ClubUnit> _resultList = new List<ClubUnit>();
+            _ = RUN_requestAsync(
+                "/club/list",
+                (data) =>
+                {
+                    foreach (dynamic i in ParseList(data))
+                    {
+                        _resultList.Add(new ClubUnit(i));
+                    }
+                    Succesed(_resultList);
+                }
+            );
+        }
+
         public void ReservationPlace(string start, string end, string compId)
         {
   

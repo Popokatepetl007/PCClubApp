@@ -32,7 +32,7 @@ namespace PCClubApp
             this.InitializeComponent();
             req = new ClanREST(this);
             MainPanel.Visibility = Visibility.Collapsed;
-            //this.req.Login("test", "qwerty");
+            SystemController.GetMacAddress();
             StorageManager sm = new StorageManager();
             if (sm.CompIdExist)
             {
@@ -102,7 +102,7 @@ namespace PCClubApp
 
         private void Button_Check(object sender, RoutedEventArgs e)
         {
-            ShutdownManager.BeginShutdown(ShutdownKind.Restart, TimeSpan.FromSeconds(0));
+            //ShutdownManager.BeginShutdown(ShutdownKind.Restart, TimeSpan.FromSeconds(0));
             LoginTextBox.Text = "";
             passwordTextBox.Text = "";
             if (checkLoginPar)

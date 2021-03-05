@@ -30,14 +30,16 @@ namespace PCClubApp
             {
                 Trace.WriteLine("--Socket Connected--");
                 string regMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new { compId = ProfileManager.compId, token = ClanREST.UserToken });
-                socket.Emit("openSession", regMessage);
-                Thread.Sleep(3000);
-                connect_ready();
-                
+                socket.Emit("openSession", regMessage); 
             });
 
-            socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), (data) => WSManager.OnMessage(data));
-            socket.On(String.Format("/manage/{0}", ProfileManager.compId), (data) => WSManager.OnCompManage(data));
+            socket.On(String.Format("/topic/chat/user/{0}", ProfileManager.userID), WSManager.OnMessage);
+            socket.On(String.Format("/manage/{0}", ProfileManager.compId), WSManager.OnCompManage);
+            socket.On(String.Format("/session/{0}", ProfileManager.compId), (_) => {
+                Trace.WriteLine("---- SESSION CREATED ----");
+                connect_ready();
+            });
+            socket.On(String.Format("/errorHandler/{0}", ProfileManager.compId), (data) => WSManager.OnError(data));
 
             socket.Connect();
             _socket = socket;
@@ -51,9 +53,6 @@ namespace PCClubApp
 
         private static void OnMessage(object data)
         {
-            Trace.WriteLine("---Chat Message comin------");
-            Trace.WriteLine(data);
-            Trace.WriteLine("---------------------");
             dynamic jOb = JObject.Parse(data.ToString());
             int c_id = jOb.id;
             soc_chat.MessageInput(c_id);
@@ -66,6 +65,11 @@ namespace PCClubApp
             {
                 if(i.ToString() == (string)jOb.action) SystemController.ActionComputer((ESystemAction)i);
             }
+
+        }
+
+        private static void OnError(object _data)
+        {
 
         }
 

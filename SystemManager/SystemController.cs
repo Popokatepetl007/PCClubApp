@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
@@ -7,7 +7,7 @@ using System.Linq;
 using Windows.System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-
+using System.Management;
 
 namespace PCClubApp
 {
@@ -33,11 +33,26 @@ namespace PCClubApp
 
         public static string GetMacAddress()
         {
+
+            Trace.WriteLine("-------MAC------");
+
+            string result = "";
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.OperationalStatus == OperationalStatus.Up)
+                {
+                    Trace.WriteLine(nic.GetPhysicalAddress().ToString());
+                    Trace.WriteLine(nic.Id);
+                    result = nic.Id;
+                }
+            }
+            return result;
+/*
             return (
                         from nic in NetworkInterface.GetAllNetworkInterfaces()
                         where nic.OperationalStatus == OperationalStatus.Up
-                        select nic.GetPhysicalAddress().ToString()
-                    ).FirstOrDefault();
+                        select nic.GetIPProperties().ToString()
+                    ).FirstOrDefault();*/
         }
 
         public static void ActionComputer(ESystemAction _action)
