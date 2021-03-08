@@ -194,6 +194,9 @@
     <Compile Include="View\ShopListView.xaml.cs">
       <DependentUpon>ShopListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\supportViews\PhotoProfileView.xaml.cs">
+      <DependentUpon>PhotoProfileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\testGrid.xaml.cs">
       <DependentUpon>testGrid.xaml</DependentUpon>
     </Compile>
@@ -225,6 +228,15 @@
     <Content Include="Assets\NewsOff.png" />
     <Content Include="Assets\person.png" />
     <Content Include="Assets\PostMessageIcon.png" />
+    <Content Include="Assets\pp1.jpg" />
+    <Content Include="Assets\pp2.jpg" />
+    <Content Include="Assets\pp3.png" />
+    <Content Include="Assets\pp4.jpg" />
+    <Content Include="Assets\pp5.jpg" />
+    <Content Include="Assets\pp6.jpg" />
+    <Content Include="Assets\pp7.jpg" />
+    <Content Include="Assets\pp8.jpg" />
+    <Content Include="Assets\pp9.jpg" />
     <Content Include="Assets\romb.png" />
     <Content Include="Assets\ServicesOff.png" />
     <Content Include="Assets\ShopOff.png" />
@@ -302,6 +314,10 @@
     <Page Include="View\ShopListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\supportViews\PhotoProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\testGrid.xaml">
       <SubType>Designer</SubType>

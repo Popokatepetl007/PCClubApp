@@ -27,6 +27,9 @@ namespace PCClubApp.View
         {
             this.InitializeComponent();
             req = new ClanREST(this);
+            AccPicsView.picAction = (_is) => {
+                ProfileImageRect.Source = _is;
+            };
         }
 
         public void OnActive()
@@ -43,6 +46,11 @@ namespace PCClubApp.View
             AccMailBox.Text = profile.Email;
             AccBDayBox.Text = profile.Birthday;
             ProfileImageRect.Source = UIManager.BitmapImageFromUrl("/profile/picture");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AccPicsView.Visibility = Visibility.Visible;
         }
     }
 }

@@ -1,0 +1,26 @@
+﻿<UserControl
+    x:Class="PCClubApp.View.supportViews.PhotoProfileView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PCClubApp.View.supportViews"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Background="#7F3F465F">
+        <GridView Margin="0, 0, 0, 0">
+            <Image Source="/Assets/pp1.jpg" Width="100" Height="100" PointerPressed="Image_PointerPressed"  />
+            <Image Source="/Assets/pp2.jpg" />
+            <Image Source="/Assets/pp3.jpg" />
+            <Image Source="/Assets/pp4.jpg" />
+            <Image Source="/Assets/pp5.jpg" />
+            <Image Source="/Assets/pp6.jpg" />
+            <Image Source="/Assets/pp7.jpg" />
+            <Image Source="/Assets/pp8.jpg" />
+            <Image Source="/Assets/pp9.jpg" />
+        </GridView>
+
+    </Grid>
+</UserControl>
